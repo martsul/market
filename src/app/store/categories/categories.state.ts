@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { State, Action, Selector, StateContext } from '@ngxs/store';
 import { QueryCategoriesAction } from './categories.actions';
-import { ApiService } from '../../services/api.service';
-import { Observable, of } from 'rxjs';
+import { ApiService } from '../../services/api/api.service';
 
 export interface CategoriesStateModel {
   categories: string[];
@@ -26,7 +25,6 @@ export class CategoriesState {
   @Action(QueryCategoriesAction)
   queryCategories(ctx: StateContext<CategoriesStateModel>) {
     this.apiService.queryProductCategories().subscribe((categories) => {
-      console.log(categories)
       ctx.patchState({ categories });
     });
   }

@@ -1,7 +1,8 @@
 .header-menu {
   display: flex;
   align-items: center;
-  gap: 24px;
+  gap: 16px;
+  justify-content: space-between;
 
   &__link {
     font: 400 16px/1 var(--font-i);

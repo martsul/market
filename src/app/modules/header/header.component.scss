@@ -2,7 +2,8 @@
   padding: 24px 0;
 
   &__container {
-    display: flex;
+    display: grid;
+    grid-template-columns: 160px minmax(316px, 340px) minmax(0, 577px) minmax(0, 62px);
     align-items: center;
     justify-content: space-between;
     gap: 16px;

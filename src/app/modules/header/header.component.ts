@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { HeaderMenuComponent } from '../../header-menu/header-menu.component';
-import { SearchComponent } from '../../search/search.component';
-import { HeaderUserLinksComponent } from '../../header-user-links/header-user-links.component';
+import { HeaderMenuComponent } from '../../components/header-menu/header-menu.component';
+import { SearchComponent } from '../../components/search/search.component';
+import { HeaderUserComponent } from '../../components/header-user/header-user.component';
 import { RouterLink } from '@angular/router';
 import { Store } from '@ngxs/store';
 import { QueryCategoriesAction } from '../../store/categories/categories.actions';
@@ -11,7 +11,7 @@ import { QueryCategoriesAction } from '../../store/categories/categories.actions
   imports: [
     HeaderMenuComponent,
     SearchComponent,
-    HeaderUserLinksComponent,
+    HeaderUserComponent,
     RouterLink,
   ],
   templateUrl: './header.component.html',
