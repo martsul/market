@@ -5,13 +5,13 @@ import { ApiService } from '../../services/api.service';
 import { Observable, of } from 'rxjs';
 
 export interface CategoriesStateModel {
-  categories: Observable<string[]>;
+  categories: string[];
 }
 
 @State<CategoriesStateModel>({
   name: 'categories',
   defaults: {
-    categories: of([]),
+    categories: [],
   },
 })
 @Injectable()
@@ -25,8 +25,9 @@ export class CategoriesState {
 
   @Action(QueryCategoriesAction)
   queryCategories(ctx: StateContext<CategoriesStateModel>) {
-    const stateModel = ctx.getState();
-    stateModel.categories = this.apiService.queryProductCategories();
-    ctx.setState(stateModel);
+    this.apiService.queryProductCategories().subscribe((categories) => {
+      console.log(categories)
+      ctx.patchState({ categories });
+    });
   }
 }

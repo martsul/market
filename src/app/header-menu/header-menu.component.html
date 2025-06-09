@@ -1,6 +1,9 @@
 <div class="header-menu">
-  {{ categories | async | json }}
-  <button class="header-menu__link header-menu__dropdown-btn" matIconButton [matMenuTriggerFor]="appMenu">
+  <button
+    class="header-menu__link header-menu__dropdown-btn"
+    matIconButton
+    [matMenuTriggerFor]="appMenu"
+  >
     Shop
     <svg
       width="16"
@@ -17,8 +20,9 @@
   </button>
   <mat-menu class="empty" #appMenu="matMenu">
     <ng-template matMenuContent>
-      <button mat-menu-item>Settings</button>
-      <button mat-menu-item>Help</button>
+      @for (category of categories(); track $index) {
+      <a [routerLink]="`/shop/${category}`" mat-menu-item>{{ category | categoryConvert | titlecase }}</a>
+      }
     </ng-template>
   </mat-menu>
   <a href="#" class="header-menu__link">On Sale</a>
