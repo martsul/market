@@ -1,0 +1,15 @@
+.header {
+  padding: 24px 0;
+
+  &__container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+  }
+
+  &__logo {
+    font: 900 32px/1 var(--font-m);
+    cursor: pointer;
+  }
+}

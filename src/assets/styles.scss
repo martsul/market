@@ -1,0 +1,38 @@
+@import "@fontsource/inter/400.css";
+@import "@fontsource/montserrat/900.css";
+
+:root {
+  --font-m: Montserrat, sans-serif;
+  --font-i: Inter, sans-serif;
+  --grey: #f2f0f1;
+}
+
+.container {
+  max-width: 1272px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.empty.mat-mdc-menu-panel {
+  .mat-mdc-menu-content {
+    background: var(--grey);
+  }
+
+  .mat-mdc-menu-item {
+    min-height: 25px;
+  }
+
+  .mat-mdc-menu-content .mat-mdc-menu-item .mat-mdc-menu-item-text {
+    font: 400 14px/1.2 var(--font-i);
+  }
+}
