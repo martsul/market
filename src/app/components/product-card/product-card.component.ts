@@ -30,4 +30,15 @@ export class ProductCardComponent {
   get ratingPercents(): number {
     return (this.rating * 100) / 5;
   }
+
+  get discount(): number | undefined {
+    return this.product().discountPercentage;
+  }
+
+  get startPrice(): string | undefined {
+    if (this.discount) {
+      return Math.ceil((100 * this.price) / (100 - this.discount)).toFixed(2);
+    }
+    return undefined;
+  }
 }

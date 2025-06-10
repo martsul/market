@@ -4,5 +4,4 @@ export class QueryWomenPreview {
 }
 export class QueryMenPreview {
   static readonly type = '[Products] Query Men Preview';
-  constructor() { }
 }

@@ -44,8 +44,29 @@
     color: #00000099;
   }
 
+  &__price-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
   &__price {
     font: 700 24px/1 var(--font-i);
+  }
+
+  &__start-price {
+    color: #00000066;
+    font: 700 24px/1 var(--font-i);
+    text-decoration: line-through;
+  }
+
+  &__discount {
+    padding: 6px 14px;
+    background: #FF33331A;
+    color: #FF3333;
+    font: 500 12px/1 var(--font-i);
+    border-radius: 62px;
   }
 }
 
@@ -81,8 +102,17 @@
       font-size: 12px;
      }
 
-     &__price {
+     &__price, &__start-price {
       font-size: 20px;
+     }
+
+     &__price-container {
+      gap: 5px;
+     }
+
+     &__discount {
+      font-size: 10px;
+      padding: 6px;
      }
   } 
 }

@@ -72,6 +72,10 @@
     </p>
   </div>
   <div class="product-card__price-container">
-    <p class="product-card__price">${{ price }}</p>
+    <span class="product-card__price">${{ price }}</span>
+    @if (discount) {
+    <span class="product-card__start-price">${{ startPrice }}</span>
+    <span class="product-card__discount">{{ discount }}%</span>
+    }
   </div>
 </div>
