@@ -19,3 +19,24 @@
     display: block;
   }
 }
+
+@media (max-width: 575px) {
+  .product-preview {
+    &__title {
+      font-size: 32px;
+      margin-bottom: 32px;
+    }
+
+    &__swiper {
+      margin-bottom: 24px;
+    }
+
+    &__slide {
+      max-width: 200px;
+    }
+
+    &__btn {
+      max-width: none;
+    }
+  }
+}

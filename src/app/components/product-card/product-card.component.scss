@@ -17,7 +17,7 @@
 
   &__rating {
     display: grid;
-    grid-template-columns: minmax(0, 95px) 1fr;
+    grid-template-columns: 95px 1fr;
     align-items: center;
     gap: 13px;
     margin-bottom: 8px;
@@ -32,6 +32,8 @@
 
   &__star {
     flex-shrink: 0;
+    width: 19px;
+    height: 19px;
   }
 
   &__rating-num {
@@ -45,4 +47,42 @@
   &__price {
     font: 700 24px/1 var(--font-i);
   }
+}
+
+@media (max-width:575px) {
+  .product-card {
+    &__img-container {
+      width: 200px;
+      height: 200px;
+      margin-bottom: 10px;
+    }
+
+    &__img {
+      width: 180px;
+      height: 180px;
+    }
+
+    &__title {
+      font-size: 16px;
+      margin-bottom: 4px;
+    }
+
+    &__rating {
+      gap: 11px;
+      grid-template-columns: 75px 1fr;
+    }
+
+    &__star {
+      width: 15px;
+      height: 15px;
+    }
+
+     &__rating-num {
+      font-size: 12px;
+     }
+
+     &__price {
+      font-size: 20px;
+     }
+  } 
 }
