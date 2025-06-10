@@ -1,0 +1,15 @@
+<div class="product-card">
+  <div class="product-card__img-container">
+    <img [ngSrc]="thumbnail" alt="cloth" width="260" height="260" />
+  </div>
+  <h4 class="product-card__title">{{ title }}</h4>
+  <div class="product-card__rating">
+    <div class="product-card__stars"></div>
+    <p class="product-card__rating-num">
+      {{ rating }}/<span class="product-card__rating-max">5</span>
+    </p>
+  </div>
+  <div class="product-card__price-container">
+    <p class="product-card__price">{{ price }}</p>
+  </div>
+</div>

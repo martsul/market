@@ -1,0 +1,6 @@
+<h2 class="product-preview__title">{{ title }}</h2>
+<swiper-container [spaceBetween]="20" [grabCursor]="true">
+  @for (product of products; track product.id) {
+  <swiper-slide><app-product-card [product]="product" /></swiper-slide>
+  }
+</swiper-container>
