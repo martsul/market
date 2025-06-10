@@ -2,7 +2,7 @@ import { inject, Injectable } from '@angular/core';
 import { State, Action, Selector, StateContext } from '@ngxs/store';
 import { HttpClient } from '@angular/common/http';
 import { ProductData } from '../../interfaces/product-data';
-import { QueryWomenPreview } from './products.actions';
+import { QueryMenPreview, QueryWomenPreview } from './products.actions';
 import { ProductResponse } from '../../interfaces/product-response';
 
 export interface ProductsStateModel {
@@ -32,11 +32,19 @@ export class ProductsState {
   }
 
   @Action(QueryWomenPreview)
-  add(ctx: StateContext<ProductsStateModel>) {
+  queryWomenPreview(ctx: StateContext<ProductsStateModel>) {
     this.http
       .get<ProductResponse>(`${this.baseUrl}category/womens-dresses`)
       .subscribe((v) => {
         ctx.patchState({ womenPreview: v.products });
+      });
+  }
+  @Action(QueryMenPreview)
+  queryMenPreview(ctx: StateContext<ProductsStateModel>) {
+    this.http
+      .get<ProductResponse>(`${this.baseUrl}category/mens-shirts`)
+      .subscribe((v) => {
+        ctx.patchState({ menPreview: v.products });
       });
   }
 }
