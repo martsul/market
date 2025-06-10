@@ -1,0 +1,27 @@
+.newsletter {
+    background: #000;
+    padding: 36px 64px;
+    border-radius: 20px;
+    display: grid;
+    grid-template-columns: minmax(0, 551px) minmax(0, 349px);
+    align-items: center;
+    justify-content: space-between;
+
+    &__title {
+        max-width: 551px;
+        color: #fff;
+        font: 900 40px/45px var(--font-m);
+    }
+
+    &__inputs {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    &__input, &__button {
+        width: 100%;
+    }
+}

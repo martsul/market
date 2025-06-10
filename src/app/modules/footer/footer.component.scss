@@ -1,0 +1,18 @@
+.footer {
+  background: var(--grey);
+  margin-top: 170px;
+
+  .container {
+    position: relative;
+    padding: 140px 0 82px;
+  }
+
+  &__newsletter {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    max-width: calc(100vw - 32px);
+  }
+}

@@ -1,11 +1,13 @@
 @import "@fontsource/inter/400.css";
 @import "@fontsource/montserrat/900.css";
 
+
 :root {
   --font-m: Montserrat, sans-serif;
   --font-i: Inter, sans-serif;
   --grey: #f2f0f1;
 }
+
 
 .container {
   max-width: 1272px;
@@ -22,7 +24,6 @@ body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
-
 
 .mat-mdc-menu-panel {
   .mat-mdc-menu-content {

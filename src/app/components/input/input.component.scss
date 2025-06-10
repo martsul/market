@@ -1,0 +1,39 @@
+.custom-input {
+  border-radius: 62px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+
+  &.white {
+    background: #fff;
+  }
+
+  &__input {
+    padding: 14px 16px;
+    font: 400 16px/1 var(--font-i);
+    width: 100%;
+  }
+
+  &.with-icon {
+    .custom-input {
+      &__icon {
+        position: absolute;
+        width: 24px;
+        height: 24px;
+        top: 50%;
+        transform: translate(0, -50%);
+        left: 16px;
+        opacity: .4 ;
+      }
+
+      &__input {
+        padding: 14px 16px 14px 52px;
+      }
+    }
+  }
+}
+
+input {
+  background: #fff;
+}

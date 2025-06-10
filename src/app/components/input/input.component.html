@@ -1,0 +1,8 @@
+<div
+  [class]="getClasses()"
+>
+  @if (dataInput().icon) {
+  <svg class="custom-input__icon" [icon]="dataInput().icon!"></svg>
+  }
+  <input [type]="dataInput().type" class="custom-input__input" [placeholder]="dataInput().placeholder" />
+</div>
