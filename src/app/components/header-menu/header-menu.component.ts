@@ -1,10 +1,11 @@
-import { Component, Signal } from '@angular/core';
+import { Component, input, output, signal, Signal } from '@angular/core';
 import { MatMenuModule } from '@angular/material/menu';
 import { Store } from '@ngxs/store';
 import { CategoriesState } from '../../store/categories/categories.state';
 import { RouterLink } from '@angular/router';
 import { CategoryConvertPipe } from '../../pipes/category-convert.pipe';
 import { TitleCasePipe } from '@angular/common';
+import { BreakpointObserver } from '@angular/cdk/layout';
 
 @Component({
   selector: 'app-header-menu',
@@ -14,8 +15,28 @@ import { TitleCasePipe } from '@angular/common';
 })
 export class HeaderMenuComponent {
   public readonly categories: Signal<string[]>;
+  public readonly accordionIsOpen = signal<boolean>(false);
+  public menuIsHidden = signal<boolean>(false);
+  public toggleMenuOpen = output();
+  public menuIsOpen = input.required<boolean>();
 
-  constructor(private readonly store: Store) {
+  constructor(
+    private readonly store: Store,
+    private breakpointObserver: BreakpointObserver
+  ) {
     this.categories = this.store.selectSignal(CategoriesState.getCategories);
+    this.breakpointObserver
+      .observe(['(max-width: 991px)'])
+      .subscribe((result) => {
+        this.menuIsHidden.set(result.matches);
+      });
+  }
+
+  public closeMenu() {
+    this.toggleMenuOpen.emit();
+  }
+
+  public toggleAccordion() {
+    this.accordionIsOpen.set(!this.accordionIsOpen());
   }
 }

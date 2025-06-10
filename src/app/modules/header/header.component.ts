@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { HeaderMenuComponent } from '../../components/header-menu/header-menu.component';
 import { SearchComponent } from '../../components/search/search.component';
 import { HeaderUserComponent } from '../../components/header-user/header-user.component';
@@ -20,5 +20,10 @@ import { QueryCategoriesAction } from '../../store/categories/categories.actions
 export class HeaderComponent {
   constructor(private readonly store: Store) {
     this.store.dispatch(new QueryCategoriesAction());
+  }
+
+  public menuIsOpen: boolean = false;
+  public toggleMenuOpen() {
+    this.menuIsOpen = !this.menuIsOpen
   }
 }
