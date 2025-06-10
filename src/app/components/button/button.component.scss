@@ -1,28 +1,51 @@
 .custom-button {
-    padding: 12px 16px;
-    border-radius: 62px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    font: 500 16px/1 var(--font-i);
-    box-sizing: border-box;
-    min-height: 46px;
+  padding: 12px 16px;
+  border-radius: 62px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  font: 500 16px/1 var(--font-i);
+  box-sizing: border-box;
+  min-height: 46px;
+  transition: all 0.2s ease;
 
-    &.white {
-        background: #fff;
-        color: #000;
-    }
+  &.white {
+    background: #fff;
+    color: #000;
 
-    &.dark {
+    &:hover {
         background: #000;
         color: #fff;
     }
+  }
+
+  &.dark {
+    background: #000;
+    color: #fff;
+
+    &:hover {
+        background: #fff;
+        color: #000
+    }
+  }
+
+  &.border-white {
+    background: #fff;
+    border: 1px solid #0000001a;
+    color: #000;
+
+    &:hover {
+      background: #000;
+      border-color: #000;
+      color: #fff;
+    }
+  }
 }
 
 @media (max-width: 575px) {
-    .custom-button {
-        font-size: 14px;
-        height: 42px;
-    }
+  .custom-button {
+    font-size: 14px;
+    height: 42px;
+  }
 }

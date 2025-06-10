@@ -1,0 +1,21 @@
+.product-preview {
+  &__title {
+    margin-bottom: 55px;
+    font: 900 48px/1 var(--font-m);
+    text-align: center;
+  }
+
+  &__swiper {
+    margin-bottom: 36px;
+  }
+
+  &__slide {
+    max-width: 295px;
+  }
+
+  &__btn {
+    max-width: 218px;
+    margin: 0 auto;
+    display: block;
+  }
+}

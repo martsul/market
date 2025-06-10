@@ -1,4 +1,4 @@
-import { Component, input, Signal } from '@angular/core';
+import { Component, input, InputSignal, Signal } from '@angular/core';
 import { ProductData } from '../../interfaces/product-data';
 import { NgOptimizedImage } from '@angular/common';
 
@@ -9,7 +9,7 @@ import { NgOptimizedImage } from '@angular/common';
   styleUrl: './product-card.component.scss',
 })
 export class ProductCardComponent {
-  public product = input.required<ProductData>();
+  public product: InputSignal<ProductData> = input.required<ProductData>();
 
   get thumbnail(): string {
     return this.product().thumbnail;

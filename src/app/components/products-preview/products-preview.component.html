@@ -1,6 +1,15 @@
-<h2 class="product-preview__title">{{ title }}</h2>
-<swiper-container [spaceBetween]="20" [grabCursor]="true">
+<h2 class="product-preview__title">{{ title | uppercase }}</h2>
+<swiper-container
+  slides-per-view="auto"
+  space-between="20"
+  grab-cursor="true"
+  free-mode="true"
+  class="product-preview__swiper"
+>
   @for (product of products; track product.id) {
-  <swiper-slide><app-product-card [product]="product" /></swiper-slide>
+  <swiper-slide class="product-preview__slide"
+    ><app-product-card [product]="product"
+  /></swiper-slide>
   }
 </swiper-container>
+<app-button class="product-preview__btn" [buttonData]="{ text: 'View All', color: 'border-white' }" />
