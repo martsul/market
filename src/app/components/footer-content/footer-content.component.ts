@@ -8,8 +8,8 @@ import { FOOTER_LINKS } from '../../constants/footer-links';
   selector: 'app-footer-content',
   imports: [FooterNetworksComponent, FooterLinksComponent],
   templateUrl: './footer-content.component.html',
-  styleUrl: './footer-content.component.scss'
+  styleUrl: './footer-content.component.scss',
 })
 export class FooterContentComponent {
-  public links:FooterLinks[] = FOOTER_LINKS
+  public links: FooterLinks[] = FOOTER_LINKS;
 }

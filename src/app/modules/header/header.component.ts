@@ -23,7 +23,7 @@ export class HeaderComponent {
   }
 
   public menuIsOpen: boolean = false;
-  public toggleMenuOpen() {
-    this.menuIsOpen = !this.menuIsOpen
+  public toggleMenuOpen(): void {
+    this.menuIsOpen = !this.menuIsOpen;
   }
 }

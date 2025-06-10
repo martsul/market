@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { FooterNetworkComponent } from '../footer-network/footer-network.component';
+import { NetworkData } from '../../interfaces/network-data';
+import { NETWORKS } from '../../constants/networks';
 
 @Component({
   selector: 'app-footer-networks',
@@ -8,10 +10,5 @@ import { FooterNetworkComponent } from '../footer-network/footer-network.compone
   styleUrl: './footer-networks.component.scss',
 })
 export class FooterNetworksComponent {
-  public networks = [
-    { icon: 'twitter', href: '#' },
-    { icon: 'facebook', href: '#' },
-    { icon: 'inst', href: '#' },
-    { icon: 'github', href: '#' },
-  ];
+  public networks: NetworkData[] = NETWORKS;
 }

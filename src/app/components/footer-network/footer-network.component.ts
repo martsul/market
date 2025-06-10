@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { Component, input, InputSignal } from '@angular/core';
 import { Network } from '../../interfaces/network';
 import { SvgIconComponent } from '../svg-icon/svg-icon.component';
 
@@ -9,5 +9,5 @@ import { SvgIconComponent } from '../svg-icon/svg-icon.component';
   styleUrl: './footer-network.component.scss',
 })
 export class FooterNetworkComponent {
-  public network = input.required<Network>();
+  public network: InputSignal<Network> = input.required<Network>();
 }

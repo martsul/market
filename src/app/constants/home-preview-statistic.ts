@@ -1,6 +1,6 @@
 import { ItemResultStatistic } from '../interfaces/item-result-statistic';
 
-export const homePreviewStatistic: ItemResultStatistic[] = [
+export const HOME_PREVIEW_STATISTIC: ItemResultStatistic[] = [
   {
     result: 200,
     item: "International Brands"

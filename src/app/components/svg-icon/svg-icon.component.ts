@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { Component, input, InputSignal } from '@angular/core';
 
 @Component({
   selector: 'svg[icon]',
@@ -7,9 +7,9 @@ import { Component, input } from '@angular/core';
   template: '<svg:use class="svg-icon" [attr.href]="href"></svg:use>',
 })
 export class SvgIconComponent {
-  public readonly icon = input.required<string>();
+  public readonly icon: InputSignal<string> = input.required<string>();
 
-  get href() {
+  get href(): string {
     return `svg/${this.icon()}.svg#${this.icon()}`;
   }
 }

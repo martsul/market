@@ -1,4 +1,14 @@
-import { Component, input, output, signal, Signal } from '@angular/core';
+import {
+  Component,
+  input,
+  InputSignal,
+  Output,
+  output,
+  OutputEmitterRef,
+  signal,
+  Signal,
+  WritableSignal,
+} from '@angular/core';
 import { MatMenuModule } from '@angular/material/menu';
 import { Store } from '@ngxs/store';
 import { CategoriesState } from '../../store/categories/categories.state';
@@ -15,10 +25,11 @@ import { BreakpointObserver } from '@angular/cdk/layout';
 })
 export class HeaderMenuComponent {
   public readonly categories: Signal<string[]>;
-  public readonly accordionIsOpen = signal<boolean>(false);
-  public menuIsHidden = signal<boolean>(false);
-  public toggleMenuOpen = output();
-  public menuIsOpen = input.required<boolean>();
+  public readonly accordionIsOpen: WritableSignal<boolean> =
+    signal<boolean>(false);
+  public menuIsHidden: WritableSignal<boolean> = signal<boolean>(false);
+  public toggleMenuOpen: OutputEmitterRef<void> = output<void>();
+  public menuIsOpen: InputSignal<boolean> = input.required<boolean>();
 
   constructor(
     private readonly store: Store,
@@ -32,11 +43,11 @@ export class HeaderMenuComponent {
       });
   }
 
-  public closeMenu() {
+  public closeMenu(): void {
     this.toggleMenuOpen.emit();
   }
 
-  public toggleAccordion() {
+  public toggleAccordion(): void {
     this.accordionIsOpen.set(!this.accordionIsOpen());
   }
 }

@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, Signal } from '@angular/core';
 import { ProductsPreviewComponent } from '../../components/products-preview/products-preview.component';
 import { Store } from '@ngxs/store';
 import { QueryWomenPreview } from '../../store/products/products.actions';
 import { ProductsState } from '../../store/products/products.state';
+import { ProductData } from '../../interfaces/product-data';
 
 @Component({
   selector: 'app-women-preview',
@@ -16,5 +17,7 @@ export class WomenPreviewComponent {
     this.store.dispatch(new QueryWomenPreview());
   }
 
-  public products = this.store.selectSignal(ProductsState.getWomenPreview);
+  public products: Signal<ProductData[]> = this.store.selectSignal(
+    ProductsState.getWomenPreview
+  );
 }

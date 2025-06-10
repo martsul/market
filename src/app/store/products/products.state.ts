@@ -23,24 +23,25 @@ export class ProductsState {
   private readonly baseUrl: string = 'https://dummyjson.com/products/';
 
   @Selector()
-  static getMenPreview(state: ProductsStateModel) {
+  static getMenPreview(state: ProductsStateModel): ProductData[] {
     return state.menPreview;
   }
   @Selector()
-  static getWomenPreview(state: ProductsStateModel) {
+  static getWomenPreview(state: ProductsStateModel): ProductData[] {
     return state.womenPreview;
   }
 
   @Action(QueryWomenPreview)
-  queryWomenPreview(ctx: StateContext<ProductsStateModel>) {
+  queryWomenPreview(ctx: StateContext<ProductsStateModel>): void {
     this.http
       .get<ProductResponse>(`${this.baseUrl}category/womens-dresses`)
       .subscribe((v) => {
         ctx.patchState({ womenPreview: v.products });
       });
   }
+  
   @Action(QueryMenPreview)
-  queryMenPreview(ctx: StateContext<ProductsStateModel>) {
+  queryMenPreview(ctx: StateContext<ProductsStateModel>): void {
     this.http
       .get<ProductResponse>(`${this.baseUrl}category/mens-shirts`)
       .subscribe((v) => {

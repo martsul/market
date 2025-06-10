@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { Component, input, InputSignal } from '@angular/core';
 import { FooterLinks } from '../../interfaces/footer-links';
 import { UpperCasePipe } from '@angular/common';
 
@@ -6,8 +6,8 @@ import { UpperCasePipe } from '@angular/common';
   selector: 'app-footer-links',
   imports: [UpperCasePipe],
   templateUrl: './footer-links.component.html',
-  styleUrl: './footer-links.component.scss'
+  styleUrl: './footer-links.component.scss',
 })
 export class FooterLinksComponent {
-  public links = input.required<FooterLinks>()
+  public links: InputSignal<FooterLinks> = input.required<FooterLinks>();
 }

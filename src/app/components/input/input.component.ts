@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { Component, input, InputSignal } from '@angular/core';
 import { InputData } from '../../interfaces/input-data';
 import { SvgIconComponent } from '../svg-icon/svg-icon.component';
 
@@ -9,9 +9,11 @@ import { SvgIconComponent } from '../svg-icon/svg-icon.component';
   styleUrl: './input.component.scss',
 })
 export class InputComponent {
-  public dataInput = input.required<InputData>({ alias: 'data-input' });
+  public dataInput: InputSignal<InputData> = input.required<InputData>({
+    alias: 'data-input',
+  });
 
-  public getClasses() {
+  public getClasses(): string {
     return `custom-input ${this.dataInput().color} ${
       this.dataInput().icon ? 'with-icon' : ''
     }`;

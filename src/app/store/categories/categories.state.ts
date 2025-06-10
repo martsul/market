@@ -15,15 +15,15 @@ export interface CategoriesStateModel {
 })
 @Injectable()
 export class CategoriesState {
-  private readonly apiService = new ApiService();
+  private readonly apiService: ApiService = new ApiService();
 
   @Selector()
-  static getCategories(state: CategoriesStateModel) {
+  static getCategories(state: CategoriesStateModel): string[] {
     return state.categories;
   }
 
   @Action(QueryCategoriesAction)
-  queryCategories(ctx: StateContext<CategoriesStateModel>) {
+  queryCategories(ctx: StateContext<CategoriesStateModel>): void {
     this.apiService.queryProductCategories().subscribe((categories) => {
       ctx.patchState({ categories });
     });
