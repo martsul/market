@@ -1,0 +1,18 @@
+.footer-networks {
+    &__title {
+        font: 900 34px/1 var(--font-m);
+        margin-bottom: 25px;
+    }
+
+    &__text {
+        font: 400 14px/22px var(--font-i);
+        color: #00000099;
+        margin-bottom: 35px;
+    }
+
+    &__container {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+}

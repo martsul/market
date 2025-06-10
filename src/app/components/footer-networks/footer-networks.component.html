@@ -1,0 +1,7 @@
+<h3 class="footer-networks__title">SHOP.CO</h3>
+<p class="footer-networks__text">We have clothes that suits your style and which you’re proud to wear. From women to men.</p>
+<div class="footer-networks__container">
+    @for (network of networks; track $index) {
+        <app-footer-network [network]="network" />
+    }
+</div>

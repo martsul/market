@@ -1,1 +1,6 @@
-<p>footer-content works!</p>
+<div class="footer-content">
+  <app-footer-networks />
+  @for (linksGroup of links; track $index) {
+  <app-footer-links [links]="linksGroup" />
+  }
+</div>

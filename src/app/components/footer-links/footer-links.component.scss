@@ -1,0 +1,18 @@
+.footer-links {
+    &__title {
+        font: 500 16px/18px var(--font-i);
+        letter-spacing: 3px;
+        margin-bottom: 26px;
+    }
+
+    &__container {
+        display: flex;
+        flex-direction: column;
+        gap: 20px   ;
+    }
+
+    &__link {
+        color: #00000099;
+        font: 40 16px/19px var(--font-i);
+    }
+}
