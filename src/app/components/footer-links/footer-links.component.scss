@@ -14,5 +14,33 @@
     &__link {
         color: #00000099;
         font: 40 16px/19px var(--font-i);
+        transition: color .2s ease;
+
+        &:hover {
+            color: #000;
+        }
+    }
+}
+
+@media (max-width: 991px) {
+    :host {
+        margin-bottom: 15px;
+    }
+}
+
+@media (max-width: 575px) {
+    .footer-links {
+        &__title {
+            font-size: 14px;
+            margin-bottom: 16px;
+        }
+
+        &__container {
+            gap: 15px;
+        }
+
+        &__link {
+            font-size: 14px;
+        }
     }
 }

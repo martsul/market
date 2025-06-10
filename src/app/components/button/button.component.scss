@@ -14,3 +14,10 @@
         color: #000;
     }
 }
+
+@media (max-width: 575px) {
+    .custom-button {
+        font-size: 14px;
+        height: 42px;
+    }
+}

@@ -16,3 +16,22 @@
     max-width: calc(100vw - 32px);
   }
 }
+
+@media (max-width: 991px) {
+  .footer {
+    margin-top: 190px;
+
+    .container {
+      padding: 160px 16px 82px;
+    }
+  }
+}
+@media (max-width: 767px) {
+  .footer {
+    margin-top: 225px;
+
+    .container {
+      padding: 215px 16px 77px;
+    }
+  }
+}

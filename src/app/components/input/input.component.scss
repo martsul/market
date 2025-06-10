@@ -24,7 +24,7 @@
         top: 50%;
         transform: translate(0, -50%);
         left: 16px;
-        opacity: .4 ;
+        opacity: 0.4;
       }
 
       &__input {
@@ -34,6 +34,18 @@
   }
 }
 
-input {
-  background: #fff;
+@media (max-width: 575px) {
+  .custom-input {
+    &__input {
+      padding: 12px 16px;
+      font-size: 14px;
+    }
+    &.with-icon {
+      .custom-input {
+        &__input {
+          padding: 12px 16px 12px 48px;
+        }
+      }
+    }
+  }
 }
