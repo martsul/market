@@ -3,7 +3,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { Store } from '@ngxs/store';
 import { CategoriesState } from '../../store/categories/categories.state';
 import { RouterLink } from '@angular/router';
-import { CategoryConvertPipe } from '../../pipes/category-convert.pipe';
+import { CategoryConvertPipe } from '../../pipes/category-convert/category-convert.pipe';
 import { TitleCasePipe } from '@angular/common';
 import { BreakpointObserver } from '@angular/cdk/layout';
 

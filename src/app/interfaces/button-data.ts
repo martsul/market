@@ -1,5 +1,5 @@
 export interface ButtonData {
-  color: 'white';
+  color: 'white' | 'dark';
   icon?: string;
   text: string;
 }

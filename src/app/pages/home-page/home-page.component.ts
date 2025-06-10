@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
+import { HomePreviewComponent } from '../../modules/home-preview/home-preview.component';
 
 @Component({
   selector: 'app-home-page',
-  imports: [],
+  imports: [HomePreviewComponent],
   templateUrl: './home-page.component.html',
-  styleUrl: './home-page.component.scss'
+  styleUrl: './home-page.component.scss',
 })
-export class HomePageComponent {
-
-}
+export class HomePageComponent {}
