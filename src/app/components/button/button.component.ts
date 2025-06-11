@@ -1,4 +1,10 @@
-import { Component, input, InputSignal } from '@angular/core';
+import {
+  Component,
+  input,
+  InputSignal,
+  output,
+  OutputEmitterRef,
+} from '@angular/core';
 import { ButtonData } from '../../interfaces/button-data';
 
 @Component({
@@ -9,8 +15,13 @@ import { ButtonData } from '../../interfaces/button-data';
 })
 export class ButtonComponent {
   public buttonData: InputSignal<ButtonData> = input.required<ButtonData>();
+  public handlerClick: OutputEmitterRef<void> = output<void>();
 
   public getClasses(): string {
     return `custom-button ${this.buttonData().color}`;
+  }
+
+  public click() {
+    this.handlerClick.emit();
   }
 }

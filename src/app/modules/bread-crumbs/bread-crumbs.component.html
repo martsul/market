@@ -5,7 +5,7 @@
       <a
         [routerLink]="breadCrumb.path"
         [class]="{ 'bread-crumbs__link': true, last: $last }"
-        >{{ breadCrumb.title | titlecase }}</a
+        >{{ breadCrumb.title | categoryConvert | titlecase }}</a
       >
       @if (!$last) {
       <svg

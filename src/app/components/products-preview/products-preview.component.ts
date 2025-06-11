@@ -3,6 +3,8 @@ import {
   CUSTOM_ELEMENTS_SCHEMA,
   input,
   InputSignal,
+  output,
+  OutputEmitterRef,
   Signal,
 } from '@angular/core';
 import { PreviewProductsData } from '../../interfaces/preview-products-data';
@@ -10,6 +12,7 @@ import { ProductCardComponent } from '../product-card/product-card.component';
 import { ProductData } from '../../interfaces/product-data';
 import { UpperCasePipe } from '@angular/common';
 import { ButtonComponent } from '../button/button.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-products-preview',
@@ -19,8 +22,13 @@ import { ButtonComponent } from '../button/button.component';
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class ProductsPreviewComponent {
+  private router: Router = new Router();
   public data: InputSignal<PreviewProductsData> =
     input.required<PreviewProductsData>();
+
+  public viewAll(): void {
+    this.router.navigate(['shop', this.data().hrefToAll]);
+  }
 
   get products(): ProductData[] {
     return this.data().products;

@@ -1,3 +1,4 @@
+import { CategoryConvertPipe } from './../../pipes/category-convert/category-convert.pipe';
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { BreadCrumbData } from '../../interfaces/bread-crumb-data';
@@ -5,7 +6,7 @@ import { TitleCasePipe } from '@angular/common';
 
 @Component({
   selector: 'app-bread-crumbs',
-  imports: [RouterLink, TitleCasePipe],
+  imports: [RouterLink, TitleCasePipe, CategoryConvertPipe],
   templateUrl: './bread-crumbs.component.html',
   styleUrl: './bread-crumbs.component.scss',
 })

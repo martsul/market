@@ -12,4 +12,8 @@
   /></swiper-slide>
   }
 </swiper-container>
-<app-button class="product-preview__btn" [buttonData]="{ text: 'View All', color: 'border-white' }" />
+<app-button
+  (handlerClick)="viewAll()"
+  class="product-preview__btn"
+  [buttonData]="{ text: 'View All', color: 'border-white' }"
+/>

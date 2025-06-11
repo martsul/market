@@ -4,6 +4,7 @@ import { Store } from '@ngxs/store';
 import { QueryWomenPreview } from '../../store/products/products.actions';
 import { ProductsState } from '../../store/products/products.state';
 import { ProductData } from '../../interfaces/product-data';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-women-preview',
