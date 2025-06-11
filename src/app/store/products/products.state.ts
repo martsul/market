@@ -82,14 +82,15 @@ export class ProductsState {
   @Action(QueryProducts)
   QueryProducts(
     ctx: StateContext<ProductsStateModel>,
+    action: QueryProducts
   ): void {
     const state = ctx.getState();
     this.apiService
       .queryProducts({
         limit: state.limit,
         skip: state.skip,
-        sort: state.sort
-        
+        sort: state.sort,
+        category: action.payload?.category,
       })
       .subscribe((r) => {
         const total = r.total;

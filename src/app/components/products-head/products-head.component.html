@@ -1,7 +1,7 @@
 <h2 class="products-head__title">{{ title | categoryConvert | titlecase }}</h2>
 <div class="products-head__info">
   <span class="products-head__showing"
-    >Showing {{ currentShowingProducts }} of {{ allProducts }} Products</span
+    >Showing {{ currentShowingProducts }} of {{ allProducts() }} Products</span
   >
   <div class="products-head__sort">
     <span class="products-head__sort-text">Sort by: </span>

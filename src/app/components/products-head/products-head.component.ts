@@ -1,9 +1,16 @@
-import { Component, signal, WritableSignal } from '@angular/core';
+import { Component, Signal, signal, WritableSignal } from '@angular/core';
 import { MatMenuModule } from '@angular/material/menu';
-import { ActivatedRoute, NavigationEnd, Router, UrlSegment } from '@angular/router';
+import {
+  ActivatedRoute,
+  NavigationEnd,
+  Router,
+  UrlSegment,
+} from '@angular/router';
 import { filter, Subscription } from 'rxjs';
 import { CategoryConvertPipe } from '../../pipes/category-convert/category-convert.pipe';
 import { TitleCasePipe } from '@angular/common';
+import { Store } from '@ngxs/store';
+import { ProductsState } from '../../store/products/products.state';
 
 @Component({
   selector: 'app-products-head',
@@ -13,8 +20,11 @@ import { TitleCasePipe } from '@angular/common';
 })
 export class ProductsHeadComponent {
   private readonly routerSubscription: Subscription;
+  private readonly store: Store = new Store();
   public currentShowingProducts: string = '1-10';
-  public allProducts: number = 100;
+  public allProducts: Signal<number> = this.store.selectSignal(
+    ProductsState.getProductsTotal
+  );
   public sortByField: WritableSignal<string> = signal<string>('Most expensive');
   public title: string = '';
 

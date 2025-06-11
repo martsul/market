@@ -12,6 +12,7 @@ import {
 import { Store } from '@ngxs/store';
 import { QueryProducts } from '../../store/products/products.actions';
 import { filter, Subscription } from 'rxjs';
+import { ProductsPayload } from '../../interfaces/products-payload';
 
 @Component({
   selector: 'app-products-landing',
@@ -41,7 +42,13 @@ export class ProductsLandingComponent {
   }
 
   private queryProducts() {
-    this.store.dispatch(new QueryProducts());
+    const queryPayload: ProductsPayload = {};
+    const url: UrlSegment[] = this.route.snapshot.url;
+    const category = url[url.length - 1].path;
+    if (category !== 'shop') {
+      queryPayload.category = category
+    }
+    this.store.dispatch(new QueryProducts(queryPayload));
   }
 
   ngOnDestroy() {

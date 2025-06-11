@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { State, Action, Selector, StateContext } from '@ngxs/store';
 import { QueryCategoriesAction } from './categories.actions';
 import { ApiService } from '../../services/api/api.service';
@@ -15,7 +15,7 @@ export interface CategoriesStateModel {
 })
 @Injectable()
 export class CategoriesState {
-  private readonly apiService: ApiService = new ApiService();
+  private readonly apiService: ApiService = inject(ApiService);
 
   @Selector()
   static getCategories(state: CategoriesStateModel): string[] {
