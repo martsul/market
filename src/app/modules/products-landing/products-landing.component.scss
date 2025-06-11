@@ -1,0 +1,32 @@
+.products-landing {
+    margin-bottom: 80px;
+
+    .container {
+        display: grid;
+        grid-template-columns: 295px 1fr;
+        gap: 20px;
+    }
+
+    &__head {
+        display: block;
+        margin-bottom: 16px;
+    }
+
+    &__cards {
+        display: block;
+        margin-bottom: 32px;
+    }
+
+    &__pagination {
+        display: block;
+        padding-top: 20px;
+        border-top: 1px solid #0000001A;
+        width: 100%
+    }
+}
+
+@media (max-width: 575px) {
+    .products-landing {
+        margin-bottom: 50px;
+    }
+}

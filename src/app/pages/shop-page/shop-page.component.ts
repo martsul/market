@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import { BreadCrumbsComponent } from '../../modules/bread-crumbs/bread-crumbs.component';
+import { ProductsLandingComponent } from '../../modules/products-landing/products-landing.component';
 
 @Component({
   selector: 'app-shop-page',
-  imports: [BreadCrumbsComponent],
+  imports: [BreadCrumbsComponent, ProductsLandingComponent],
   templateUrl: './shop-page.component.html',
   styleUrl: './shop-page.component.scss',
 })
