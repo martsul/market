@@ -8,7 +8,7 @@
     <button
       class="products-head__drop-button"
       matIconButton
-      [matMenuTriggerFor]="ProductsPayload"
+      [matMenuTriggerFor]="productFilters"
     >
       {{ sortByField() }}
       <svg
@@ -24,7 +24,7 @@
         />
       </svg>
     </button>
-    <mat-menu #ProductsPayload="matMenu">
+    <mat-menu #productFilters="matMenu">
       <ng-template matMenuContent>
         <button (click)="changeSortBy('Cheapest')" mat-menu-item>
           Cheapest

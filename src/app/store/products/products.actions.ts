@@ -1,4 +1,3 @@
-import { ProductsPayload } from '../../interfaces/products-payload';
 
 export class QueryWomenPreview {
   static readonly type: string = '[Products] Query Women Preview';
@@ -11,7 +10,6 @@ export class QueryMenPreview {
 
 export class QueryProducts {
   static readonly type: string = '[Products] Query Products';
-  constructor(public payload?: ProductsPayload) {}
 }
 
 export class SetProductsSkip {

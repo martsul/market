@@ -1,10 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ProductsPayload } from '../../interfaces/products-payload';
-import { ProductData } from '../../interfaces/product-data';
 import { ProductsFilters } from '../../interfaces/products-filters';
 import { ProductResponse } from '../../interfaces/product-response';
+import { ActivatedRoute, UrlSegment } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
@@ -12,6 +11,8 @@ import { ProductResponse } from '../../interfaces/product-response';
 export class ApiService {
   private readonly http: HttpClient = inject(HttpClient);
   private readonly baseUrl: string = 'https://dummyjson.com';
+
+  constructor(private readonly route: ActivatedRoute) {}
 
   public queryProductCategories(): Observable<string[]> {
     return this.http.get<string[]>(`${this.baseUrl}/products/category-list`);
@@ -36,16 +37,18 @@ export class ApiService {
 
   private getQueryUrl(filters: ProductsFilters): string {
     let url: string = this.baseUrl + '/products/';
-    const urlWithCategory = this.addCategoryInUrl(url, filters.category);
+    const urlWithCategory = this.addCategoryInUrl(url);
     const urlWithFilters = this.addFiltersInUrl(urlWithCategory, filters);
     return urlWithFilters;
   }
 
-  private addCategoryInUrl(url: string, category?: string): string {
-    if (category) {
-      return url + `category/${category}`;
+  private addCategoryInUrl(queryUrl: string): string {
+    const url: UrlSegment[] = this.route.snapshot.url;
+    const endpoint: string = url[url.length - 1].path;
+    if (endpoint !== 'shop') {
+      return queryUrl + `category/${endpoint}`;
     }
-    return url;
+    return queryUrl;
   }
 
   private addFiltersInUrl(url: string, filters: ProductsFilters): string {

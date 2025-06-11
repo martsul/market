@@ -10,7 +10,6 @@ import {
   UrlSegment,
 } from '@angular/router';
 import { Store } from '@ngxs/store';
-import { ProductsPayload } from '../../interfaces/products-payload';
 import { QueryProducts } from '../../store/products/products.actions';
 import { filter, Subscription } from 'rxjs';
 
@@ -42,12 +41,7 @@ export class ProductsLandingComponent {
   }
 
   private queryProducts() {
-    const url: UrlSegment[] = this.route.snapshot.url;
-    const payload: ProductsPayload = {};
-    if (url[url.length - 1].path !== 'shop') {
-      payload.category = url[url.length - 1].path;
-    }
-    this.store.dispatch(new QueryProducts(payload));
+    this.store.dispatch(new QueryProducts());
   }
 
   ngOnDestroy() {

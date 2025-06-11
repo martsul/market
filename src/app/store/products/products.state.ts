@@ -7,10 +7,11 @@ import {
   QueryWomenPreview,
   SetProductsSkip,
 } from './products.actions';
-import { ProductResponse } from '../../interfaces/product-response';
 import { ApiService } from '../../services/api/api.service';
+import { SortData } from '../../interfaces/sort-data';
 
 export interface ProductsStateModel {
+  sort?: SortData;
   limit: number;
   skip: number;
   total: number;
@@ -81,14 +82,14 @@ export class ProductsState {
   @Action(QueryProducts)
   QueryProducts(
     ctx: StateContext<ProductsStateModel>,
-    action: QueryProducts
   ): void {
     const state = ctx.getState();
     this.apiService
       .queryProducts({
-        ...action.payload,
         limit: state.limit,
         skip: state.skip,
+        sort: state.sort
+        
       })
       .subscribe((r) => {
         const total = r.total;
