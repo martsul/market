@@ -1,3 +1,4 @@
+import { SortTitles } from './../../types/sort-titles';
 import { inject, Injectable } from '@angular/core';
 import { State, Action, Selector, StateContext } from '@ngxs/store';
 import { ProductData } from '../../interfaces/product-data';
@@ -6,12 +7,14 @@ import {
   QueryProducts,
   QueryWomenPreview,
   SetProductsSkip,
+  SetSortFiled,
 } from './products.actions';
 import { ApiService } from '../../services/api/api.service';
 import { SortData } from '../../interfaces/sort-data';
+import { SORT_FIELDS } from '../../constants/sort-fields';
 
 export interface ProductsStateModel {
-  sort?: SortData;
+  sort: SortData;
   limit: number;
   skip: number;
   total: number;
@@ -29,6 +32,7 @@ export interface ProductsStateModel {
     products: [],
     menPreview: [],
     womenPreview: [],
+    sort: { sortBy: 'price', order: 'desc' },
   },
 })
 @Injectable()
@@ -48,8 +52,8 @@ export class ProductsState {
     return state.limit;
   }
   @Selector()
-  static getProductsSkip(state: ProductsStateModel): number {
-    return state.skip;
+  static getProductsPage(state: ProductsStateModel): number {
+    return Math.max(1, state.skip / state.limit);
   }
   @Selector()
   static getProductsTotal(state: ProductsStateModel): number {
@@ -59,7 +63,24 @@ export class ProductsState {
   static getProducts(state: ProductsStateModel): ProductData[] {
     return state.products;
   }
+  @Selector()
+  static getSortFieldName(state: ProductsStateModel): SortTitles {
+    for (const key in SORT_FIELDS) {
+      const title = key as SortTitles;
+      const field = SORT_FIELDS[title];
+      const { order, sortBy } = state.sort;
+      if (field.order === order && field.sortBy === sortBy) {
+        return title;
+      }
+    }
+    return "Most expensive"
+  }
 
+  @Action(SetSortFiled)
+  setSortField(ctx: StateContext<ProductsStateModel>, action: SetSortFiled) {
+    const sort = SORT_FIELDS[action.payload.sort];
+    ctx.patchState({ sort });
+  }
   @Action(SetProductsSkip)
   setProductsSkip(
     ctx: StateContext<ProductsStateModel>,

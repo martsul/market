@@ -1,4 +1,6 @@
 import { ProductsPayload } from '../../interfaces/products-payload';
+import { SortData } from '../../interfaces/sort-data';
+import { SortTitles } from '../../types/sort-titles';
 
 export class QueryWomenPreview {
   static readonly type: string = '[Products] Query Women Preview';
@@ -17,4 +19,9 @@ export class QueryProducts {
 export class SetProductsSkip {
   static readonly type: string = '[Products] Set Skip';
   constructor(public payload: { skip: number }) {}
+}
+
+export class SetSortFiled {
+  static readonly type: string = '[Products] Set Sort Field';
+  constructor(public payload: { sort: SortTitles }) {}
 }

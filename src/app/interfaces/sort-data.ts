@@ -1,4 +1,6 @@
+import { ProductData } from "./product-data";
+
 export interface SortData {
-  sortBy: string;
+  sortBy: keyof ProductData;
   order: 'asc' | 'desc';
 }

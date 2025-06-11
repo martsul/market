@@ -41,7 +41,8 @@ export class ProductsLandingComponent {
       });
   }
 
-  private queryProducts() {
+  public queryProducts() {
+    console.log("query")
     const queryPayload: ProductsPayload = {};
     const url: UrlSegment[] = this.route.snapshot.url;
     const category = url[url.length - 1].path;

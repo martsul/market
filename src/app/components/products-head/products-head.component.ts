@@ -1,4 +1,12 @@
-import { Component, Signal, signal, WritableSignal } from '@angular/core';
+import {
+  Component,
+  computed,
+  output,
+  OutputEmitterRef,
+  Signal,
+  signal,
+  WritableSignal,
+} from '@angular/core';
 import { MatMenuModule } from '@angular/material/menu';
 import {
   ActivatedRoute,
@@ -6,11 +14,13 @@ import {
   Router,
   UrlSegment,
 } from '@angular/router';
-import { filter, Subscription } from 'rxjs';
+import { filter, refCount, Subscription } from 'rxjs';
 import { CategoryConvertPipe } from '../../pipes/category-convert/category-convert.pipe';
 import { TitleCasePipe } from '@angular/common';
 import { Store } from '@ngxs/store';
 import { ProductsState } from '../../store/products/products.state';
+import { SetSortFiled } from '../../store/products/products.actions';
+import { SortTitles } from '../../types/sort-titles';
 
 @Component({
   selector: 'app-products-head',
@@ -20,12 +30,36 @@ import { ProductsState } from '../../store/products/products.state';
 })
 export class ProductsHeadComponent {
   private readonly routerSubscription: Subscription;
+
   private readonly store: Store = new Store();
-  public currentShowingProducts: string = '1-10';
+
+  private readonly page: Signal<number> = this.store.selectSignal(
+    ProductsState.getProductsPage
+  );
+
+  private readonly limit: Signal<number> = this.store.selectSignal(
+    ProductsState.getProductsLimit
+  );
+
   public allProducts: Signal<number> = this.store.selectSignal(
     ProductsState.getProductsTotal
   );
-  public sortByField: WritableSignal<string> = signal<string>('Most expensive');
+
+  public sortByField: Signal<SortTitles> = this.store.selectSignal(
+    ProductsState.getSortFieldName
+  );
+
+  public showing: Signal<string> = computed((): string => {
+    const start: number = Math.max(1, (this.page() - 1) * this.limit());
+    const end: number = Math.min(
+      this.allProducts(),
+      this.page() * this.limit()
+    );
+    return `${start}-${end}`;
+  });
+
+  public requeryProducts: OutputEmitterRef<void> = output<void>();
+  
   public title: string = '';
 
   constructor(
@@ -46,8 +80,9 @@ export class ProductsHeadComponent {
     this.title = endpoint.path;
   }
 
-  public changeSortBy(field: string): void {
-    this.sortByField.set(field);
+  public changeSortBy(field: SortTitles): void {
+    this.store.dispatch(new SetSortFiled({ sort: field }));
+    this.requeryProducts.emit();
   }
 
   ngOnDestroy() {

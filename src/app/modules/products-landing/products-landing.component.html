@@ -2,7 +2,10 @@
   <div class="container">
     <app-products-filters />
     <div>
-      <app-products-head class="products-landing__head" />
+      <app-products-head
+        (requeryProducts)="queryProducts()"
+        class="products-landing__head"
+      />
       <app-products-cards class="products-landing__cards" />
       <app-products-pagination class="products-landing__pagination" />
     </div>
