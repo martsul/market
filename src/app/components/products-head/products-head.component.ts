@@ -1,7 +1,7 @@
 import { Component, signal, WritableSignal } from '@angular/core';
 import { MatMenuModule } from '@angular/material/menu';
-import { ActivatedRoute, Router, UrlSegment } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { ActivatedRoute, NavigationEnd, Router, UrlSegment } from '@angular/router';
+import { filter, Subscription } from 'rxjs';
 import { CategoryConvertPipe } from '../../pipes/category-convert/category-convert.pipe';
 import { TitleCasePipe } from '@angular/common';
 
@@ -23,9 +23,11 @@ export class ProductsHeadComponent {
     private readonly route: ActivatedRoute
   ) {
     this.setTitle();
-    this.routerSubscription = this.router.events.subscribe((): void => {
-      this.setTitle();
-    });
+    this.routerSubscription = this.router.events
+      .pipe(filter((e): e is NavigationEnd => e instanceof NavigationEnd))
+      .subscribe((): void => {
+        this.setTitle();
+      });
   }
 
   public setTitle(): void {

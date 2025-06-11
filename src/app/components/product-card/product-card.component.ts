@@ -11,6 +11,7 @@ import { StarRatingComponent } from '../star-rating/star-rating.component';
 })
 export class ProductCardComponent {
   public product: InputSignal<ProductData> = input.required<ProductData>();
+  public priority: InputSignal<boolean> = input<boolean>(false);
 
   get thumbnail(): string {
     return this.product().thumbnail;
@@ -33,7 +34,8 @@ export class ProductCardComponent {
   }
 
   get discount(): number | undefined {
-    return this.product().discountPercentage;
+    const discount = this.product().discountPercentage;
+    return discount ? Math.ceil(discount) : discount;
   }
 
   get startPrice(): string | undefined {

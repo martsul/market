@@ -25,9 +25,11 @@ export class BreadCrumbsComponent {
     private readonly router: Router
   ) {
     this.handlerRouter();
-    this.routerSubscription = this.router.events.subscribe((): void => {
-      this.handlerRouter();
-    });
+    this.routerSubscription = this.router.events
+      .pipe(filter((e): e is NavigationEnd => e instanceof NavigationEnd))
+      .subscribe((): void => {
+        this.handlerRouter();
+      });
   }
 
   private handlerRouter(): void {
