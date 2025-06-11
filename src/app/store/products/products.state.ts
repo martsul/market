@@ -43,26 +43,32 @@ export class ProductsState {
   static getMenPreview(state: ProductsStateModel): ProductData[] {
     return state.menPreview;
   }
+
   @Selector()
   static getWomenPreview(state: ProductsStateModel): ProductData[] {
     return state.womenPreview;
   }
+
   @Selector()
   static getProductsLimit(state: ProductsStateModel): number {
     return state.limit;
   }
+
   @Selector()
   static getProductsPage(state: ProductsStateModel): number {
     return Math.max(1, state.skip / state.limit);
   }
+
   @Selector()
   static getProductsTotal(state: ProductsStateModel): number {
     return state.total;
   }
+
   @Selector()
   static getProducts(state: ProductsStateModel): ProductData[] {
     return state.products;
   }
+
   @Selector()
   static getSortFieldName(state: ProductsStateModel): SortTitles {
     for (const key in SORT_FIELDS) {
@@ -73,14 +79,18 @@ export class ProductsState {
         return title;
       }
     }
-    return "Most expensive"
+    return 'Most expensive';
   }
 
   @Action(SetSortFiled)
-  setSortField(ctx: StateContext<ProductsStateModel>, action: SetSortFiled) {
+  setSortField(
+    ctx: StateContext<ProductsStateModel>,
+    action: SetSortFiled
+  ): void {
     const sort = SORT_FIELDS[action.payload.sort];
     ctx.patchState({ sort });
   }
+
   @Action(SetProductsSkip)
   setProductsSkip(
     ctx: StateContext<ProductsStateModel>,
@@ -88,18 +98,21 @@ export class ProductsState {
   ): void {
     ctx.patchState({ skip: action.payload.skip });
   }
+
   @Action(QueryWomenPreview)
   queryWomenPreview(ctx: StateContext<ProductsStateModel>): void {
-    this.apiService.queryWomenPreview().subscribe((r) => {
+    this.apiService.queryWomenPreview().subscribe((r): void => {
       ctx.patchState({ womenPreview: r.products });
     });
   }
+
   @Action(QueryMenPreview)
   queryMenPreview(ctx: StateContext<ProductsStateModel>): void {
-    this.apiService.queryMenPreview().subscribe((r) => {
+    this.apiService.queryMenPreview().subscribe((r): void => {
       ctx.patchState({ menPreview: r.products });
     });
   }
+
   @Action(QueryProducts)
   QueryProducts(
     ctx: StateContext<ProductsStateModel>,
@@ -113,7 +126,7 @@ export class ProductsState {
         sort: state.sort,
         category: action.payload?.category,
       })
-      .subscribe((r) => {
+      .subscribe((r): void => {
         const total = r.total;
         const products = r.products;
         ctx.patchState({ total, products });

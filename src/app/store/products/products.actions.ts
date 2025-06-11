@@ -1,5 +1,4 @@
 import { ProductsPayload } from '../../interfaces/products-payload';
-import { SortData } from '../../interfaces/sort-data';
 import { SortTitles } from '../../types/sort-titles';
 
 export class QueryWomenPreview {

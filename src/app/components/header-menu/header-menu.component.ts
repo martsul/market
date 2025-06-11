@@ -38,7 +38,7 @@ export class HeaderMenuComponent {
     this.categories = this.store.selectSignal(CategoriesState.getCategories);
     this.breakpointObserver
       .observe(['(max-width: 991px)'])
-      .subscribe((result) => {
+      .subscribe((result): void => {
         this.menuIsHidden.set(result.matches);
       });
   }

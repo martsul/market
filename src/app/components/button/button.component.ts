@@ -21,7 +21,7 @@ export class ButtonComponent {
     return `custom-button ${this.buttonData().color}`;
   }
 
-  public click() {
+  public click(): void {
     this.handlerClick.emit();
   }
 }

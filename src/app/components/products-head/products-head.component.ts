@@ -85,7 +85,7 @@ export class ProductsHeadComponent {
     this.requeryProducts.emit();
   }
 
-  ngOnDestroy() {
+  ngOnDestroy():void {
     this.routerSubscription.unsubscribe();
   }
 }

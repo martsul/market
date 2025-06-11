@@ -24,7 +24,7 @@ export class CategoriesState {
 
   @Action(QueryCategoriesAction)
   queryCategories(ctx: StateContext<CategoriesStateModel>): void {
-    this.apiService.queryProductCategories().subscribe((categories) => {
+    this.apiService.queryProductCategories().subscribe((categories):void => {
       ctx.patchState({ categories });
     });
   }

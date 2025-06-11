@@ -34,13 +34,13 @@ export class BreadCrumbsComponent {
 
   private handlerRouter(): void {
     this.breadCrumbs = [{ path: '', title: 'home' }];
-    this.route.snapshot.url.forEach(({ path }) => {
+    this.route.snapshot.url.forEach(({ path }): void => {
       const prevPath = this.breadCrumbs[this.breadCrumbs.length - 1].path;
       this.breadCrumbs.push({ path: `${prevPath}/${path}`, title: path });
     });
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     this.routerSubscription.unsubscribe();
   }
 }

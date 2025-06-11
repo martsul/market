@@ -36,23 +36,22 @@ export class ProductsLandingComponent {
     this.queryProducts();
     this.routerSubscription = this.router.events
       .pipe(filter((e): e is NavigationEnd => e instanceof NavigationEnd))
-      .subscribe(() => {
+      .subscribe((): void => {
         this.queryProducts();
       });
   }
 
-  public queryProducts() {
-    console.log("query")
+  public queryProducts(): void {
     const queryPayload: ProductsPayload = {};
     const url: UrlSegment[] = this.route.snapshot.url;
-    const category = url[url.length - 1].path;
+    const category: string = url[url.length - 1].path;
     if (category !== 'shop') {
-      queryPayload.category = category
+      queryPayload.category = category;
     }
     this.store.dispatch(new QueryProducts(queryPayload));
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     this.routerSubscription.unsubscribe();
   }
 }

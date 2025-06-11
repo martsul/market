@@ -58,6 +58,6 @@ export class ApiService {
         ['order', filters.sort.order]
       );
     }
-    return url + '?' + filtersParams.map((p) => p.join('=')).join('&');
+    return url + '?' + filtersParams.map((p): string => p.join('=')).join('&');
   }
 }
