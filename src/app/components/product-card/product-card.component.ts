@@ -1,10 +1,11 @@
 import { Component, input, InputSignal, Signal } from '@angular/core';
 import { ProductData } from '../../interfaces/product-data';
 import { NgOptimizedImage } from '@angular/common';
+import { StarRatingComponent } from '../star-rating/star-rating.component';
 
 @Component({
   selector: 'app-product-card',
-  imports: [NgOptimizedImage],
+  imports: [NgOptimizedImage, StarRatingComponent],
   templateUrl: './product-card.component.html',
   styleUrl: './product-card.component.scss',
 })
