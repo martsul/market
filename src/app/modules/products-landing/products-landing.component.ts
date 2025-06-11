@@ -3,7 +3,6 @@ import { ProductsFiltersComponent } from '../../components/products-filters/prod
 import { ProductsHeadComponent } from '../../components/products-head/products-head.component';
 import { ProductsCardsComponent } from '../../components/products-cards/products-cards.component';
 import { ProductsPaginationComponent } from '../../components/products-pagination/products-pagination.component';
-import { ProductCardComponent } from '../../components/product-card/product-card.component';
 
 @Component({
   selector: 'app-products-landing',

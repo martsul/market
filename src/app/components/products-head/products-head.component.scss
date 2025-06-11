@@ -1,0 +1,37 @@
+:host {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.products-head {
+  &__title {
+    font: 700 32px/1 var(--font-i);
+  }
+
+  &__info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    justify-content: end;
+    flex-wrap: wrap;
+  }
+
+  &__sort {
+    display: flex;
+    gap: 6px;
+  }
+
+  &__showing, &__sort-text {
+    font: 400 16px/1 var(--font-i);
+    color: #00000099;
+  }
+
+  &__drop-button {
+    font: 400 16px/1 var(--font-i);
+    display: flex; 
+    align-items: center;
+    gap: 4px;
+  }
+}
