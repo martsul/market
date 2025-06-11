@@ -6,7 +6,12 @@ import { MenPreviewComponent } from '../../modules/men-preview/men-preview.compo
 
 @Component({
   selector: 'app-home-page',
-  imports: [HomePreviewComponent, BrandsComponent, WomenPreviewComponent, MenPreviewComponent],
+  imports: [
+    HomePreviewComponent,
+    BrandsComponent,
+    WomenPreviewComponent,
+    MenPreviewComponent,
+  ],
   templateUrl: './home-page.component.html',
   styleUrl: './home-page.component.scss',
 })
