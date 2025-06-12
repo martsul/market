@@ -3,6 +3,7 @@ import { inject, Injectable } from '@angular/core';
 import { State, Action, Selector, StateContext } from '@ngxs/store';
 import { ProductData } from '../../interfaces/product-data';
 import {
+  ChangePage,
   QueryMenPreview,
   QueryProducts,
   QueryWomenPreview,
@@ -56,7 +57,7 @@ export class ProductsState {
 
   @Selector()
   static getProductsPage(state: ProductsStateModel): number {
-    return Math.max(1, state.skip / state.limit);
+    return (state.skip + state.limit) / state.limit;
   }
 
   @Selector()
@@ -82,8 +83,12 @@ export class ProductsState {
     return 'Most expensive';
   }
 
-
-
+  @Action(ChangePage)
+  ChangePage(ctx: StateContext<ProductsStateModel>, action: ChangePage) {
+    const state = ctx.getState();
+    const skip: number = state.limit * (action.payload.page - 1);
+    ctx.patchState({ skip });
+  }
 
   @Action(SetSortFiled)
   setSortField(

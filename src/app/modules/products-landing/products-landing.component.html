@@ -7,7 +7,7 @@
         class="products-landing__head"
       />
       <app-products-cards class="products-landing__cards" />
-      <app-products-pagination class="products-landing__pagination" />
+      <app-products-pagination (requeryProducts)="queryProducts()" class="products-landing__pagination" />
     </div>
   </div>
 </section>

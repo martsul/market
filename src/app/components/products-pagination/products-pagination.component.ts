@@ -1,7 +1,14 @@
-import { Component, computed, Signal } from '@angular/core';
+import {
+  Component,
+  computed,
+  output,
+  OutputEmitterRef,
+  Signal,
+} from '@angular/core';
 import { Store } from '@ngxs/store';
 import { ProductsState } from '../../store/products/products.state';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { ChangePage } from '../../store/products/products.actions';
 
 @Component({
   selector: 'app-products-pagination',
@@ -11,6 +18,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 })
 export class ProductsPaginationComponent {
   private readonly store: Store = new Store();
+  public requeryProducts: OutputEmitterRef<void> = output<void>();
   public readonly currentPage: Signal<number> = this.store.selectSignal(
     ProductsState.getProductsPage
   );
@@ -23,4 +31,10 @@ export class ProductsPaginationComponent {
   public itemsPerPage: Signal<number> = this.store.selectSignal(
     ProductsState.getProductsPerPage
   );
+
+  public pageChange(page: number) {
+    this.store.dispatch(new ChangePage({ page }));
+    console.log(this.store.selectSignal(ProductsState.getProductsPage)())
+    this.requeryProducts.emit()
+  }
 }

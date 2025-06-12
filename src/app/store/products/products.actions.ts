@@ -24,3 +24,12 @@ export class SetSortFiled {
   static readonly type: string = '[Products] Set Sort Field';
   constructor(public payload: { sort: SortTitles }) {}
 }
+
+export class ChangePage {
+  static readonly type: string = '[Products] Change Page';
+  constructor(public payload: { page: number }) {}
+}
+
+export class SetStartPage {
+  static readonly type: string = '[Products] Set Start Page';
+}

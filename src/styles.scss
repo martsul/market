@@ -49,9 +49,7 @@ pagination-controls pagination-template nav .ngx-pagination {
   .pagination-previous,
   .pagination-next {
     padding: 8px 14px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
+
     border: 1px solid #0000001a;
     border-radius: 8px;
 
@@ -63,22 +61,43 @@ pagination-controls pagination-template nav .ngx-pagination {
 
   .pagination-previous {
     margin-right: auto;
+    display: flex;
+    align-items: center;
+    gap: 8px;
 
-    &::before,
+    a {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    a::before,
     &.disabled::before {
       content: "🡠";
       font-size: 20px;
       line-height: 1;
+      margin: 0;
     }
   }
 
   .pagination-next {
     margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 8px;
 
-    a::after {
+    a {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    a::after,
+    &.disabled::after {
       content: "🡢";
       font-size: 20px;
       line-height: 1;
+      margin: 0;
     }
   }
 
@@ -101,7 +120,7 @@ pagination-controls pagination-template nav .ngx-pagination {
     }
 
     &.current {
-      background: #0000000F;
+      background: #0000000f;
       color: #000;
     }
   }
