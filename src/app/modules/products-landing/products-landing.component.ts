@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal, WritableSignal } from '@angular/core';
 import { ProductsFiltersComponent } from '../../components/products-filters/products-filters.component';
 import { ProductsHeadComponent } from '../../components/products-head/products-head.component';
 import { ProductsCardsComponent } from '../../components/products-cards/products-cards.component';
@@ -30,6 +30,11 @@ import { ProductsPayload } from '../../interfaces/products-payload';
 })
 export class ProductsLandingComponent {
   private readonly routerSubscription: Subscription;
+  public filtersIsActive: WritableSignal<boolean> = signal<boolean>(false);
+
+  public toggleFilters(): void {
+    this.filtersIsActive.set(!this.filtersIsActive());
+  }
 
   constructor(
     private readonly router: Router,

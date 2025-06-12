@@ -23,15 +23,61 @@
     gap: 6px;
   }
 
-  &__showing, &__sort-text {
+  &__filters {
+    display: none;
+    background: #f0f0f0;
+    border-radius: 50%;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    transition: background 0.2s ease;
+  }
+
+  &__showing,
+  &__sort-text {
     font: 400 16px/1 var(--font-i);
     color: #00000099;
   }
 
   &__drop-button {
     font: 400 16px/1 var(--font-i);
-    display: flex; 
+    display: flex;
     align-items: center;
     gap: 4px;
+  }
+}
+
+@media (max-width: 991px) {
+  .products-head {
+    &__sort {
+      display: none;
+    }
+
+    &__filters {
+      display: flex;
+
+      &:hover {
+        background: #dbdbdb;
+      }
+
+      &-svg {
+        width: 16px;
+        height: 16px;
+      }
+    }
+  }
+}
+
+@media (max-width: 575px) {
+  .products-head {
+    &__tile {
+      font-size: 24px;
+    }
+
+    &__showing {
+      font-size: 14px;
+    }
   }
 }

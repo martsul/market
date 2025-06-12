@@ -1,13 +1,17 @@
 <section class="products-landing">
   <div class="container">
-    <app-products-filters />
+    <app-products-filters
+      (toggleFilters)="toggleFilters()"
+      [filtersIsActive]="filtersIsActive()"
+    />
     <div>
       <app-products-head
+        (toggleFilters)="toggleFilters()"
         (requeryProducts)="queryProducts()"
         class="products-landing__head"
       />
       <app-products-cards class="products-landing__cards" />
-      <app-products-pagination (requeryProducts)="queryProducts()" class="products-landing__pagination" />
+      <app-products-pagination (requeryProducts)="queryProducts()" />
     </div>
   </div>
 </section>

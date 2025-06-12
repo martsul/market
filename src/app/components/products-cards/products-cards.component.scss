@@ -3,3 +3,10 @@
   grid-template-columns: 1fr 1fr 1fr;
   gap: 36px 20px;
 }
+
+
+@media (max-width: 767px) {
+  :host {
+    grid-template-columns: 1fr 1fr;
+  }
+}

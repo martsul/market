@@ -84,9 +84,6 @@ export class ProductsState {
     return 'Most expensive';
   }
 
-
-
-
   @Action(SetStartPage)
   setStartPage(ctx: StateContext<ProductsStateModel>) {
     ctx.patchState({skip: 0})

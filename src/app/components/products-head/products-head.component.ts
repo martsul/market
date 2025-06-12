@@ -39,6 +39,8 @@ export class ProductsHeadComponent {
     ProductsState.getProductsPerPage
   );
 
+  public toggleFilters: OutputEmitterRef<void> = output<void>()
+
   public allProducts: Signal<number> = this.store.selectSignal(
     ProductsState.getProductsTotal
   );

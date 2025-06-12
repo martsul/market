@@ -50,6 +50,7 @@ pagination-controls pagination-template nav .ngx-pagination {
   .pagination-previous,
   .pagination-next {
     padding: 8px 14px;
+    font: 500 14px/20px var(--font-i);
 
     border: 1px solid #0000001a;
     border-radius: 8px;
@@ -62,22 +63,21 @@ pagination-controls pagination-template nav .ngx-pagination {
 
   .pagination-previous {
     margin-right: auto;
+    gap: 8px;
     display: flex;
     align-items: center;
     gap: 8px;
 
-    a {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    a::before,
-    &.disabled::before {
-      content: "🡠";
+    &:disabled:before,
+    &:before {
+      content: "🡠" !important;
       font-size: 20px;
       line-height: 1;
-      margin: 0;
+      margin: 0 !important;
+    }
+
+    a::before {
+      display: none;
     }
   }
 
@@ -87,18 +87,16 @@ pagination-controls pagination-template nav .ngx-pagination {
     align-items: center;
     gap: 8px;
 
-    a {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    a::after,
-    &.disabled::after {
-      content: "🡢";
+    &:disabled::after,
+    &::after {
+      content: "🡢" !important;
       font-size: 20px;
       line-height: 1;
-      margin: 0;
+      margin: 0 !important;
+    }
+
+    a::after {
+      display: none;
     }
   }
 
@@ -123,6 +121,41 @@ pagination-controls pagination-template nav .ngx-pagination {
     &.current {
       background: #0000000f;
       color: #000;
+    }
+  }
+}
+
+@media (max-width: 575px) {
+  // Pagination
+  pagination-controls pagination-template nav .ngx-pagination {
+    .pagination-previous,
+    .pagination-next {
+      font-size: 12px;
+    }
+
+    .pagination-previous,.pagination-next {
+      a,span {
+        display: none;
+      }
+    }
+
+    .pagination-previous {
+      &:disabled::before, &::before {
+        font-size: 16px ;
+      }
+    }
+
+    .pagination-next {
+      &:disabled::after,
+      &::after {
+        font-size: 16px;
+      }
+    }
+
+    li:not(.pagination-previous):not(.pagination-next):not(.small-screen) {
+      width: 36px;
+      height: 36px;
+      font-size: 12px;
     }
   }
 }
