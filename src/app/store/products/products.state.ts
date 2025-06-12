@@ -9,6 +9,7 @@ import {
   QueryWomenPreview,
   SetProductsSkip,
   SetSortFiled,
+  SetStartPage,
 } from './products.actions';
 import { ApiService } from '../../services/api/api.service';
 import { SortData } from '../../interfaces/sort-data';
@@ -81,6 +82,14 @@ export class ProductsState {
       }
     }
     return 'Most expensive';
+  }
+
+
+
+
+  @Action(SetStartPage)
+  setStartPage(ctx: StateContext<ProductsStateModel>) {
+    ctx.patchState({skip: 0})
   }
 
   @Action(ChangePage)

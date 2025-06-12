@@ -10,7 +10,10 @@ import {
   UrlSegment,
 } from '@angular/router';
 import { Store } from '@ngxs/store';
-import { QueryProducts } from '../../store/products/products.actions';
+import {
+  QueryProducts,
+  SetStartPage,
+} from '../../store/products/products.actions';
 import { filter, Subscription } from 'rxjs';
 import { ProductsPayload } from '../../interfaces/products-payload';
 
@@ -33,12 +36,17 @@ export class ProductsLandingComponent {
     private readonly route: ActivatedRoute,
     private readonly store: Store
   ) {
-    this.queryProducts();
+    this.updateProducts();
     this.routerSubscription = this.router.events
       .pipe(filter((e): e is NavigationEnd => e instanceof NavigationEnd))
       .subscribe((): void => {
-        this.queryProducts();
+        this.updateProducts();
       });
+  }
+
+  private updateProducts(): void {
+    this.store.dispatch(new SetStartPage());
+    this.queryProducts();
   }
 
   public queryProducts(): void {

@@ -1,6 +1,5 @@
-.products-pagination {
-    .ngx-pagination {
-        display: none;
-    }
+:host {
+    padding-top: 20px;
+    border-top: #0000001A;
+    display: block;
 }
-

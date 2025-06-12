@@ -34,7 +34,7 @@ export class ProductsPaginationComponent {
 
   public pageChange(page: number) {
     this.store.dispatch(new ChangePage({ page }));
-    console.log(this.store.selectSignal(ProductsState.getProductsPage)())
+    window.scrollTo(0,0)
     this.requeryProducts.emit()
   }
 }
