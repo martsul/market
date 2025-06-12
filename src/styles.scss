@@ -1,13 +1,11 @@
 @import "@fontsource/inter/400.css";
 @import "@fontsource/montserrat/900.css";
 
-
 :root {
   --font-m: Montserrat, sans-serif;
   --font-i: Inter, sans-serif;
   --grey: #f2f0f1;
 }
-
 
 .container {
   max-width: 1272px;
@@ -25,6 +23,8 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
+// Drop Down
+
 .mat-mdc-menu-panel {
   .mat-mdc-menu-content {
     background: var(--grey);
@@ -36,5 +36,73 @@ body {
 
   .mat-mdc-menu-content .mat-mdc-menu-item .mat-mdc-menu-item-text {
     font: 400 14px/1.2 var(--font-i);
+  }
+}
+
+// Pagination
+
+pagination-controls pagination-template nav .ngx-pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .pagination-previous,
+  .pagination-next {
+    padding: 8px 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid #0000001a;
+    border-radius: 8px;
+
+    a {
+      padding: 0;
+      background: transparent;
+    }
+  }
+
+  .pagination-previous {
+    margin-right: auto;
+
+    &::before,
+    &.disabled::before {
+      content: "🡠";
+      font-size: 20px;
+      line-height: 1;
+    }
+  }
+
+  .pagination-next {
+    margin-left: auto;
+
+    a::after {
+      content: "🡢";
+      font-size: 20px;
+      line-height: 1;
+    }
+  }
+
+  li:not(.pagination-previous):not(.pagination-next):not(.small-screen) {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    font: 500 14px/20px var(--font-i);
+
+    a {
+      color: #00000080;
+      background: transparent;
+
+      :hover {
+        color: #000;
+      }
+    }
+
+    &.current {
+      background: #0000000F;
+      color: #000;
+    }
   }
 }

@@ -50,7 +50,7 @@ export class ProductsState {
   }
 
   @Selector()
-  static getProductsLimit(state: ProductsStateModel): number {
+  static getProductsPerPage(state: ProductsStateModel): number {
     return state.limit;
   }
 
@@ -81,6 +81,9 @@ export class ProductsState {
     }
     return 'Most expensive';
   }
+
+
+
 
   @Action(SetSortFiled)
   setSortField(

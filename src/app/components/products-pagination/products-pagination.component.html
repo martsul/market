@@ -1,1 +1,10 @@
-<p>products-pagination works!</p>
+<ul>
+  @for (item of collection() | paginate:{itemsPerPage: itemsPerPage(),
+  currentPage: currentPage()}; track $index) {
+  <li>{{ item }}</li>
+  }
+</ul>
+<pagination-controls
+  [maxSize]="5"
+>
+</pagination-controls>

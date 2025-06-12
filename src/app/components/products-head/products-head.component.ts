@@ -4,8 +4,6 @@ import {
   output,
   OutputEmitterRef,
   Signal,
-  signal,
-  WritableSignal,
 } from '@angular/core';
 import { MatMenuModule } from '@angular/material/menu';
 import {
@@ -14,7 +12,7 @@ import {
   Router,
   UrlSegment,
 } from '@angular/router';
-import { filter, refCount, Subscription } from 'rxjs';
+import { filter, Subscription } from 'rxjs';
 import { CategoryConvertPipe } from '../../pipes/category-convert/category-convert.pipe';
 import { TitleCasePipe } from '@angular/common';
 import { Store } from '@ngxs/store';
@@ -37,8 +35,8 @@ export class ProductsHeadComponent {
     ProductsState.getProductsPage
   );
 
-  private readonly limit: Signal<number> = this.store.selectSignal(
-    ProductsState.getProductsLimit
+  private readonly productsPerPage: Signal<number> = this.store.selectSignal(
+    ProductsState.getProductsPerPage
   );
 
   public allProducts: Signal<number> = this.store.selectSignal(
@@ -50,16 +48,19 @@ export class ProductsHeadComponent {
   );
 
   public showing: Signal<string> = computed((): string => {
-    const start: number = Math.max(1, (this.page() - 1) * this.limit());
+    const start: number = Math.max(
+      1,
+      (this.page() - 1) * this.productsPerPage()
+    );
     const end: number = Math.min(
       this.allProducts(),
-      this.page() * this.limit()
+      this.page() * this.productsPerPage()
     );
     return `${start}-${end}`;
   });
 
   public requeryProducts: OutputEmitterRef<void> = output<void>();
-  
+
   public title: string = '';
 
   constructor(
@@ -85,7 +86,7 @@ export class ProductsHeadComponent {
     this.requeryProducts.emit();
   }
 
-  ngOnDestroy():void {
+  ngOnDestroy(): void {
     this.routerSubscription.unsubscribe();
   }
 }

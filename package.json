@@ -22,6 +22,7 @@
     "@fontsource/inter": "^5.2.6",
     "@fontsource/montserrat": "^5.2.6",
     "@ngxs/store": "^19.0.0",
+    "ngx-pagination": "^6.0.3",
     "rxjs": "~7.8.0",
     "swiper": "^11.2.8",
     "tslib": "^2.3.0",
