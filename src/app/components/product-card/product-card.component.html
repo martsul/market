@@ -1,7 +1,11 @@
-<div class="product-card">
+<a
+  [routerLink]="`/shop/${product().category}/${product().title}`"
+  [queryParams]="{ id: product().id }"
+  class="product-card"
+>
   <div class="product-card__img-container">
     <img
-      [ngSrc]="thumbnail"
+      [ngSrc]="product().thumbnail"
       class="product-card__img"
       alt="cloth"
       width="260"
@@ -9,18 +13,14 @@
       [priority]="priority()"
     />
   </div>
-  <h4 class="product-card__title">{{ title }}</h4>
+  <h4 class="product-card__title">{{ product().title }}</h4>
   <div class="product-card__rating">
-    <app-star-rating [ratingPercents]="ratingPercents" />
+    <app-star-rating [ratingPercents]="ratingPercents()" />
     <p class="product-card__rating-num">
-      {{ rating }}/<span class="product-card__rating-max">5</span>
+      {{ product().rating }}/<span class="product-card__rating-max">5</span>
     </p>
   </div>
-  <div class="product-card__price-container">
-    <span class="product-card__price">${{ price }}</span>
-    @if (discount) {
-    <span class="product-card__start-price">${{ startPrice }}</span>
-    <span class="product-card__discount">{{ discount }}%</span>
-    }
-  </div>
-</div>
+  <app-product-price
+    [data]="{ price: product().price, discount: product().discountPercentage }"
+  />
+</a>

@@ -1,0 +1,40 @@
+.product-price {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+
+  &__price {
+    font: 700 24px/1 var(--font-i);
+  }
+
+  &__start-price {
+    color: #00000066;
+    font: 700 24px/1 var(--font-i);
+    text-decoration: line-through;
+  }
+
+  &__discount {
+    padding: 6px 14px;
+    background: #ff33331a;
+    color: #ff3333;
+    font: 500 12px/1 var(--font-i);
+    border-radius: 62px;
+  }
+}
+
+@media (max-width: 575px) {
+  .product-price {
+    gap: 5px;
+
+    &__price,
+    &__start-price {
+      font-size: 20px;
+    }
+
+    &__discount {
+      font-size: 10px;
+      padding: 6px;
+    }
+  }
+}

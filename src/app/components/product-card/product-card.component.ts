@@ -1,11 +1,13 @@
-import { Component, input, InputSignal, Signal } from '@angular/core';
+import { Component, computed, input, InputSignal, Signal } from '@angular/core';
 import { ProductData } from '../../interfaces/product-data';
 import { NgOptimizedImage } from '@angular/common';
 import { StarRatingComponent } from '../star-rating/star-rating.component';
+import { RouterLink } from '@angular/router';
+import { ProductPriceComponent } from '../product-price/product-price.component';
 
 @Component({
   selector: 'app-product-card',
-  imports: [NgOptimizedImage, StarRatingComponent],
+  imports: [NgOptimizedImage, StarRatingComponent, RouterLink, ProductPriceComponent],
   templateUrl: './product-card.component.html',
   styleUrl: './product-card.component.scss',
 })
@@ -13,35 +15,7 @@ export class ProductCardComponent {
   public product: InputSignal<ProductData> = input.required<ProductData>();
   public priority: InputSignal<boolean> = input<boolean>(false);
 
-  get thumbnail(): string {
-    return this.product().thumbnail;
-  }
-
-  get title(): string {
-    return this.product().title;
-  }
-
-  get price(): number {
-    return this.product().price;
-  }
-
-  get rating(): number {
-    return this.product().rating;
-  }
-
-  get ratingPercents(): number {
-    return (this.rating * 100) / 5;
-  }
-
-  get discount(): number | undefined {
-    const discount = this.product().discountPercentage;
-    return discount ? Math.ceil(discount) : discount;
-  }
-
-  get startPrice(): string | undefined {
-    if (this.discount) {
-      return Math.ceil((100 * this.price) / (100 - this.discount)).toFixed(2);
-    }
-    return undefined;
-  }
+  public ratingPercents: Signal<number> = computed<number>((): number => {
+    return (this.product().rating * 100) / 5;
+  });
 }

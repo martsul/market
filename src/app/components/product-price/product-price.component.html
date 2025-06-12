@@ -1,0 +1,7 @@
+<div class="product-price">
+  <span class="product-price__price">${{ data().price }}</span>
+  @if (data().discount) {
+  <span class="product-price__start-price">${{ startPrice() }}</span>
+  <span class="product-price__discount">{{ discount() }}%</span>
+  }
+</div>
