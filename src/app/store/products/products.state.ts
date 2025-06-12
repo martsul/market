@@ -1,3 +1,4 @@
+import { ProductResponse } from './../../interfaces/product-response';
 import { SortTitles } from './../../types/sort-titles';
 import { inject, Injectable } from '@angular/core';
 import { State, Action, Selector, StateContext } from '@ngxs/store';
@@ -5,6 +6,7 @@ import { ProductData } from '../../interfaces/product-data';
 import {
   ChangePageAction,
   QueryMenPreviewAction,
+  QueryProductAction,
   QueryProductsAction,
   QueryWomenPreviewAction,
   SetProductsSkipAction,
@@ -14,6 +16,8 @@ import {
 import { ApiService } from '../../services/api/api.service';
 import { SortData } from '../../interfaces/sort-data';
 import { SORT_FIELDS } from '../../constants/sort-fields';
+import { ProductState } from '../../types/product-state';
+import { catchError, EMPTY, Observable } from 'rxjs';
 
 export interface ProductsStateModel {
   sort: SortData;
@@ -23,6 +27,7 @@ export interface ProductsStateModel {
   products: ProductData[];
   womenPreview: ProductData[];
   menPreview: ProductData[];
+  product: ProductState;
 }
 
 @State<ProductsStateModel>({
@@ -31,6 +36,7 @@ export interface ProductsStateModel {
     limit: 12,
     skip: 0,
     total: 0,
+    product: { requestStatus: 'idle', product: null },
     products: [],
     menPreview: [],
     womenPreview: [],
@@ -84,6 +90,32 @@ export class ProductsState {
     return 'Most expensive';
   }
 
+  @Selector()
+  static getProduct(state: ProductsStateModel): ProductState {
+    return state.product;
+  }
+
+  @Action(QueryProductAction)
+  queryProduct(
+    ctx: StateContext<ProductsStateModel>,
+    action: QueryProductAction
+  ) {
+    ctx.patchState({ product: { requestStatus: 'loading', product: null } });
+    this.apiService
+      .queryProduct(action.payload.id)
+      .pipe(
+        catchError((): Observable<never> => {
+          ctx.patchState({
+            product: { requestStatus: 'error', product: null },
+          });
+          return EMPTY;
+        })
+      )
+      .subscribe((product: ProductData): void => {
+        ctx.patchState({ product: { requestStatus: 'fulfilled', product } });
+      });
+  }
+
   @Action(SetStartPageAction)
   setStartPage(ctx: StateContext<ProductsStateModel>) {
     ctx.patchState({ skip: 0 });
@@ -118,14 +150,14 @@ export class ProductsState {
 
   @Action(QueryWomenPreviewAction)
   queryWomenPreview(ctx: StateContext<ProductsStateModel>): void {
-    this.apiService.queryWomenPreview().subscribe((r): void => {
+    this.apiService.queryWomenPreview().subscribe((r: ProductResponse): void => {
       ctx.patchState({ womenPreview: r.products });
     });
   }
 
   @Action(QueryMenPreviewAction)
   queryMenPreview(ctx: StateContext<ProductsStateModel>): void {
-    this.apiService.queryMenPreview().subscribe((r): void => {
+    this.apiService.queryMenPreview().subscribe((r: ProductResponse): void => {
       ctx.patchState({ menPreview: r.products });
     });
   }
@@ -143,9 +175,9 @@ export class ProductsState {
         sort: state.sort,
         category: action.payload?.category,
       })
-      .subscribe((r): void => {
-        const total = r.total;
-        const products = r.products;
+      .subscribe((r: ProductResponse): void => {
+        const total: number = r.total;
+        const products: ProductData[] = r.products;
         ctx.patchState({ total, products });
       });
   }

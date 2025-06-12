@@ -3,6 +3,7 @@ import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ProductsFilters } from '../../interfaces/products-filters';
 import { ProductResponse } from '../../interfaces/product-response';
+import { ProductData } from '../../interfaces/product-data';
 
 @Injectable({
   providedIn: 'root',
@@ -10,6 +11,10 @@ import { ProductResponse } from '../../interfaces/product-response';
 export class ApiService {
   private readonly http: HttpClient = inject(HttpClient);
   private readonly baseUrl: string = 'https://dummyjson.com';
+
+  public queryProduct(id: number): Observable<ProductData> {
+    return this.http.get<ProductData>(this.baseUrl + `/products/${id}`);
+  }
 
   public queryProductCategories(): Observable<string[]> {
     return this.http.get<string[]>(`${this.baseUrl}/products/category-list`);
