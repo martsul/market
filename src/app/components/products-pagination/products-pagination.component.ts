@@ -8,7 +8,7 @@ import {
 import { Store } from '@ngxs/store';
 import { ProductsState } from '../../store/products/products.state';
 import { NgxPaginationModule } from 'ngx-pagination';
-import { ChangePage } from '../../store/products/products.actions';
+import { ChangePageAction } from '../../store/products/products.actions';
 
 @Component({
   selector: 'app-products-pagination',
@@ -33,8 +33,8 @@ export class ProductsPaginationComponent {
   );
 
   public pageChange(page: number) {
-    this.store.dispatch(new ChangePage({ page }));
-    window.scrollTo(0,0)
-    this.requeryProducts.emit()
+    this.store.dispatch(new ChangePageAction({ page }));
+    window.scrollTo(0, 0);
+    this.requeryProducts.emit();
   }
 }

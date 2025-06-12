@@ -1,7 +1,7 @@
 import { Component, Signal } from '@angular/core';
 import { ProductsPreviewComponent } from '../../components/products-preview/products-preview.component';
 import { Store } from '@ngxs/store';
-import { QueryWomenPreview } from '../../store/products/products.actions';
+import { QueryWomenPreviewAction } from '../../store/products/products.actions';
 import { ProductsState } from '../../store/products/products.state';
 import { ProductData } from '../../interfaces/product-data';
 import { Router } from '@angular/router';
@@ -15,7 +15,7 @@ import { Router } from '@angular/router';
 export class WomenPreviewComponent {
   private readonly store: Store = new Store();
   constructor() {
-    this.store.dispatch(new QueryWomenPreview());
+    this.store.dispatch(new QueryWomenPreviewAction());
   }
 
   public products: Signal<ProductData[]> = this.store.selectSignal(

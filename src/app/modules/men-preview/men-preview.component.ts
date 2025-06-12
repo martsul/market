@@ -1,7 +1,7 @@
 import { Component, Signal } from '@angular/core';
 import { ProductsPreviewComponent } from '../../components/products-preview/products-preview.component';
 import { Store } from '@ngxs/store';
-import { QueryMenPreview } from '../../store/products/products.actions';
+import { QueryMenPreviewAction } from '../../store/products/products.actions';
 import { ProductData } from '../../interfaces/product-data';
 import { ProductsState } from '../../store/products/products.state';
 import { Router } from '@angular/router';
@@ -16,7 +16,7 @@ export class MenPreviewComponent {
   private readonly store: Store = new Store();
 
   constructor() {
-    this.store.dispatch(new QueryMenPreview());
+    this.store.dispatch(new QueryMenPreviewAction());
   }
 
   public products: Signal<ProductData[]> = this.store.selectSignal(

@@ -17,7 +17,7 @@ import { CategoryConvertPipe } from '../../pipes/category-convert/category-conve
 import { TitleCasePipe } from '@angular/common';
 import { Store } from '@ngxs/store';
 import { ProductsState } from '../../store/products/products.state';
-import { SetSortFiled } from '../../store/products/products.actions';
+import { SetSortFiledAction } from '../../store/products/products.actions';
 import { SortTitles } from '../../types/sort-titles';
 
 @Component({
@@ -39,7 +39,7 @@ export class ProductsHeadComponent {
     ProductsState.getProductsPerPage
   );
 
-  public toggleFilters: OutputEmitterRef<void> = output<void>()
+  public toggleFilters: OutputEmitterRef<void> = output<void>();
 
   public allProducts: Signal<number> = this.store.selectSignal(
     ProductsState.getProductsTotal
@@ -84,7 +84,7 @@ export class ProductsHeadComponent {
   }
 
   public changeSortBy(field: SortTitles): void {
-    this.store.dispatch(new SetSortFiled({ sort: field }));
+    this.store.dispatch(new SetSortFiledAction({ sort: field }));
     this.requeryProducts.emit();
   }
 

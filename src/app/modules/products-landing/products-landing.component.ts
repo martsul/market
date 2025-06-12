@@ -11,8 +11,8 @@ import {
 } from '@angular/router';
 import { Store } from '@ngxs/store';
 import {
-  QueryProducts,
-  SetStartPage,
+  QueryProductsAction,
+  SetStartPageAction,
 } from '../../store/products/products.actions';
 import { filter, Subscription } from 'rxjs';
 import { ProductsPayload } from '../../interfaces/products-payload';
@@ -50,7 +50,7 @@ export class ProductsLandingComponent {
   }
 
   private updateProducts(): void {
-    this.store.dispatch(new SetStartPage());
+    this.store.dispatch(new SetStartPageAction());
     this.queryProducts();
   }
 
@@ -61,7 +61,7 @@ export class ProductsLandingComponent {
     if (category !== 'shop') {
       queryPayload.category = category;
     }
-    this.store.dispatch(new QueryProducts(queryPayload));
+    this.store.dispatch(new QueryProductsAction(queryPayload));
   }
 
   ngOnDestroy(): void {

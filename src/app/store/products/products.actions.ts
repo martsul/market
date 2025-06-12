@@ -1,35 +1,39 @@
 import { ProductsPayload } from '../../interfaces/products-payload';
 import { SortTitles } from '../../types/sort-titles';
 
-export class QueryWomenPreview {
+export class QueryWomenPreviewAction {
   static readonly type: string = '[Products] Query Women Preview';
   constructor() {}
 }
 
-export class QueryMenPreview {
+export class QueryMenPreviewAction {
   static readonly type: string = '[Products] Query Men Preview';
 }
 
-export class QueryProducts {
+export class QueryProductsAction {
   static readonly type: string = '[Products] Query Products';
   constructor(public payload?: ProductsPayload) {}
 }
 
-export class SetProductsSkip {
+export class SetProductsSkipAction {
   static readonly type: string = '[Products] Set Skip';
   constructor(public payload: { skip: number }) {}
 }
 
-export class SetSortFiled {
+export class SetSortFiledAction {
   static readonly type: string = '[Products] Set Sort Field';
   constructor(public payload: { sort: SortTitles }) {}
 }
 
-export class ChangePage {
+export class ChangePageAction {
   static readonly type: string = '[Products] Change Page';
   constructor(public payload: { page: number }) {}
 }
 
-export class SetStartPage {
+export class SetStartPageAction {
   static readonly type: string = '[Products] Set Start Page';
+}
+
+export class QueryProductAction {
+  static readonly type: string = '[Products] Query Products';
 }
