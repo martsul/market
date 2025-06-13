@@ -1,7 +1,7 @@
 import { Component, computed, input, InputSignal, Signal } from '@angular/core';
-import { ProductData } from '../../interfaces/product-data';
+import { ProductData } from '../../../interfaces/product-data';
 import { NgOptimizedImage } from '@angular/common';
-import { StarRatingComponent } from '../star-rating/star-rating.component';
+import { StarRatingComponent } from '../../star-rating/star-rating.component';
 import { RouterLink } from '@angular/router';
 import { ProductPriceComponent } from '../product-price/product-price.component';
 

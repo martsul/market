@@ -1,7 +1,7 @@
 import { Component, Signal } from '@angular/core';
 import { Store } from '@ngxs/store';
-import { ProductData } from '../../interfaces/product-data';
-import { ProductsState } from '../../store/products/products.state';
+import { ProductData } from '../../../interfaces/product-data';
+import { ProductsState } from '../../../store/products/products.state';
 import { ProductCardComponent } from '../product-card/product-card.component';
 
 @Component({

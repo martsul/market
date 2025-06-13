@@ -1,5 +1,5 @@
 import { Component, Signal } from '@angular/core';
-import { ProductsPreviewComponent } from '../../components/products-preview/products-preview.component';
+import { ProductsPreviewComponent } from '../../components/products/products-preview/products-preview.component';
 import { Store } from '@ngxs/store';
 import { QueryMenPreviewAction } from '../../store/products/products.actions';
 import { ProductData } from '../../interfaces/product-data';

@@ -14,12 +14,12 @@ import {
   UrlSegment,
 } from '@angular/router';
 import { filter, Subscription } from 'rxjs';
-import { CategoryConvertPipe } from '../../pipes/category-convert/category-convert.pipe';
+import { CategoryConvertPipe } from '../../../pipes/category-convert/category-convert.pipe';
 import { TitleCasePipe } from '@angular/common';
 import { Store } from '@ngxs/store';
-import { ProductsState } from '../../store/products/products.state';
-import { SetSortFiledAction } from '../../store/products/products.actions';
-import { SortTitles } from '../../types/sort-titles';
+import { ProductsState } from '../../../store/products/products.state';
+import { SetSortFiledAction } from '../../../store/products/products.actions';
+import { SortTitles } from '../../../types/sort-titles';
 
 @Component({
   selector: 'app-products-head',
@@ -29,7 +29,6 @@ import { SortTitles } from '../../types/sort-titles';
 })
 export class ProductsHeadComponent {
   private readonly routerSubscription: Subscription;
-
 
   private readonly page: Signal<number> = this.store.selectSignal(
     ProductsState.getProductsPage

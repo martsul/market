@@ -1,5 +1,5 @@
 import { Component, WritableSignal } from '@angular/core';
-import { AuthService } from '../../services/auth/auth.service';
+import { AuthService } from '../../../services/auth/auth.service';
 import { MatMenuModule } from '@angular/material/menu';
 
 @Component({

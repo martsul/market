@@ -6,9 +6,9 @@ import {
   Signal,
 } from '@angular/core';
 import { Store } from '@ngxs/store';
-import { ProductsState } from '../../store/products/products.state';
+import { ProductsState } from '../../../store/products/products.state';
 import { NgxPaginationModule } from 'ngx-pagination';
-import { ChangePageAction } from '../../store/products/products.actions';
+import { ChangePageAction } from '../../../store/products/products.actions';
 
 @Component({
   selector: 'app-products-pagination',

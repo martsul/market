@@ -7,11 +7,11 @@ import {
   OutputEmitterRef,
   Signal,
 } from '@angular/core';
-import { PreviewProductsData } from '../../interfaces/preview-products-data';
+import { PreviewProductsData } from '../../../interfaces/preview-products-data';
 import { ProductCardComponent } from '../product-card/product-card.component';
-import { ProductData } from '../../interfaces/product-data';
+import { ProductData } from '../../../interfaces/product-data';
 import { UpperCasePipe } from '@angular/common';
-import { ButtonComponent } from '../button/button.component';
+import { ButtonComponent } from '../../button/button.component';
 import { Router } from '@angular/router';
 
 @Component({

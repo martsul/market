@@ -9,8 +9,8 @@ import {
   WritableSignal,
 } from '@angular/core';
 import { Store } from '@ngxs/store';
-import { CategoriesState } from '../../store/categories/categories.state';
-import { CategoryConvertPipe } from '../../pipes/category-convert/category-convert.pipe';
+import { CategoriesState } from '../../../store/categories/categories.state';
+import { CategoryConvertPipe } from '../../../pipes/category-convert/category-convert.pipe';
 import { TitleCasePipe } from '@angular/common';
 import {
   ActivatedRoute,

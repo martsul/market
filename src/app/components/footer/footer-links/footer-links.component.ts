@@ -1,5 +1,5 @@
 import { Component, input, InputSignal } from '@angular/core';
-import { FooterLinks } from '../../interfaces/footer-links';
+import { FooterLinks } from '../../../interfaces/footer-links';
 import { UpperCasePipe } from '@angular/common';
 
 @Component({

@@ -1,7 +1,7 @@
 import { Component, Signal } from '@angular/core';
-import { ProductImagesComponent } from '../../components/product-images/product-images.component';
+import { ProductImagesComponent } from '../../components/products/product-images/product-images.component';
 import { StarRatingComponent } from '../../components/star-rating/star-rating.component';
-import { ProductPriceComponent } from '../../components/product-price/product-price.component';
+import { ProductPriceComponent } from '../../components/products/product-price/product-price.component';
 import { ButtonComponent } from '../../components/button/button.component';
 import { CountButtonComponent } from '../../components/count-button/count-button.component';
 import { ActivatedRoute } from '@angular/router';

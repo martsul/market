@@ -1,6 +1,6 @@
 import { Component, input, InputSignal } from '@angular/core';
-import { Network } from '../../interfaces/network';
-import { SvgIconComponent } from '../svg-icon/svg-icon.component';
+import { Network } from '../../../interfaces/network';
+import { SvgIconComponent } from '../../svg-icon/svg-icon.component';
 
 @Component({
   selector: 'app-footer-network',

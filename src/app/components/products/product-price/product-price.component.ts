@@ -1,5 +1,5 @@
 import { Component, computed, input, InputSignal, Signal } from '@angular/core';
-import { ProductPriceData } from '../../interfaces/product-price-data';
+import { ProductPriceData } from '../../../interfaces/product-price-data';
 
 @Component({
   selector: 'app-product-price',

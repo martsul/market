@@ -1,8 +1,8 @@
 import { Component, signal, WritableSignal } from '@angular/core';
-import { ProductsFiltersComponent } from '../../components/products-filters/products-filters.component';
-import { ProductsHeadComponent } from '../../components/products-head/products-head.component';
-import { ProductsCardsComponent } from '../../components/products-cards/products-cards.component';
-import { ProductsPaginationComponent } from '../../components/products-pagination/products-pagination.component';
+import { ProductsFiltersComponent } from '../../components/products/products-filters/products-filters.component';
+import { ProductsHeadComponent } from '../../components/products/products-head/products-head.component';
+import { ProductsCardsComponent } from '../../components/products/products-cards/products-cards.component';
+import { ProductsPaginationComponent } from '../../components/products/products-pagination/products-pagination.component';
 import {
   ActivatedRoute,
   NavigationEnd,
