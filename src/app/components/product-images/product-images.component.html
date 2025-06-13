@@ -1,1 +1,20 @@
-<p>product-images works!</p>
+<div class="images__all">
+  @for (img of images(); track $index) {
+  <button (click)="changeImg($index)" class="imgaes__small">
+    <img
+      [ngSrc]="img"
+      [class]="{ images__img: true, active: $index === activeImgIndex() }"
+      width="152"
+      height="152"
+    />
+  </button>
+  }
+</div>
+<div class="images__big">
+  <img
+    [ngSrc]="images()[activeImgIndex()]"
+    width="444"
+    height="444"
+    class="images__img"
+  />
+</div>

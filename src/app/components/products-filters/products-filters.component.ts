@@ -14,11 +14,13 @@ import { CategoryConvertPipe } from '../../pipes/category-convert/category-conve
 import { TitleCasePipe } from '@angular/common';
 import {
   ActivatedRoute,
+  Event,
+  NavigationEnd,
   Router,
   RouterLink,
   UrlSegment,
 } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { filter, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-products-filters',
@@ -46,9 +48,11 @@ export class ProductsFiltersComponent {
     private readonly router: Router
   ) {
     this.setActiveCategory();
-    this.routerSubscription = this.router.events.subscribe((): void =>
-      this.setActiveCategory()
-    );
+    this.routerSubscription = this.router.events
+      .pipe(
+        filter((e: Event): e is NavigationEnd => e instanceof NavigationEnd)
+      )
+      .subscribe((): void => this.setActiveCategory());
   }
 
   private setActiveCategory(): void {

@@ -116,6 +116,26 @@ export class ProductsState {
       });
   }
 
+  @Action(QueryProductsAction)
+  QueryProductsAction(
+    ctx: StateContext<ProductsStateModel>,
+    action: QueryProductsAction
+  ): void {
+    const state = ctx.getState();
+    this.apiService
+      .queryProducts({
+        limit: state.limit,
+        skip: state.skip,
+        sort: state.sort,
+        category: action.payload?.category,
+      })
+      .subscribe((r: ProductResponse): void => {
+        const total: number = r.total;
+        const products: ProductData[] = r.products;
+        ctx.patchState({ total, products });
+      });
+  }
+
   @Action(SetStartPageAction)
   setStartPage(ctx: StateContext<ProductsStateModel>) {
     ctx.patchState({ skip: 0 });
@@ -150,9 +170,11 @@ export class ProductsState {
 
   @Action(QueryWomenPreviewAction)
   queryWomenPreview(ctx: StateContext<ProductsStateModel>): void {
-    this.apiService.queryWomenPreview().subscribe((r: ProductResponse): void => {
-      ctx.patchState({ womenPreview: r.products });
-    });
+    this.apiService
+      .queryWomenPreview()
+      .subscribe((r: ProductResponse): void => {
+        ctx.patchState({ womenPreview: r.products });
+      });
   }
 
   @Action(QueryMenPreviewAction)
@@ -160,25 +182,5 @@ export class ProductsState {
     this.apiService.queryMenPreview().subscribe((r: ProductResponse): void => {
       ctx.patchState({ menPreview: r.products });
     });
-  }
-
-  @Action(QueryProductsAction)
-  QueryProductsAction(
-    ctx: StateContext<ProductsStateModel>,
-    action: QueryProductsAction
-  ): void {
-    const state = ctx.getState();
-    this.apiService
-      .queryProducts({
-        limit: state.limit,
-        skip: state.skip,
-        sort: state.sort,
-        category: action.payload?.category,
-      })
-      .subscribe((r: ProductResponse): void => {
-        const total: number = r.total;
-        const products: ProductData[] = r.products;
-        ctx.patchState({ total, products });
-      });
   }
 }

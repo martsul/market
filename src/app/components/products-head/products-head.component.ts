@@ -8,6 +8,7 @@ import {
 import { MatMenuModule } from '@angular/material/menu';
 import {
   ActivatedRoute,
+  Event,
   NavigationEnd,
   Router,
   UrlSegment,
@@ -71,7 +72,7 @@ export class ProductsHeadComponent {
   ) {
     this.setTitle();
     this.routerSubscription = this.router.events
-      .pipe(filter((e): e is NavigationEnd => e instanceof NavigationEnd))
+      .pipe(filter((e: Event): e is NavigationEnd => e instanceof NavigationEnd))
       .subscribe((): void => {
         this.setTitle();
       });

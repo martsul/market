@@ -16,13 +16,13 @@ export const routes: Routes = [
         title: 'Shop',
       },
       {
+        path: 'shop/:category/:product',
+        component: ProductPageComponent,
+      },
+      {
         path: 'shop/:category',
         component: ShopPageComponent,
         title: 'Shop',
-      },
-      {
-        path: 'shop/:category/:product',
-        component: ProductPageComponent,
       },
     ],
   },
