@@ -1,11 +1,10 @@
 import { NgOptimizedImage } from '@angular/common';
 import {
   Component,
-  computed,
+  CUSTOM_ELEMENTS_SCHEMA,
   input,
   InputSignal,
   signal,
-  Signal,
   WritableSignal,
 } from '@angular/core';
 
@@ -14,6 +13,7 @@ import {
   imports: [NgOptimizedImage],
   templateUrl: './product-images.component.html',
   styleUrl: './product-images.component.scss',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class ProductImagesComponent {
   public images: InputSignal<string[]> = input.required<string[]>();

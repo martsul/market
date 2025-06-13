@@ -1,15 +1,26 @@
-<div class="images__all">
+<swiper-container
+  space-between="14"
+  grab-cursor="true"
+  free-mode="true"
+  slides-per-view="3"
+  direction="vertical"
+  class="images__all"
+>
   @for (img of images(); track $index) {
-  <button (click)="changeImg($index)" class="imgaes__small">
-    <img
-      [ngSrc]="img"
-      [class]="{ images__img: true, active: $index === activeImgIndex() }"
-      width="152"
-      height="152"
-    />
-  </button>
+  <swiper-slide class="images__slide">
+    <button
+      (click)="changeImg($index)"
+      [class]="{ images__small: true, active: $index === activeImgIndex() }"
+    >
+      <img
+        [ngSrc]="img"
+        class="images__img"
+        width="152"
+        height="152"
+      /></button
+  ></swiper-slide>
   }
-</div>
+</swiper-container>
 <div class="images__big">
   <img
     [ngSrc]="images()[activeImgIndex()]"

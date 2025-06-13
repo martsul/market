@@ -1,0 +1,39 @@
+:host {
+  display: grid;
+  grid-template-columns: minmax(0, 152px) minmax(0, 495px);
+  gap: 14px;
+}
+
+.images {
+  &__all {
+    max-height: 495px;
+    height: 100%;
+  }
+
+  &__small,
+  &__big {
+    aspect-ratio: 1 / 1;
+    background: var(--grey);
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__small {
+    border: 1px solid transparent;
+
+    &.active {
+        border: 1px solid #000000;
+    }
+  }
+
+  &__img {
+    width: 100%;
+    height: 100%;
+  }
+
+  &_all {
+    height: 100%;
+  }
+}
