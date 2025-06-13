@@ -15,7 +15,7 @@
   </div>
   <h4 class="product-card__title">{{ product().title }}</h4>
   <div class="product-card__rating">
-    <app-star-rating [ratingPercents]="ratingPercents()" />
+    <app-star-rating [rating]="product().rating" />
     <p class="product-card__rating-num">
       {{ product().rating }}/<span class="product-card__rating-max">5</span>
     </p>

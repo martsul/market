@@ -1,0 +1,22 @@
+:host {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 9px 20px;
+  background: var(--grey);
+  border-radius: 62px;
+  width: max-content;
+  gap: 38px;
+  width: 185px;
+}
+
+.count {
+    &__decrease-svg, &__increase-svg {
+        width: 24px;
+        height: 24px;
+    }
+
+    &__num {
+        font: 500 16px/1 var(--font-i);
+    }
+}

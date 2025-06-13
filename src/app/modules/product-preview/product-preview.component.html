@@ -3,13 +3,24 @@
     @if (product().requestStatus === "fulfilled") {
     <app-product-images [images]="product().product!.images" />
     <div class="product-preview__info">
-      <h1 class="product-preview__title">{{product().product!.title}}</h1>
-      <!-- <app-star-rating class="product-preview__rating" /> -->
-      <!-- <app-product-price class="product-preview__price" /> -->
-      <p class="product-preview__description">{{product().product!.description}}</p>
+      <h1 class="product-preview__title">{{ product().product!.title }}</h1>
+      <app-star-rating
+        [rating]="product().product!.rating"
+        class="product-preview__rating"
+      />
+      <app-product-price
+        [data]="{
+          price: product().product!.price,
+          discount: product().product!.discountPercentage
+        }"
+        class="product-preview__price"
+      />
+      <p class="product-preview__description">
+        {{ product().product!.description }}
+      </p>
       <div class="product-preview__buttons">
         <app-count-button />
-        <!-- <app-button /> -->
+        <app-button [buttonData]="{color: 'dark', text: 'Add to Cart'}" />
       </div>
     </div>
     }

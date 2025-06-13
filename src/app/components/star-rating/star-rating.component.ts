@@ -1,4 +1,4 @@
-import { Component, input, InputSignal } from '@angular/core';
+import { Component, computed, input, InputSignal, Signal } from '@angular/core';
 
 @Component({
   selector: 'app-star-rating',
@@ -7,5 +7,9 @@ import { Component, input, InputSignal } from '@angular/core';
   styleUrl: './star-rating.component.scss',
 })
 export class StarRatingComponent {
-  public ratingPercents: InputSignal<number> = input.required<number>();
+  public rating: InputSignal<number> = input.required<number>();
+
+  public ratingPercents: Signal<number> = computed<number>((): number => {
+    return (this.rating() * 100) / 5;
+  });
 }
