@@ -31,7 +31,7 @@ export class ProductPreviewComponent {
     private readonly store: Store,
     private readonly route: ActivatedRoute
   ) {
-    // this.queryProduct();
+    this.queryProduct();
   }
 
   private queryProduct(): void {

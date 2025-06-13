@@ -21,18 +21,7 @@
   }
 
   &__rating {
-    display: flex;
-    align-items: center;
-    gap: 13px;
     margin-bottom: 8px;
-  }
-
-  &__rating-num {
-    font: 400 14px/1 var(--font-i);
-  }
-
-  &__rating-max {
-    color: #00000099;
   }
 }
 
@@ -45,14 +34,6 @@
     &__title {
       font-size: 16px;
       margin-bottom: 4px;
-    }
-
-    &__rating {
-      gap: 11px;
-    }
-
-    &__rating-num {
-      font-size: 12px;
     }
   }
 }

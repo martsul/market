@@ -1,29 +1,48 @@
 :host {
-  display: inline-block;
-  width: 95px;
-}
-.star-rating {
-  overflow: hidden;
   display: flex;
   align-items: center;
+  gap: 13px;
+}
+
+.star-rating {
+  display: inline-block;
+  width: 95px;
+
+  &__container {
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+  }
 
   &__star {
     flex-shrink: 0;
     width: 19px;
     height: 19px;
   }
+
+  &__num {
+    font: 400 14px/1 var(--font-i);
+  }
+
+  &__max {
+    color: #00000099;
+  }
 }
 
 @media (max-width: 575px) {
-  :host {
+  .star-rating {
     display: inline-block;
     width: 75px;
-  }
+    gap: 11px;
 
-  .star-rating {
-    &__star {
+    &_-star {
       width: 15px;
       height: 15px;
+    }
+
+    &__max,
+    &__num {
+      font-size: 12px;
     }
   }
 }
