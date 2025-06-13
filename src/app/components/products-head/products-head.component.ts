@@ -30,7 +30,6 @@ import { SortTitles } from '../../types/sort-titles';
 export class ProductsHeadComponent {
   private readonly routerSubscription: Subscription;
 
-  private readonly store: Store = new Store();
 
   private readonly page: Signal<number> = this.store.selectSignal(
     ProductsState.getProductsPage
@@ -68,11 +67,14 @@ export class ProductsHeadComponent {
 
   constructor(
     private readonly router: Router,
-    private readonly route: ActivatedRoute
+    private readonly route: ActivatedRoute,
+    private readonly store: Store
   ) {
     this.setTitle();
     this.routerSubscription = this.router.events
-      .pipe(filter((e: Event): e is NavigationEnd => e instanceof NavigationEnd))
+      .pipe(
+        filter((e: Event): e is NavigationEnd => e instanceof NavigationEnd)
+      )
       .subscribe((): void => {
         this.setTitle();
       });

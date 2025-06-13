@@ -117,7 +117,7 @@ export class ProductsState {
   }
 
   @Action(QueryProductsAction)
-  QueryProductsAction(
+  QueryProducts(
     ctx: StateContext<ProductsStateModel>,
     action: QueryProductsAction
   ): void {
@@ -142,7 +142,7 @@ export class ProductsState {
   }
 
   @Action(ChangePageAction)
-  ChangePageAction(
+  ChangePage(
     ctx: StateContext<ProductsStateModel>,
     action: ChangePageAction
   ) {

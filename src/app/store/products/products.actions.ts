@@ -35,6 +35,6 @@ export class SetStartPageAction {
 }
 
 export class QueryProductAction {
-  static readonly type: string = '[Products] Query Products';
+  static readonly type: string = '[Products] Query Product';
   constructor(public payload: { id: number }) {}
 }

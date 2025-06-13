@@ -8,4 +8,5 @@ import { ProductPreviewComponent } from '../../modules/product-preview/product-p
   templateUrl: './product-page.component.html',
   styleUrl: './product-page.component.scss',
 })
-export class ProductPageComponent {}
+export class ProductPageComponent {
+}
