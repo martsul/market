@@ -1,9 +1,9 @@
 <swiper-container
+  [breakpoints]="swiperBreakpoints"
   space-between="14"
   grab-cursor="true"
   free-mode="true"
   slides-per-view="3"
-  direction="vertical"
   class="images__all"
 >
   @for (img of images(); track $index) {

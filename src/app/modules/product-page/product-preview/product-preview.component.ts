@@ -1,14 +1,14 @@
 import { Component, Signal } from '@angular/core';
-import { ProductImagesComponent } from '../../components/products/product-images/product-images.component';
-import { StarRatingComponent } from '../../components/star-rating/star-rating.component';
-import { ProductPriceComponent } from '../../components/products/product-price/product-price.component';
-import { ButtonComponent } from '../../components/button/button.component';
-import { CountButtonComponent } from '../../components/count-button/count-button.component';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngxs/store';
-import { QueryProductAction } from '../../store/products/products.actions';
-import { ProductsState } from '../../store/products/products.state';
-import { ProductState } from '../../types/product-state';
+import { ProductImagesComponent } from '../../../components/products/product-images/product-images.component';
+import { StarRatingComponent } from '../../../components/star-rating/star-rating.component';
+import { ProductPriceComponent } from '../../../components/products/product-price/product-price.component';
+import { ButtonComponent } from '../../../components/button/button.component';
+import { CountButtonComponent } from '../../../components/count-button/count-button.component';
+import { QueryProductAction } from '../../../store/products/products.actions';
+import { ProductState } from '../../../types/product-state';
+import { ProductsState } from '../../../store/products/products.state';
 
 @Component({
   selector: 'app-product-preview',

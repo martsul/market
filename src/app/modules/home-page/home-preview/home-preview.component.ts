@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { ButtonComponent } from '../../components/button/button.component';
-import { HOME_PREVIEW_STATISTIC } from '../../constants/home-preview-statistic';
-import { ConvertResultStatisticPipe } from '../../pipes/convert-result-statistic/convert-result-statistic.pipe';
-import { ItemResultStatistic } from '../../interfaces/item-result-statistic';
 import { Router } from '@angular/router';
+import { ButtonComponent } from '../../../components/button/button.component';
+import { ConvertResultStatisticPipe } from '../../../pipes/convert-result-statistic/convert-result-statistic.pipe';
+import { HOME_PREVIEW_STATISTIC } from '../../../constants/home-preview-statistic';
+import { ItemResultStatistic } from '../../../interfaces/item-result-statistic';
 
 @Component({
   selector: 'app-home-preview',

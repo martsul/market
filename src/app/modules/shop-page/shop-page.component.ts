@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { BreadCrumbsComponent } from '../../modules/bread-crumbs/bread-crumbs.component';
-import { ProductsLandingComponent } from '../../modules/products-landing/products-landing.component';
+import { ProductsLandingComponent } from './products-landing/products-landing.component';
 
 @Component({
   selector: 'app-shop-page',

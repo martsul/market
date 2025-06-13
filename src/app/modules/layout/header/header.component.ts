@@ -1,10 +1,10 @@
 import { Component, signal } from '@angular/core';
-import { HeaderMenuComponent } from '../../components/header/header-menu/header-menu.component';
-import { SearchComponent } from '../../components/search/search.component';
-import { HeaderUserComponent } from '../../components/header/header-user/header-user.component';
 import { RouterLink } from '@angular/router';
 import { Store } from '@ngxs/store';
-import { QueryCategoriesAction } from '../../store/categories/categories.actions';
+import { HeaderMenuComponent } from '../../../components/header/header-menu/header-menu.component';
+import { SearchComponent } from '../../../components/search/search.component';
+import { HeaderUserComponent } from '../../../components/header/header-user/header-user.component';
+import { QueryCategoriesAction } from '../../../store/categories/categories.actions';
 
 @Component({
   selector: 'app-header',

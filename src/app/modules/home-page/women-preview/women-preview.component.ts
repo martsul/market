@@ -1,10 +1,9 @@
 import { Component, Signal } from '@angular/core';
-import { ProductsPreviewComponent } from '../../components/products/products-preview/products-preview.component';
 import { Store } from '@ngxs/store';
-import { QueryWomenPreviewAction } from '../../store/products/products.actions';
-import { ProductsState } from '../../store/products/products.state';
-import { ProductData } from '../../interfaces/product-data';
-import { Router } from '@angular/router';
+import { ProductsPreviewComponent } from '../../../components/products/products-preview/products-preview.component';
+import { QueryWomenPreviewAction } from '../../../store/products/products.actions';
+import { ProductData } from '../../../interfaces/product-data';
+import { ProductsState } from '../../../store/products/products.state';
 
 @Component({
   selector: 'app-women-preview',

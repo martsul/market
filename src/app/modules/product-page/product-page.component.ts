@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { BreadCrumbsComponent } from '../../modules/bread-crumbs/bread-crumbs.component';
-import { ProductPreviewComponent } from '../../modules/product-preview/product-preview.component';
+import { ProductPreviewComponent } from './product-preview/product-preview.component';
 
 @Component({
   selector: 'app-product-page',

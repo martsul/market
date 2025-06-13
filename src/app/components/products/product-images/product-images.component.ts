@@ -18,6 +18,14 @@ import {
 export class ProductImagesComponent {
   public images: InputSignal<string[]> = input.required<string[]>();
   public activeImgIndex: WritableSignal<number> = signal<number>(0);
+  public swiperBreakpoints = {
+    0: {
+      direction: 'horizontal',
+    },
+    992: {
+      direction: 'vertical',
+    },
+  };
 
   public changeImg(index: number) {
     this.activeImgIndex.set(index);

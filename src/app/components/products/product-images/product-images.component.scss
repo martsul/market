@@ -37,3 +37,17 @@
     height: 100%;
   }
 }
+
+@media (max-width: 991px) {
+  :host {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+
+  .images {
+    &__all {
+      height: max-content;
+      max-width: 100%;
+    } 
+  }
+}

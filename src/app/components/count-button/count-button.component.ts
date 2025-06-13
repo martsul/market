@@ -13,7 +13,7 @@ import {
   styleUrl: './count-button.component.scss',
 })
 export class CountButtonComponent {
-  public count: WritableSignal<number> = signal<number>(0);
+  public count: WritableSignal<number> = signal<number>(1);
   public handlerChange: OutputEmitterRef<number> = output<number>();
 
   public increase(): void {

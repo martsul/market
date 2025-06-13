@@ -11,12 +11,38 @@
 }
 
 .count {
-    &__decrease-svg, &__increase-svg {
-        width: 24px;
-        height: 24px;
+  &__decrease-svg,
+  &__increase-svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  &__increase-btn, &__decrease-btn {
+    display: flex;
+  }
+
+  &__num {
+    font: 500 16px/1 var(--font-i);
+  }
+}
+
+@media (max-width: 575px) {
+    :host {
+        gap: 16px;
+        padding: 9px 16px;
     }
 
-    &__num {
-        font: 500 16px/1 var(--font-i);
+  .count {
+    &__decrease-svg,
+    &__increase-svg {
+      width: 20px;
+      height: 20px;
     }
+
+      &__numb {
+    font-size: 14px;
+  }
+  }
+
+
 }
