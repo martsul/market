@@ -1,3 +1,4 @@
+import { FormControl } from '@angular/forms';
 import { InputTypes } from '../types/input-types';
 
 export interface InputData {
@@ -5,4 +6,5 @@ export interface InputData {
   placeholder: string;
   color: 'white' | 'grey';
   type: InputTypes;
+  formControl?: FormControl<unknown>
 }

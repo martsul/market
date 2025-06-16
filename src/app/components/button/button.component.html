@@ -1,3 +1,8 @@
-<button (click)="click()" [class]="getClasses()">
+<button
+  [type]="isSubmit() ? 'submit' : 'button'"
+  [disabled]="disabled()"
+  (click)="click()"
+  [class]="getClasses()"
+>
   {{ buttonData().text }}
 </button>

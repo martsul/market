@@ -6,12 +6,13 @@ import { provideStore } from '@ngxs/store';
 import { provideHttpClient } from '@angular/common/http';
 import { CategoriesState } from './store/categories/categories.state';
 import { ProductsState } from './store/products/products.state';
+import { AuthState } from './store/auth/auth.state';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
-    provideStore([CategoriesState, ProductsState]),
+    provideStore([CategoriesState, ProductsState, AuthState]),
     provideHttpClient(),
   ],
 };

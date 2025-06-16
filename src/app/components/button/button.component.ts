@@ -16,6 +16,8 @@ import { ButtonData } from '../../interfaces/button-data';
 export class ButtonComponent {
   public buttonData: InputSignal<ButtonData> = input.required<ButtonData>();
   public handlerClick: OutputEmitterRef<void> = output<void>();
+  public disabled: InputSignal<boolean> = input<boolean>(false);
+  public isSubmit: InputSignal<boolean> = input<boolean>(false)
 
   public getClasses(): string {
     return `custom-button ${this.buttonData().color}`;

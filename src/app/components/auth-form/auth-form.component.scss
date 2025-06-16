@@ -1,0 +1,17 @@
+.auth-form {
+    max-width:  700px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+
+    &__title {
+        font: 700 32px/1 var(--font-i);
+    }
+
+    &__label {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+    }
+}
