@@ -1,0 +1,15 @@
+<section class="reviews">
+  <div class="container">
+    <div class="reviews__head">
+      <div class="reviews__head-info">
+        <h2 class="reviews__title">All Reviews</h2>
+        <span class="reviews__count">({{ (reviews() || []).length }})</span>
+      </div>
+    </div>
+    <div class="reviews__container">
+      @if(reviews()) { @for (review of reviews(); track $index) {
+      <app-product-review [review]="review" />
+      } }
+    </div>
+  </div>
+</section>

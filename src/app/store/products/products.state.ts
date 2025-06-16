@@ -18,6 +18,7 @@ import { SortData } from '../../interfaces/sort-data';
 import { SORT_FIELDS } from '../../constants/sort-fields';
 import { ProductState } from '../../types/product-state';
 import { catchError, EMPTY, Observable } from 'rxjs';
+import { ProductReview } from '../../interfaces/product-review';
 
 export interface ProductsStateModel {
   sort: SortData;
@@ -95,6 +96,11 @@ export class ProductsState {
     return state.product;
   }
 
+  @Selector()
+  static getReviews(state: ProductsStateModel): ProductReview[] | undefined {
+    return state.product.product?.reviews;
+  }
+
   @Action(QueryProductAction)
   queryProduct(
     ctx: StateContext<ProductsStateModel>,
@@ -142,10 +148,7 @@ export class ProductsState {
   }
 
   @Action(ChangePageAction)
-  ChangePage(
-    ctx: StateContext<ProductsStateModel>,
-    action: ChangePageAction
-  ) {
+  ChangePage(ctx: StateContext<ProductsStateModel>, action: ChangePageAction) {
     const state = ctx.getState();
     const skip: number = state.limit * (action.payload.page - 1);
     ctx.patchState({ skip });

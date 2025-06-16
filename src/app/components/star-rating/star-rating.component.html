@@ -57,6 +57,8 @@
     </svg>
   </div>
 </div>
+@if (withNums()) {
 <p class="star-rating__num">
   {{ rating() }}/<span class="star-rating__max">5</span>
 </p>
+}

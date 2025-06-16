@@ -8,6 +8,7 @@ import { Component, computed, input, InputSignal, Signal } from '@angular/core';
 })
 export class StarRatingComponent {
   public rating: InputSignal<number> = input.required<number>();
+  public withNums: InputSignal<boolean> = input<boolean>(true);
 
   public ratingPercents: Signal<number> = computed<number>((): number => {
     return (this.rating() * 100) / 5;
