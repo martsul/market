@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component } from '@angular/core';
 import { InputComponent } from '../input/input.component';
 import { InputData } from '../../interfaces/input-data';
 import {
@@ -10,7 +10,6 @@ import {
 import { AuthForm } from './interfaces/auth-form';
 import { ButtonComponent } from '../button/button.component';
 import { ButtonData } from '../../interfaces/button-data';
-import { AuthService } from '../../services/auth/auth.service';
 import { Store } from '@ngxs/store';
 import { LogInAction } from '../../store/auth/auth.actions';
 import { catchError, EMPTY, tap } from 'rxjs';
@@ -54,8 +53,6 @@ export class AuthFormComponent {
     text: 'Log In',
   };
 
-  private readonly authService: AuthService = inject<AuthService>(AuthService);
-
   constructor(private readonly store: Store, private readonly router: Router) {}
 
   public submit(event: Event) {
@@ -64,10 +61,9 @@ export class AuthFormComponent {
       .dispatch(new LogInAction(this.authForm))
       .pipe(
         tap(() => {
-          this.router.navigate([""])
+          this.router.navigate(['']);
         }),
         catchError(() => {
-          console.log('error');
           return EMPTY;
         })
       )

@@ -1,7 +1,9 @@
-import { Component, WritableSignal } from '@angular/core';
-import { AuthService } from '../../../services/auth/auth.service';
+import { Component, Signal } from '@angular/core';
 import { MatMenuModule } from '@angular/material/menu';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
+import { Store } from '@ngxs/store';
+import { AuthState, AuthStateModel } from '../../../store/auth/auth.state';
+import { LogOutAction } from '../../../store/auth/auth.actions';
 
 @Component({
   selector: 'app-header-user',
@@ -10,8 +12,14 @@ import { RouterLink } from '@angular/router';
   styleUrl: './header-user.component.scss',
 })
 export class HeaderUserComponent {
-  private readonly authService: AuthService = new AuthService();
+  public authState: Signal<AuthStateModel> = this.store.selectSignal(
+    AuthState.getState
+  );
 
-  public isAuth: WritableSignal<boolean> = this.authService.isAuth;
-  public logout: () => void = this.authService.logout;
+  constructor(private readonly store: Store, private readonly router: Router) {}
+
+  public logout() {
+    this.store.dispatch(new LogOutAction());
+    this.router.navigate([""])
+  }
 }

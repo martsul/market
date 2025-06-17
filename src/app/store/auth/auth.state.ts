@@ -1,10 +1,11 @@
+import { ApiService } from './../../services/api/api.service';
 import { UserData } from './../../types/user-data';
-import { inject, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { State, Action, Selector, StateContext } from '@ngxs/store';
-import { LogInAction } from './auth.actions';
-import { AuthService } from '../../services/auth/auth.service';
-import { catchError, EMPTY, tap, throwError } from 'rxjs';
+import { LogInAction, LogOutAction } from './auth.actions';
+import { catchError, tap, throwError } from 'rxjs';
 import { CookieService } from 'ngx-cookie-service';
+
 export interface AuthStateModel {
   status: 'auth' | 'no auth' | 'error';
   userData: UserData | null;
@@ -14,24 +15,32 @@ export interface AuthStateModel {
   name: 'auth',
   defaults: {
     status: 'no auth',
-    userData: null,
+    userData: {
+      id: 1,
+      username: 'emilys',
+      email: 'emily.johnson@x.dummyjson.com',
+      firstName: 'Emily',
+      lastName: 'Johnson',
+      gender: 'female',
+      image: 'https://dummyjson.com/icon/emilys/128',
+    },
   },
 })
 @Injectable()
 export class AuthState {
   constructor(
     private readonly cookieService: CookieService,
-    private readonly authService: AuthService
+    private readonly apiService: ApiService
   ) {}
 
   @Selector()
-  static getState(state: AuthStateModel) {
+  static getState(state: AuthStateModel): AuthStateModel {
     return state;
   }
 
   @Action(LogInAction)
-  add(ctx: StateContext<AuthStateModel>, { payload }: LogInAction) {
-    return this.authService.login(payload).pipe(
+  logIn(ctx: StateContext<AuthStateModel>, { payload }: LogInAction) {
+    return this.apiService.login(payload).pipe(
       tap(
         (v) => {
           const { accessToken, refreshToken, ...userData } = v;
@@ -45,5 +54,10 @@ export class AuthState {
         })
       )
     );
+  }
+
+  @Action(LogOutAction)
+  logOut(ctx: StateContext<AuthStateModel>) {
+    ctx.patchState({ status: 'no auth', userData: null });
   }
 }

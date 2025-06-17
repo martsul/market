@@ -1,0 +1,22 @@
+@let userData = authState().userData; @if (userData) {
+<section class="user-info">
+  <div class="container">
+    <img
+      [ngSrc]="userData.image"
+      alt="user"
+      class="user-info__img"
+      width="200"
+      height="200"
+    />
+    <div class="user-info__info">
+      <p class="user-info__id">#{{ userData.id }}</p>
+      <h2 class="user-info__username">{{ userData.username }}</h2>
+      <p class="user-info__full-name">
+        {{ userData.firstName }} {{ userData.lastName }}
+      </p>
+      <p class="user-info__gender">{{ userData.gender }}</p>
+      <p class="user-info__email">{{ userData.email }}</p>
+    </div>
+  </div>
+</section>
+}

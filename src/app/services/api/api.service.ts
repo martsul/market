@@ -4,6 +4,9 @@ import { Observable } from 'rxjs';
 import { ProductsFilters } from '../../interfaces/products-filters';
 import { ProductResponse } from '../../interfaces/product-response';
 import { ProductData } from '../../interfaces/product-data';
+import { FormGroup } from '@angular/forms';
+import { AuthForm } from '../../components/auth-form/interfaces/auth-form';
+import { AuthResponse } from '../../interfaces/auth-response';
 
 @Injectable({
   providedIn: 'root',
@@ -11,6 +14,13 @@ import { ProductData } from '../../interfaces/product-data';
 export class ApiService {
   private readonly http: HttpClient = inject(HttpClient);
   private readonly baseUrl: string = 'https://dummyjson.com';
+
+  public login(authData: FormGroup<AuthForm>): Observable<AuthResponse> {
+    const body = JSON.stringify(authData.value);
+    return this.http.post<AuthResponse>(this.baseUrl + '/auth/login', body, {
+      headers: { 'Content-Type': 'application/json' },
+    });
+  }
 
   public queryProduct(id: number): Observable<ProductData> {
     return this.http.get<ProductData>(this.baseUrl + `/products/${id}`);

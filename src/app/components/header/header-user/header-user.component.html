@@ -1,4 +1,4 @@
-@if (isAuth()) {
+@if (authState().status === "auth") {
 <div class="header-user">
   <a href="#"
     ><svg
@@ -16,7 +16,7 @@
   </a>
   <mat-menu #appMenu="matMenu">
     <ng-template matMenuContent>
-      <a href="#" mat-menu-item>Profile</a>
+      <a routerLink="profile" mat-menu-item>Profile</a>
       <button (click)="logout()" mat-menu-item>Log Out</button>
     </ng-template>
   </mat-menu>

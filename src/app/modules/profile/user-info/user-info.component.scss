@@ -1,0 +1,45 @@
+:host {
+    margin-bottom: 50px;
+}
+
+.user-info {
+  .container {
+    display: flex;
+    align-items: start;
+    gap: 20px;
+  }
+
+  &__id {
+    color: #00000099;
+    font: 400 16px/22px var(--font-i);
+  }
+
+  &__username {
+    font: 900 32px/1 var(--font-m);
+    margin-bottom: 15px;
+  }
+
+  &__full-name {
+    font: 700 20px/1 var(--font-i);
+    margin-bottom: 5px;
+  }
+
+  &__gender,
+  &__email {
+    font: 500 18px/1 var(--font-i);
+    margin-bottom: 5px;
+  }
+}
+
+@media (max-width: 575px) {
+  .user-info {
+    .container {
+      flex-direction: column;
+    }
+
+    &__img {
+        width: 100%;
+        height: auto;
+    }
+  }
+}
