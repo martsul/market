@@ -1,5 +1,6 @@
 :host {
-    margin-bottom: 50px;
+  display: block;
+  margin-bottom: 50px;
 }
 
 .user-info {
@@ -38,8 +39,8 @@
     }
 
     &__img {
-        width: 100%;
-        height: auto;
+      width: 100%;
+      height: auto;
     }
   }
 }

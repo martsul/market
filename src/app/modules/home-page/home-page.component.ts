@@ -6,6 +6,7 @@ import { MenPreviewComponent } from './men-preview/men-preview.component';
 
 @Component({
   selector: 'app-home-page',
+  standalone: true,
   imports: [
     HomePreviewComponent,
     BrandsComponent,

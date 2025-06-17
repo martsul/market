@@ -4,6 +4,7 @@ import { ProductsLandingComponent } from './products-landing/products-landing.co
 
 @Component({
   selector: 'app-shop-page',
+    standalone: true,
   imports: [BreadCrumbsComponent, ProductsLandingComponent],
   templateUrl: './shop-page.component.html',
   styleUrl: './shop-page.component.scss',

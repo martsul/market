@@ -1,0 +1,21 @@
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    &__label {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    &__images {
+        display: flex;
+        gap: 15px;
+        flex-wrap: wrap;
+    }
+
+    &__img {
+        width: auto;
+    }
+}

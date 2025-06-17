@@ -2,8 +2,8 @@ import { ApiService } from './../../services/api/api.service';
 import { UserData } from './../../types/user-data';
 import { Injectable } from '@angular/core';
 import { State, Action, Selector, StateContext } from '@ngxs/store';
-import { LogInAction, LogOutAction } from './auth.actions';
-import { catchError, tap, throwError } from 'rxjs';
+import { GetAuthDataAction, LogInAction, LogOutAction } from './auth.actions';
+import { catchError, EMPTY, tap, throwError } from 'rxjs';
 import { CookieService } from 'ngx-cookie-service';
 
 export interface AuthStateModel {
@@ -36,6 +36,19 @@ export class AuthState {
   @Selector()
   static getState(state: AuthStateModel): AuthStateModel {
     return state;
+  }
+
+  @Action(GetAuthDataAction)
+  getAuthData(ctx: StateContext<AuthStateModel>) {
+    return this.apiService.getAuthData().pipe(
+      tap((userData) => {
+        ctx.patchState({ status: 'auth', userData });
+      }),
+      catchError((e) => {
+        ctx.patchState({ status: 'error', userData: null });
+        return EMPTY;
+      })
+    );
   }
 
   @Action(LogInAction)

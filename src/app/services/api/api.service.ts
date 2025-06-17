@@ -1,19 +1,50 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { catchError, Observable } from 'rxjs';
 import { ProductsFilters } from '../../interfaces/products-filters';
 import { ProductResponse } from '../../interfaces/product-response';
 import { ProductData } from '../../interfaces/product-data';
 import { FormGroup } from '@angular/forms';
 import { AuthForm } from '../../components/auth-form/interfaces/auth-form';
 import { AuthResponse } from '../../interfaces/auth-response';
+import { ProductFormData } from '../../components/profile/add-product-form/interfaces/product-form-data';
+import { ProductCreateResponse } from '../../components/profile/add-product-form/interfaces/product-create-response';
+import { CookieService } from 'ngx-cookie-service';
+import { TokensResponse } from '../../interfaces/tokens-response';
+import { UserData } from '../../types/user-data';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ApiService {
-  private readonly http: HttpClient = inject(HttpClient);
   private readonly baseUrl: string = 'https://dummyjson.com';
+
+  constructor(
+    private readonly cookieService: CookieService,
+    private readonly http: HttpClient
+  ) {}
+
+  public getAuthData(): Observable<UserData> {
+    return this.http.get<UserData>(this.baseUrl + '/auth/me');
+  }
+
+  public refreshTokens(): Observable<TokensResponse> {
+    const refreshToken: string = this.cookieService.get('refreshToken');
+    const body: { refreshToken: string } = { refreshToken };
+    return this.http.post<TokensResponse>(this.baseUrl + '/auth/refresh', body);
+  }
+
+  public addProduct(
+    productFormData: ProductFormData
+  ): Observable<ProductCreateResponse> {
+    return this.http.post<ProductCreateResponse>(
+      this.baseUrl + '/products/add',
+      productFormData,
+      {
+        headers: { 'Content-Type': 'application/json' },
+      }
+    );
+  }
 
   public login(authData: FormGroup<AuthForm>): Observable<AuthResponse> {
     const body = JSON.stringify(authData.value);

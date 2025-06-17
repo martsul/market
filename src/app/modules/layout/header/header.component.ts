@@ -5,6 +5,7 @@ import { HeaderMenuComponent } from '../../../components/header/header-menu/head
 import { SearchComponent } from '../../../components/search/search.component';
 import { HeaderUserComponent } from '../../../components/header/header-user/header-user.component';
 import { QueryCategoriesAction } from '../../../store/categories/categories.actions';
+import { GetAuthDataAction } from '../../../store/auth/auth.actions';
 
 @Component({
   selector: 'app-header',
@@ -20,6 +21,7 @@ import { QueryCategoriesAction } from '../../../store/categories/categories.acti
 export class HeaderComponent {
   constructor(private readonly store: Store) {
     this.store.dispatch(new QueryCategoriesAction());
+    this.store.dispatch(new GetAuthDataAction())
   }
 
   public menuIsOpen: boolean = false;

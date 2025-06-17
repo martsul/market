@@ -6,6 +6,7 @@ import { ProductReviewsComponent } from './product-reviews/product-reviews.compo
 
 @Component({
   selector: 'app-product-page',
+    standalone: true,
   imports: [
     BreadCrumbsComponent,
     ProductPreviewComponent,

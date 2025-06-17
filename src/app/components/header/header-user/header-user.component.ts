@@ -1,3 +1,4 @@
+import { CookieService } from 'ngx-cookie-service';
 import { Component, Signal } from '@angular/core';
 import { MatMenuModule } from '@angular/material/menu';
 import { Router, RouterLink } from '@angular/router';
@@ -16,10 +17,15 @@ export class HeaderUserComponent {
     AuthState.getState
   );
 
-  constructor(private readonly store: Store, private readonly router: Router) {}
+  constructor(
+    private readonly store: Store,
+    private readonly router: Router,
+    private readonly cookieService: CookieService
+  ) {}
 
   public logout() {
+    this.cookieService.deleteAll()
     this.store.dispatch(new LogOutAction());
-    this.router.navigate([""])
+    this.router.navigate(['']);
   }
 }

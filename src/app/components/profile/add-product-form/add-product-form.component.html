@@ -1,0 +1,33 @@
+<form class="form" (submit)="submit($event)" [formGroup]="productForm">
+  <label class="form__label">
+    <span class="form__name">Title</span>
+    <app-input class="form__input" [data-input]="titleInputData" />
+  </label>
+  <label class="form__label">
+    <span class="form__name">Description</span>
+    <app-input
+      class="form__input"
+      [data-input]="titleInputData"
+      [data-input]="descriptionInputData"
+    />
+  </label>
+  <label class="form__label">
+    <span class="form__name">Images (Separate links with spaces)</span>
+    <app-input
+      class="form__input"
+      [data-input]="titleInputData"
+      [data-input]="imagesInputData"
+    />
+  </label>
+  <div class="form__images">
+    @for (img of images; track $index) {
+    <img class="form__img" [ngSrc]="img" height="200" width="80" alt="img" />
+    }
+  </div>
+  <app-button
+    [disabled]="!productForm.valid"
+    class="form__submit"
+    [isSubmit]="true"
+    [buttonData]="{ color: 'dark', text: 'submit' }"
+  />
+</form>
