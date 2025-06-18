@@ -107,7 +107,6 @@ export class AddProductFormComponent {
     event.preventDefault();
     const values = this.productForm.value;
     const images = values.images!.split(' ').filter((i) => i !== '');
-    console.log(values)
     const data: ProductFormData = {
       description: values.description!,
       title: values.title!,
@@ -117,6 +116,7 @@ export class AddProductFormComponent {
       category: values.category!,
     };
     this.store.dispatch(new AddProductAction(data));
+    this.productForm.reset()
   }
 
   ngOnDestroy(): void {
