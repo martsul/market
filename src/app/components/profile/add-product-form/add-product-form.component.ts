@@ -39,6 +39,10 @@ export class AddProductFormComponent {
       nonNullable: true,
       validators: Validators.required,
     }),
+    price: new FormControl<number>(0, {
+      nonNullable: true,
+      validators: Validators.required,
+    }),
   });
 
   public titleInputData: InputData = {
@@ -59,12 +63,18 @@ export class AddProductFormComponent {
     type: 'text',
     formControl: this.productForm.get('images') as FormControl<string>,
   };
+  public priceInputData: InputData = {
+    color: 'grey',
+    placeholder: 'Price',
+    type: 'number',
+    formControl: this.productForm.get('price') as FormControl<number>,
+  };
 
   public images: string[] = [];
-  private imagesSubscriptions: Subscription | undefined;
+  private imagesSubscription: Subscription | undefined;
 
   constructor(private readonly apiService: ApiService) {
-    this.imagesSubscriptions = this.productForm
+    this.imagesSubscription = this.productForm
       .get('images')
       ?.valueChanges.subscribe((v: string): void => {
         this.images = v.split(' ').filter((e) => e !== '');
@@ -80,11 +90,12 @@ export class AddProductFormComponent {
       title: values.title as string,
       images,
       thumbnail: images[0],
+      price: values.price as number,
     };
-    this.apiService.addProduct(data).pipe(tap(console.log)).subscribe()
+    this.apiService.addProduct(data).pipe(tap(console.log)).subscribe();
   }
 
   ngOnDestroy(): void {
-    this.imagesSubscriptions?.unsubscribe();
+    this.imagesSubscription?.unsubscribe();
   }
 }

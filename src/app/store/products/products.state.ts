@@ -26,6 +26,7 @@ export interface ProductsStateModel {
   skip: number;
   total: number;
   products: ProductData[];
+  addedProducts: ProductData[];
   womenPreview: ProductData[];
   menPreview: ProductData[];
   product: ProductState;
@@ -39,6 +40,7 @@ export interface ProductsStateModel {
     total: 0,
     product: { requestStatus: 'idle', product: null },
     products: [],
+    addedProducts: [],
     menPreview: [],
     womenPreview: [],
     sort: { sortBy: 'price', order: 'desc' },
