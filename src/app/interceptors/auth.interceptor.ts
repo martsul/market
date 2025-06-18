@@ -31,23 +31,22 @@ export const authInterceptor: HttpInterceptorFn = (
 
   return next(reqClone).pipe(
     catchError((error) => {
-      if (error.status === 401 && !isRefreshQuery) {
+      if (error.status === 500 && !isRefreshQuery) {
         isRefreshQuery = true;
-        apiService
-          .refreshTokens()
-          .pipe(
-            switchMap((v) => {
-              cookieService.set('accessToken', v.accessToken);
-              cookieService.set('refreshToken', v.refreshToken);
-              const reqClone: HttpRequest<unknown> = req.clone({
-                setHeaders: {
-                  Authorization: `Bearer ${cookieService.get('accessToken')}`,
-                },
-              });
-              return next(reqClone);
-            })
-          )
-          .subscribe();
+        return apiService.refreshTokens().pipe(
+          switchMap((v) => {
+            console.log(12312312312);
+            cookieService.set('accessToken', v.accessToken);
+            cookieService.set('refreshToken', v.refreshToken);
+            const reqClone: HttpRequest<unknown> = req.clone({
+              setHeaders: {
+                Authorization: `Bearer ${cookieService.get('accessToken')}`,
+              },
+            });
+            console.log(reqClone);
+            return next(reqClone);
+          })
+        );
       }
       return throwError(error);
     })
