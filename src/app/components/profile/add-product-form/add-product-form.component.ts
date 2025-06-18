@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, computed, inject, Signal } from '@angular/core';
 import { InputComponent } from '../../input/input.component';
 import {
   FormControl,
@@ -11,8 +11,13 @@ import { InputData } from '../../../interfaces/input-data';
 import { ProductFormModel } from './interfaces/product-form-model';
 import { Subscription, tap } from 'rxjs';
 import { NgOptimizedImage } from '@angular/common';
-import { ApiService } from '../../../services/api/api.service';
 import { ProductFormData } from './interfaces/product-form-data';
+import { Store } from '@ngxs/store';
+import { AddProductAction } from '../../../store/products/products.actions';
+import { SelectComponent } from '../../select/select.component';
+import { CategoriesState } from '../../../store/categories/categories.state';
+import { OptionData } from '../../select/interfaces/option-data';
+import { CategoryConvertPipe } from '../../../pipes/category-convert/category-convert.pipe';
 
 @Component({
   selector: 'app-add-product-form',
@@ -21,11 +26,24 @@ import { ProductFormData } from './interfaces/product-form-data';
     ButtonComponent,
     ReactiveFormsModule,
     NgOptimizedImage,
+    SelectComponent,
   ],
   templateUrl: './add-product-form.component.html',
   styleUrl: './add-product-form.component.scss',
 })
 export class AddProductFormComponent {
+  private categories: Signal<string[]> = this.store.selectSignal(
+    CategoriesState.getCategories
+  );
+  public categoryOptions: Signal<OptionData[]> = computed<OptionData[]>(
+    (): OptionData[] => {
+      return this.categories().map((c) => ({
+        value: c,
+        text: c.split('-').join(' '),
+      }));
+    }
+  );
+
   public productForm: FormGroup<ProductFormModel> = new FormGroup({
     title: new FormControl<string>('', {
       nonNullable: true,
@@ -40,6 +58,10 @@ export class AddProductFormComponent {
       validators: Validators.required,
     }),
     price: new FormControl<number>(0, {
+      nonNullable: true,
+      validators: Validators.required,
+    }),
+    category: new FormControl<string>('', {
       nonNullable: true,
       validators: Validators.required,
     }),
@@ -73,7 +95,7 @@ export class AddProductFormComponent {
   public images: string[] = [];
   private imagesSubscription: Subscription | undefined;
 
-  constructor(private readonly apiService: ApiService) {
+  constructor(private readonly store: Store) {
     this.imagesSubscription = this.productForm
       .get('images')
       ?.valueChanges.subscribe((v: string): void => {
@@ -84,18 +106,24 @@ export class AddProductFormComponent {
   public submit(event: Event) {
     event.preventDefault();
     const values = this.productForm.value;
-    const images = (values.images as string).split(' ').filter((i) => i !== '');
+    const images = values.images!.split(' ').filter((i) => i !== '');
+    console.log(values)
     const data: ProductFormData = {
-      description: values.description as string,
-      title: values.title as string,
+      description: values.description!,
+      title: values.title!,
       images,
       thumbnail: images[0],
-      price: values.price as number,
+      price: values.price!,
+      category: values.category!,
     };
-    this.apiService.addProduct(data).pipe(tap(console.log)).subscribe();
+    this.store.dispatch(new AddProductAction(data));
   }
 
   ngOnDestroy(): void {
     this.imagesSubscription?.unsubscribe();
+  }
+
+  get categoryControl() {
+    return this.productForm.get('category') as FormControl<string>;
   }
 }

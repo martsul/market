@@ -4,4 +4,5 @@ export interface ProductFormData {
   thumbnail: string;
   images: string[];
   price: number;
+  category: string;
 }

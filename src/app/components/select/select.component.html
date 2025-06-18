@@ -1,0 +1,7 @@
+<select [formControl]="control()" class="select">
+  @for (option of options(); track $index) {
+  <option class="select__option" [value]="option.value">
+    {{ option.text }}
+  </option>
+  }
+</select>

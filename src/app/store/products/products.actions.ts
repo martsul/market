@@ -1,3 +1,4 @@
+import { ProductFormData } from '../../components/profile/add-product-form/interfaces/product-form-data';
 import { ProductsPayload } from '../../interfaces/products-payload';
 import { SortTitles } from '../../types/sort-titles';
 
@@ -37,4 +38,9 @@ export class SetStartPageAction {
 export class QueryProductAction {
   static readonly type: string = '[Products] Query Product';
   constructor(public payload: { id: number }) {}
+}
+
+export class AddProductAction {
+  static readonly type: string = '[Products] Add Product';
+  constructor(public payload: ProductFormData) {}
 }

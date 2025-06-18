@@ -4,6 +4,7 @@ import { inject, Injectable } from '@angular/core';
 import { State, Action, Selector, StateContext } from '@ngxs/store';
 import { ProductData } from '../../interfaces/product-data';
 import {
+  AddProductAction,
   ChangePageAction,
   QueryMenPreviewAction,
   QueryProductAction,
@@ -77,7 +78,7 @@ export class ProductsState {
 
   @Selector()
   static getProducts(state: ProductsStateModel): ProductData[] {
-    return state.products;
+    return state.addedProducts.concat(state.products);
   }
 
   @Selector()
@@ -108,6 +109,16 @@ export class ProductsState {
     ctx: StateContext<ProductsStateModel>,
     action: QueryProductAction
   ) {
+    const state = ctx.getState();
+    if (action.payload.id >= 195) {
+      ctx.patchState({
+        product: {
+          requestStatus: 'fulfilled',
+          product: state.addedProducts.find((p) => p.id === action.payload.id)!,
+        },
+      });
+      return;
+    }
     ctx.patchState({ product: { requestStatus: 'loading', product: null } });
     this.apiService
       .queryProduct(action.payload.id)
@@ -186,6 +197,39 @@ export class ProductsState {
   queryMenPreview(ctx: StateContext<ProductsStateModel>): void {
     this.apiService.queryMenPreview().subscribe((r: ProductResponse): void => {
       ctx.patchState({ menPreview: r.products });
+    });
+  }
+
+  @Action(AddProductAction)
+  addProduct(ctx: StateContext<ProductsStateModel>, action: AddProductAction) {
+    const addedProducts: ProductData[] = ctx.getState().addedProducts;
+    addedProducts.push({
+      id: 195 + addedProducts.length,
+      title: action.payload.title,
+      description: action.payload.description,
+      category: action.payload.category,
+      price: action.payload.price,
+      rating: 0,
+      stock: 0,
+      tags: [],
+      sku: 'sku',
+      weight: 9999,
+      dimensions: { depth: 0, height: 0, width: 0 },
+      availabilityStatus: 'available',
+      brand: 'brand',
+      images: action.payload.images,
+      meta: {
+        barcode: 'barcode',
+        createdAt: new Date(),
+        qrCode: 'qeCode',
+        updatedAt: new Date(),
+      },
+      minimumOrderQuantity: 1,
+      returnPolicy: 'policy',
+      reviews: [],
+      shippingInformation: 'shippingInformation',
+      thumbnail: action.payload.images[0],
+      warrantyInformation: 'warrantyInformation',
     });
   }
 }

@@ -12,6 +12,10 @@
     <app-input class="form__input" [data-input]="priceInputData" />
   </label>
   <label class="form__label">
+    <span class="form__input">Category</span>
+    <app-select [control]="categoryControl" [options]="categoryOptions()" />
+  </label>
+  <label class="form__label">
     <span class="form__name">Images (Separate links with spaces)</span>
     <app-input class="form__input" [data-input]="imagesInputData" />
   </label>
