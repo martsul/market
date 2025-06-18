@@ -33,7 +33,7 @@ export const routes: Routes = [
           ),
       },
       {
-        path: 'shop/:category/:product',
+        path: 'shop/:category/:productId',
         loadComponent: () =>
           import('./modules/product-page/product-page.component').then(
             (m) => m.ProductPageComponent

@@ -27,15 +27,5 @@ export class ProductPreviewComponent {
     ProductsState.getProduct
   );
 
-  constructor(
-    private readonly store: Store,
-    private readonly route: ActivatedRoute
-  ) {
-    this.queryProduct();
-  }
-
-  private queryProduct(): void {
-    const { id } = this.route.snapshot.queryParams as { id: string };
-    this.store.dispatch(new QueryProductAction({ id: +id }));
-  }
+  constructor(private readonly store: Store) {}
 }
