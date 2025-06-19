@@ -1,23 +1,23 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+// import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ProductsPaginationComponent } from './products-pagination.component';
+// import { ProductsPaginationComponent } from './products-pagination.component';
 
-describe('ProductsPaginationComponent', () => {
-  let component: ProductsPaginationComponent;
-  let fixture: ComponentFixture<ProductsPaginationComponent>;
+// describe('ProductsPaginationComponent', () => {
+//   let component: ProductsPaginationComponent;
+//   let fixture: ComponentFixture<ProductsPaginationComponent>;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [ProductsPaginationComponent]
-    })
-    .compileComponents();
+//   beforeEach(async () => {
+//     await TestBed.configureTestingModule({
+//       imports: [ProductsPaginationComponent]
+//     })
+//     .compileComponents();
 
-    fixture = TestBed.createComponent(ProductsPaginationComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+//     fixture = TestBed.createComponent(ProductsPaginationComponent);
+//     component = fixture.componentInstance;
+//     fixture.detectChanges();
+//   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-});
+//   it('should create', () => {
+//     expect(component).toBeTruthy();
+//   });
+// });

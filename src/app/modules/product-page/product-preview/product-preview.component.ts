@@ -6,7 +6,6 @@ import { StarRatingComponent } from '../../../components/star-rating/star-rating
 import { ProductPriceComponent } from '../../../components/products/product-price/product-price.component';
 import { ButtonComponent } from '../../../components/button/button.component';
 import { CountButtonComponent } from '../../../components/count-button/count-button.component';
-import { QueryProductAction } from '../../../store/products/products.actions';
 import { ProductState } from '../../../types/product-state';
 import { ProductsState } from '../../../store/products/products.state';
 
