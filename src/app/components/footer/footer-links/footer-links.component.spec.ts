@@ -1,23 +1,24 @@
-// import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-// import { FooterLinksComponent } from './footer-links.component';
+import { FooterLinksComponent } from './footer-links.component';
 
-// describe('FooterLinksComponent', () => {
-//   let component: FooterLinksComponent;
-//   let fixture: ComponentFixture<FooterLinksComponent>;
+describe('FooterLinksComponent', () => {
+  let component: FooterLinksComponent;
+  let fixture: ComponentFixture<FooterLinksComponent>;
 
-//   beforeEach(async () => {
-//     await TestBed.configureTestingModule({
-//       imports: [FooterLinksComponent]
-//     })
-//     .compileComponents();
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      imports: [FooterLinksComponent],
+    }).compileComponents();
 
-//     fixture = TestBed.createComponent(FooterLinksComponent);
-//     component = fixture.componentInstance;
-//     fixture.detectChanges();
-//   });
+    fixture = TestBed.createComponent(FooterLinksComponent);
+    fixture.componentRef.setInput("links", [])
 
-//   it('should create', () => {
-//     expect(component).toBeTruthy();
-//   });
-// });
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+});

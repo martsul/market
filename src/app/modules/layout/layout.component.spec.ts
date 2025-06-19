@@ -1,23 +1,40 @@
-// import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { LayoutComponent } from './layout.component';
+import { Component } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
 
-// import { LayoutComponent } from './layout.component';
+@Component({ selector: 'app-header', template: '' })
+class MockHeaderComponent {}
 
-// describe('LayoutComponent', () => {
-//   let component: LayoutComponent;
-//   let fixture: ComponentFixture<LayoutComponent>;
+@Component({ selector: 'app-footer', template: '' })
+class MockFooterComponent {}
 
-//   beforeEach(async () => {
-//     await TestBed.configureTestingModule({
-//       imports: [LayoutComponent]
-//     })
-//     .compileComponents();
+describe('LayoutComponent', () => {
+  let component: LayoutComponent;
+  let fixture: ComponentFixture<LayoutComponent>;
 
-//     fixture = TestBed.createComponent(LayoutComponent);
-//     component = fixture.componentInstance;
-//     fixture.detectChanges();
-//   });
+  beforeEach(async () => {
+    TestBed.overrideComponent(LayoutComponent, {
+      set: {
+        imports: [MockHeaderComponent, MockFooterComponent, RouterOutlet],
+      },
+    });
+    await TestBed.configureTestingModule({
+      imports: [
+        LayoutComponent,
+        MockHeaderComponent,
+        MockFooterComponent,
+        RouterTestingModule,
+      ],
+    }).compileComponents();
 
-//   it('should create', () => {
-//     expect(component).toBeTruthy();
-//   });
-// });
+    fixture = TestBed.createComponent(LayoutComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+});
