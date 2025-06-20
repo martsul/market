@@ -17,14 +17,14 @@ export class CountButtonComponent {
   public handlerChange: OutputEmitterRef<number> = output<number>();
 
   public increase(): void {
-    this.count.set(this.count() + 1);
-    this.handlerChange.emit(this.count());
+    const increasedValue = this.count() + 1;
+    this.count.set(increasedValue);
+    this.handlerChange.emit(increasedValue);
   }
 
   public decrease(): void {
-    if (this.count() > 0) {
-      this.count.set(this.count() - 1);
-    }
-    this.handlerChange.emit(this.count());
+    const decreasedValue = this.count() > 0 ? this.count() - 1 : this.count();
+    this.count.set(decreasedValue);
+    this.handlerChange.emit(decreasedValue);
   }
 }

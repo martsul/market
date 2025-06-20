@@ -2,11 +2,15 @@
   <h1 class="auth-form__title">Log In</h1>
   <label class="auth-form__label">
     <span class="auth-form__label-text">Username</span>
-    <app-input class="auth-form__input" [data-input]="emailInputOptions" />
+    <app-input class="auth-form__input" [dataInput]="emailInputOptions" />
   </label>
   <label class="auth-form__label">
     <span class="auth-form__label-text">Password</span>
-    <app-input class="auth-form__input" [data-input]="passwordInputOptions" />
+    <app-input class="auth-form__input" [dataInput]="passwordInputOptions" />
   </label>
-  <app-button [isSubmit]="true" [buttonData]="submitButtonOptions" class="auth-form__submit" />
+  <app-button
+    [isSubmit]="true"
+    [buttonData]="submitButtonOptions"
+    class="auth-form__submit"
+  />
 </form>

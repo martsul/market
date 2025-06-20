@@ -1,15 +1,15 @@
 <form class="form" (submit)="submit($event)" [formGroup]="productForm">
   <label class="form__label">
     <span class="form__name">Title</span>
-    <app-input class="form__input" [data-input]="titleInputData" />
+    <app-input class="form__input" [dataInput]="titleInputData" />
   </label>
   <label class="form__label">
     <span class="form__name">Description</span>
-    <app-input class="form__input" [data-input]="descriptionInputData" />
+    <app-input class="form__input" [dataInput]="descriptionInputData" />
   </label>
   <label class="form__label">
     <span class="form__name">Price</span>
-    <app-input class="form__input" [data-input]="priceInputData" />
+    <app-input class="form__input" [dataInput]="priceInputData" />
   </label>
   <label class="form__label">
     <span class="form__input">Category</span>
@@ -17,7 +17,7 @@
   </label>
   <label class="form__label">
     <span class="form__name">Images (Separate links with spaces)</span>
-    <app-input class="form__input" [data-input]="imagesInputData" />
+    <app-input class="form__input" [dataInput]="imagesInputData" />
   </label>
   <div class="form__images">
     @for (img of images; track $index) {

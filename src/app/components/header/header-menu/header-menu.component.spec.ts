@@ -1,9 +1,9 @@
-import { RouterTestingModule } from '@angular/router/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { HeaderMenuComponent } from './header-menu.component';
-import { Component, signal, Signal } from '@angular/core';
+import { signal } from '@angular/core';
 import { Store } from '@ngxs/store';
+import { RouterModule } from '@angular/router';
 
 describe('HeaderMenuComponent', () => {
   let component: HeaderMenuComponent;
@@ -15,7 +15,7 @@ describe('HeaderMenuComponent', () => {
     mockStore.selectSignal.and.returnValue(signal([]));
 
     await TestBed.configureTestingModule({
-      imports: [HeaderMenuComponent, RouterTestingModule],
+      imports: [HeaderMenuComponent, RouterModule.forRoot([])],
       providers: [{ provide: Store, useValue: mockStore }],
     }).compileComponents();
 

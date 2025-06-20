@@ -1,8 +1,7 @@
-import { RouterTestingModule } from '@angular/router/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { LayoutComponent } from './layout.component';
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { RouterModule, RouterOutlet } from '@angular/router';
 
 @Component({ selector: 'app-header', template: '' })
 class MockHeaderComponent {}
@@ -25,7 +24,7 @@ describe('LayoutComponent', () => {
         LayoutComponent,
         MockHeaderComponent,
         MockFooterComponent,
-        RouterTestingModule,
+        RouterModule.forRoot([]),
       ],
     }).compileComponents();
 

@@ -15,15 +15,7 @@ export interface AuthStateModel {
   name: 'auth',
   defaults: {
     status: 'no auth',
-    userData: {
-      id: 1,
-      username: 'emilys',
-      email: 'emily.johnson@x.dummyjson.com',
-      firstName: 'Emily',
-      lastName: 'Johnson',
-      gender: 'female',
-      image: 'https://dummyjson.com/icon/emilys/128',
-    },
+    userData: null,
   },
 })
 @Injectable()
@@ -44,7 +36,7 @@ export class AuthState {
       tap((userData) => {
         ctx.patchState({ status: 'auth', userData });
       }),
-      catchError((e) => {
+      catchError(() => {
         ctx.patchState({ status: 'error', userData: null });
         return EMPTY;
       })

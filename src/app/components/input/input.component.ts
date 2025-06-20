@@ -10,9 +10,7 @@ import { FormControl, ReactiveFormsModule } from '@angular/forms';
   styleUrl: './input.component.scss',
 })
 export class InputComponent {
-  public dataInput: InputSignal<InputData> = input.required<InputData>({
-    alias: 'data-input',
-  });
+  public dataInput: InputSignal<InputData> = input.required<InputData>();
 
   public formControl: Signal<FormControl<unknown>> = computed(
     (): FormControl<unknown> => {

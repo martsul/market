@@ -16,7 +16,7 @@ export class SearchComponent {
   }
 
   @HostListener('click', ['$event'])
-  ondDocumentClick(event: MouseEvent): void {
+  onDocumentClick(event: MouseEvent): void {
     const target: HTMLElement = event.target as HTMLElement;
     if (!target.closest('.search')) {
       this.searchIsOpen.set(false);

@@ -9,17 +9,15 @@
           style.
         </p>
         <app-button
-          (handlerClick)="handlerShopNow()"
           class="preview__btn"
           [buttonData]="{ text: 'Shop Now', color: 'dark' }"
+          (handlerClick)="handlerShopNow()"
         />
       </div>
       <div class="preview__statistic">
         @for (item of statisticItems; track $index) {
         <div class="preview__statistic-container">
-          <h3 class="preview__statistic-result">
-            {{ item.result | convertResultStatistic }}
-          </h3>
+          <h3 class="preview__statistic-result">+{{ item.result | number }}</h3>
           <span class="preview__statistic-item">{{ item.item }}</span>
         </div>
         }

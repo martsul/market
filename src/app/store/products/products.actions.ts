@@ -4,7 +4,6 @@ import { SortTitles } from '../../types/sort-titles';
 
 export class QueryWomenPreviewAction {
   static readonly type: string = '[Products] Query Women Preview';
-  constructor() {}
 }
 
 export class QueryMenPreviewAction {

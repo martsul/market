@@ -1,10 +1,9 @@
-import { RouterTestingModule } from '@angular/router/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { HeaderUserComponent } from './header-user.component';
 import { Store } from '@ngxs/store';
 import { signal } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 
 describe('HeaderUserComponent', () => {
   let component: HeaderUserComponent;
@@ -24,7 +23,7 @@ describe('HeaderUserComponent', () => {
     );
 
     await TestBed.configureTestingModule({
-      imports: [HeaderUserComponent, RouterTestingModule],
+      imports: [HeaderUserComponent, RouterModule.forRoot([])],
       providers: [
         { provide: Store, useValue: mockStore },
         { provide: CookieService, useValue: mockCookieService },

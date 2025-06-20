@@ -35,7 +35,6 @@ export const authInterceptor: HttpInterceptorFn = (
         isRefreshQuery = true;
         return apiService.refreshTokens().pipe(
           switchMap((v) => {
-            console.log(12312312312);
             cookieService.set('accessToken', v.accessToken);
             cookieService.set('refreshToken', v.refreshToken);
             const reqClone: HttpRequest<unknown> = req.clone({
@@ -43,7 +42,6 @@ export const authInterceptor: HttpInterceptorFn = (
                 Authorization: `Bearer ${cookieService.get('accessToken')}`,
               },
             });
-            console.log(reqClone);
             return next(reqClone);
           })
         );

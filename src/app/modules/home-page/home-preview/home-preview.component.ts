@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { ButtonComponent } from '../../../components/button/button.component';
-import { ConvertResultStatisticPipe } from '../../../pipes/convert-result-statistic/convert-result-statistic.pipe';
 import { HOME_PREVIEW_STATISTIC } from '../../../constants/home-preview-statistic';
 import { ItemResultStatistic } from '../../../interfaces/item-result-statistic';
+import { DecimalPipe } from '@angular/common';
 
 @Component({
   selector: 'app-home-preview',
-  imports: [ButtonComponent, ConvertResultStatisticPipe],
+  imports: [ButtonComponent, DecimalPipe],
   templateUrl: './home-preview.component.html',
   styleUrl: './home-preview.component.scss',
 })

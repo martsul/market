@@ -21,7 +21,7 @@ import { GetAuthDataAction } from '../../../store/auth/auth.actions';
 export class HeaderComponent {
   constructor(private readonly store: Store) {
     this.store.dispatch(new QueryCategoriesAction());
-    this.store.dispatch(new GetAuthDataAction())
+    this.store.dispatch(new GetAuthDataAction());
   }
 
   public menuIsOpen: boolean = false;
