@@ -6,8 +6,8 @@
   background: var(--grey);
   border-radius: 62px;
   width: max-content;
-  gap: 38px;
-  width: 185px;
+  gap: 16px;
+  width: 100%;
 }
 
 .count {
@@ -17,7 +17,8 @@
     height: 24px;
   }
 
-  &__increase-btn, &__decrease-btn {
+  &__increase-btn,
+  &__decrease-btn {
     display: flex;
   }
 
@@ -27,10 +28,9 @@
 }
 
 @media (max-width: 575px) {
-    :host {
-        gap: 16px;
-        padding: 9px 16px;
-    }
+  :host {
+    padding: 9px 16px;
+  }
 
   .count {
     &__decrease-svg,
@@ -39,10 +39,8 @@
       height: 20px;
     }
 
-      &__numb {
-    font-size: 14px;
+    &__numb {
+      font-size: 14px;
+    }
   }
-  }
-
-
 }

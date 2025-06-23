@@ -5,10 +5,12 @@ import { QueryCartAction } from '../../store/cart/cart.actions';
 import { CartProductData } from './cart-card/interfaces/cart-product-data';
 import { CartState } from '../../store/cart/cart.state';
 import { CartCardComponent } from './cart-card/cart-card.component';
+import { InputComponent } from "../../components/input/input.component";
+import { ButtonComponent } from "../../components/button/button.component";
 
 @Component({
   selector: 'app-cart-page',
-  imports: [BreadCrumbsComponent, CartCardComponent],
+  imports: [BreadCrumbsComponent, CartCardComponent, InputComponent, ButtonComponent],
   templateUrl: './cart-page.component.html',
   styleUrl: './cart-page.component.scss',
 })

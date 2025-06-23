@@ -10,8 +10,10 @@
 </div>
 <div class="card__info">
   <div class="card__head">
-    <h5 class="card__title">{{ title() }}</h5>
-    <button>
+    <h5 class="card__title">
+      {{ title() }}
+    </h5>
+    <button (click)="handlerDelete()">
       <svg
         width="24"
         height="24"
@@ -27,7 +29,12 @@
     </button>
   </div>
   <div class="card__footer">
-    <p class="card__price">{{ total() }}</p>
-    <app-count-button [quantity]="5" />
+    <p class="card__price">${{ total().toFixed(2) }}</p>
+    <app-count-button
+      class="card__counter"
+      (handlerIncrease)="handlerIncrease()"
+      (handlerDecrease)="handlerDecrease()"
+      [quantity]="quantity()"
+    />
   </div>
 </div>

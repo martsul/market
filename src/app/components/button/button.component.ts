@@ -6,10 +6,11 @@ import {
   OutputEmitterRef,
 } from '@angular/core';
 import { ButtonData } from '../../interfaces/button-data';
+import { SvgIconComponent } from '../svg-icon/svg-icon.component';
 
 @Component({
   selector: 'app-button',
-  imports: [],
+  imports: [SvgIconComponent],
   templateUrl: './button.component.html',
   styleUrl: './button.component.scss',
 })

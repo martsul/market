@@ -1,5 +1,10 @@
+interface IconData {
+  id: string;
+  side: 'left' | 'right';
+}
+
 export interface ButtonData {
-  color: 'white' | 'dark'| "border-white";
+  color: 'white' | 'dark' | 'border-white';
   text: string;
-  icon?: string;
+  icon?: IconData;
 }

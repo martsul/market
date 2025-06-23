@@ -45,7 +45,6 @@ export class BreadCrumbsComponent {
     const productId = this.route.snapshot.paramMap.get('productId');
     url.forEach(({ path }, i): void => {
       const prevPath = this.breadCrumbs[this.breadCrumbs.length - 1].path;
-      console.log(productId && i === url.length - 1, this.product())
       if (productId && i === url.length - 1) {
         this.breadCrumbs.push({
           path: `${prevPath}/${path}`,

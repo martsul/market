@@ -54,7 +54,7 @@ export class CartState {
     const state: CartStateModel = ctx.getState();
     const products: CartProductData[] = state.map((p) => {
       if (p.id === action.payload.id) {
-        return { ...p, quantity: p.quantity + 1 };
+        return { ...p, quantity: p.quantity + 1, total: p.total + p.price };
       }
       return p;
     });
@@ -67,12 +67,21 @@ export class CartState {
     action: DecreaseProductAction
   ) {
     const state: CartStateModel = ctx.getState();
-    const products: CartProductData[] = state.map((p) => {
-      if (p.id === action.payload.id) {
-        return { ...p, quantity: p.quantity - 1 };
-      }
-      return p;
-    });
+    const products: CartProductData[] = state.reduce<CartProductData[]>(
+      (acc, p) => {
+        if (p.id === action.payload.id && p.quantity > 1) {
+          acc.push({
+            ...p,
+            quantity: p.quantity - 1,
+            total: p.total - p.price,
+          });
+        } else if (p.id !== action.payload.id) {
+          acc.push(p);
+        }
+        return acc;
+      },
+      []
+    );
     ctx.setState(products);
   }
 }

@@ -29,7 +29,7 @@ export class CountButtonComponent {
     if (this.quantity() === undefined) {
       this.ownIncrease();
     } else {
-      this.handlerDecrease.emit();
+      this.handlerIncrease.emit();
     }
   }
 

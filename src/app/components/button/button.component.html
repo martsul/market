@@ -4,5 +4,11 @@
   (click)="click()"
   [class]="getClasses()"
 >
+  @if (buttonData().icon?.side === "left") {
+  <svg [icon]="buttonData().icon!.id"></svg>
+  }
   {{ buttonData().text }}
+  @if (buttonData().icon?.side === "right") {
+  <svg [icon]="buttonData().icon!.id"></svg>
+  }
 </button>

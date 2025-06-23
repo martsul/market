@@ -2,16 +2,62 @@
 <section class="cart">
   <div class="container">
     <h1 class="cart__title">Your cart</h1>
-    <div class="cart__goods">
-      @for (good of cartGoods(); track good.id) {
-      <app-cart-card
-        [id]="good.id"
-        [total]="good.total"
-        [quantity]="good.quantity"
-        [thumbnail]="good.thumbnail"
-        [title]="good.title"
-      />
-    }
+    <div class="cart__content">
+      <div class="cart__goods">
+        @for (good of cartGoods(); track good.id) {
+        <app-cart-card
+          [id]="good.id"
+          [total]="good.total"
+          [quantity]="good.quantity"
+          [thumbnail]="good.thumbnail"
+          [title]="good.title"
+        />
+        @if (!$last) {
+        <div class="cart__line"></div>
+        } }
+      </div>
+      <div class="cart__summary">
+        <h2 class="cart__summary-title">Order Summary</h2>
+        <div class="cart__summary-prices">
+          <div class="cart__summary-line">
+            <span class="cart__summary-line-name">Subtotal</span>
+            <span class="cart__summary-line-price">$10</span>
+          </div>
+          <div class="cart__summary-line">
+            <span class="cart__summary-line-name">Discount</span>
+            <span class="cart__summary-line-price discount">-$10</span>
+          </div>
+        </div>
+        <div class="cart__summary-total">
+          <span class="cart__summary-total-name">Total</span>
+          <span class="cart__summary-total-price">$10</span>
+        </div>
+        <div class="cart__summary-nav">
+          <div class="cart__summary-promo">
+            <app-input
+              class="cart__summary-promo-input"
+              [dataInput]="{
+                placeholder: 'Add promo code',
+                color: 'grey',
+                type: 'text',
+                icon: 'marker'
+              }"
+            />
+            <app-button
+              class="cart__summary-promo-btn"
+              [buttonData]="{ color: 'dark', text: 'Apply' }"
+            />
+          </div>
+          <app-button
+            class="cart__summary-promo-submit"
+            [buttonData]="{
+              color: 'dark',
+              text: 'Go to Checkout',
+              icon: { id: 'right-arrow', side: 'right' }
+            }"
+          />
+        </div>
+      </div>
     </div>
   </div>
 </section>
