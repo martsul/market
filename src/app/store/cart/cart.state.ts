@@ -50,7 +50,6 @@ export class CartState {
   queryCart(ctx: StateContext<CartStateModel>): Observable<QueryCartResponse> {
     return this.apiService.queryCart().pipe(
       tap((v): void => {
-        console.log(v);
         ctx.setState(v.products);
       })
     );

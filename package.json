@@ -22,6 +22,8 @@
     "@angular/router": "^19.2.0",
     "@fontsource/inter": "^5.2.6",
     "@fontsource/montserrat": "^5.2.6",
+    "@ngx-translate/core": "^16.0.4",
+    "@ngx-translate/http-loader": "^16.0.1",
     "@ngxs/store": "^19.0.0",
     "ngx-cookie-service": "^19.1.2",
     "ngx-pagination": "^6.0.3",

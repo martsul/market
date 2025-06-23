@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import { register } from 'swiper/element/bundle';
 register();
 
@@ -10,5 +11,10 @@ register();
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
-  title = 'market';
+  constructor(private translate: TranslateService) {
+    const currentLanguage = localStorage.getItem('language') || 'en';
+    this.translate.addLangs(['en', 'es']);
+    this.translate.setDefaultLang('en');
+    this.translate.use(currentLanguage);
+  }
 }
