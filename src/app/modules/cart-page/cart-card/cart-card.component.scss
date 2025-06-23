@@ -36,6 +36,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: 10px;
   }
 
   &__price {
@@ -44,5 +45,37 @@
 
   &__counter {
     max-width: 126px;
+  }
+
+  &__delete-svg {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+@media (max-width: 575px) {
+  :host {
+    gap: 14px;
+  }
+
+  .card {
+    &__img-container,
+    &__img {
+      width: 99px;
+      height: 99px;
+    }
+
+    &__title {
+      font-size: 16px;
+    }
+
+    &__delete-svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    &__price {
+      font-size: 20px;
+    }
   }
 }
