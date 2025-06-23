@@ -1,4 +1,7 @@
-<button (click)="decrease()" class="count__decrease-btn">
+<button
+  (click)="decrease()"
+  [class]="{ 'count__decrease-btn': true, small: size() === 'small' }"
+>
   <svg
     class="count__decrease-svg"
     viewBox="0 0 24 24"
@@ -11,7 +14,9 @@
     />
   </svg>
 </button>
-<span class="count__num">{{ count() }}</span>
+<span class="count__num">{{
+  quantity() === undefined ? ownQuantity() : quantity()
+}}</span>
 <button (click)="increase()" class="count__increase-btn">
   <svg
     class="count__increase-svg"

@@ -1,10 +1,14 @@
 import {
   Component,
+  input,
+  InputSignal,
   output,
   OutputEmitterRef,
+  Signal,
   signal,
   WritableSignal,
 } from '@angular/core';
+import { CountButtonSizes } from '../../types/count-button-sizes';
 
 @Component({
   selector: 'app-count-button',
@@ -13,18 +17,37 @@ import {
   styleUrl: './count-button.component.scss',
 })
 export class CountButtonComponent {
-  public count: WritableSignal<number> = signal<number>(1);
-  public handlerChange: OutputEmitterRef<number> = output<number>();
+  public quantity: InputSignal<number | undefined> = input<
+    number | undefined
+  >();
+  public ownQuantity: WritableSignal<number> = signal<number>(1);
+  public handlerIncrease: OutputEmitterRef<void> = output<void>();
+  public handlerDecrease: OutputEmitterRef<void> = output<void>();
+  public size: InputSignal<CountButtonSizes> = input<CountButtonSizes>('big');
 
   public increase(): void {
-    const increasedValue = this.count() + 1;
-    this.count.set(increasedValue);
-    this.handlerChange.emit(increasedValue);
+    if (this.quantity() === undefined) {
+      this.ownIncrease();
+    } else {
+      this.handlerDecrease.emit();
+    }
   }
 
   public decrease(): void {
-    const decreasedValue = this.count() > 0 ? this.count() - 1 : this.count();
-    this.count.set(decreasedValue);
-    this.handlerChange.emit(decreasedValue);
+    if (this.quantity() === undefined) {
+      this.ownDecrease();
+    } else {
+      this.handlerDecrease.emit();
+    }
+  }
+
+  private ownIncrease(): void {
+    this.ownQuantity.set(this.ownQuantity() + 1);
+  }
+
+  private ownDecrease(): void {
+    if (this.ownQuantity() > 0) {
+      this.ownQuantity.set(this.ownQuantity() - 1);
+    }
   }
 }

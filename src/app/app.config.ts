@@ -8,12 +8,13 @@ import { CategoriesState } from './store/categories/categories.state';
 import { ProductsState } from './store/products/products.state';
 import { AuthState } from './store/auth/auth.state';
 import { authInterceptor } from './interceptors/auth.interceptor';
+import { CartState } from './store/cart/cart.state';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
-    provideStore([CategoriesState, ProductsState, AuthState]),
+    provideStore([CategoriesState, ProductsState, AuthState, CartState]),
     provideHttpClient(withInterceptors([authInterceptor])),
   ],
 };

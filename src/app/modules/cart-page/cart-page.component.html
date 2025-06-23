@@ -1,0 +1,17 @@
+<app-bread-crumbs />
+<section class="cart">
+  <div class="container">
+    <h1 class="cart__title">Your cart</h1>
+    <div class="cart__goods">
+      @for (good of cartGoods(); track good.id) {
+      <app-cart-card
+        [id]="good.id"
+        [total]="good.total"
+        [quantity]="good.quantity"
+        [thumbnail]="good.thumbnail"
+        [title]="good.title"
+      />
+    }
+    </div>
+  </div>
+</section>

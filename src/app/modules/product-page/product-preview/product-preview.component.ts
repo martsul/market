@@ -1,5 +1,4 @@
 import { Component, Signal } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngxs/store';
 import { ProductImagesComponent } from '../../../components/products/product-images/product-images.component';
 import { StarRatingComponent } from '../../../components/star-rating/star-rating.component';

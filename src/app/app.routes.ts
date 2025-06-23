@@ -49,6 +49,14 @@ export const routes: Routes = [
             (m) => m.ProfileComponent
           ),
       },
+      {
+        path: 'cart',
+        title: 'Cart',
+        loadComponent: () =>
+          import('./modules/cart-page/cart-page.component').then(
+            (m) => m.CartPageComponent
+          ),
+      },
     ],
   },
 ];

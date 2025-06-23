@@ -12,6 +12,7 @@ import { ProductCreateResponse } from '../../components/profile/add-product-form
 import { CookieService } from 'ngx-cookie-service';
 import { TokensResponse } from '../../interfaces/tokens-response';
 import { UserData } from '../../types/user-data';
+import { QueryCartResponse } from '../../interfaces/query-cart-response';
 
 @Injectable({
   providedIn: 'root',
@@ -23,6 +24,10 @@ export class ApiService {
     private readonly cookieService: CookieService,
     private readonly http: HttpClient
   ) {}
+
+  public queryCart(): Observable<QueryCartResponse> {
+    return this.http.get<QueryCartResponse>(this.baseUrl + '/carts/4');
+  }
 
   public getAuthData(): Observable<UserData> {
     return this.http.get<UserData>(this.baseUrl + '/auth/me');
