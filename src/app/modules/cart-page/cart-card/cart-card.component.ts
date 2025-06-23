@@ -7,15 +7,10 @@ import {
   DeleteProductAction,
   IncreaseProductAction,
 } from '../../../store/cart/cart.actions';
-import { InputComponent } from '../../../components/input/input.component';
-import { ButtonComponent } from '../../../components/button/button.component';
 
 @Component({
   selector: 'app-cart-card',
-  imports: [
-    NgOptimizedImage,
-    CountButtonComponent,
-  ],
+  imports: [NgOptimizedImage, CountButtonComponent],
   templateUrl: './cart-card.component.html',
   styleUrl: './cart-card.component.scss',
 })

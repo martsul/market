@@ -31,7 +31,7 @@ export const authInterceptor: HttpInterceptorFn = (
 
   return next(reqClone).pipe(
     catchError((error) => {
-      if (error.status === 500 && !isRefreshQuery) {
+      if (error.status === 401 && !isRefreshQuery) {
         isRefreshQuery = true;
         return apiService.refreshTokens().pipe(
           switchMap((v) => {

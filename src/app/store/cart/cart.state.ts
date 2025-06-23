@@ -8,7 +8,8 @@ import {
   QueryCartAction,
 } from './cart.actions';
 import { ApiService } from '../../services/api/api.service';
-import { tap } from 'rxjs';
+import { Observable, tap } from 'rxjs';
+import { QueryCartResponse } from '../../interfaces/query-cart-response';
 
 export type CartStateModel = CartProductData[];
 
@@ -21,14 +22,35 @@ export class CartState {
   constructor(private readonly apiService: ApiService) {}
 
   @Selector()
-  static getCart(state: CartStateModel) {
+  static getCart(state: CartStateModel): CartProductData[] {
     return state;
   }
 
+  @Selector()
+  static getSubtotal(state: CartStateModel): number {
+    return state.reduce<number>((acc, p) => {
+      const subtotal = (p.total * 100) / (100 - p.discountPercentage);
+      return acc + subtotal;
+    }, 0);
+  }
+
+  @Selector()
+  static getTotal(state: CartStateModel): number {
+    return state.reduce<number>((acc, p) => acc + p.total, 0);
+  }
+
+  @Selector()
+  static getDiscount(state: CartStateModel): number {
+    const subtotal: number = this.getSubtotal(state);
+    const total: number = this.getTotal(state);
+    return subtotal - total;
+  }
+
   @Action(QueryCartAction)
-  queryCart(ctx: StateContext<CartStateModel>) {
+  queryCart(ctx: StateContext<CartStateModel>): Observable<QueryCartResponse> {
     return this.apiService.queryCart().pipe(
       tap((v): void => {
+        console.log(v);
         ctx.setState(v.products);
       })
     );
@@ -38,7 +60,7 @@ export class CartState {
   deleteProduct(
     ctx: StateContext<CartStateModel>,
     action: DeleteProductAction
-  ) {
+  ): void {
     const state: CartStateModel = ctx.getState();
     const products: CartProductData[] = state.filter(
       (p) => p.id !== action.payload.id
@@ -50,7 +72,7 @@ export class CartState {
   increaseProduct(
     ctx: StateContext<CartStateModel>,
     action: IncreaseProductAction
-  ) {
+  ): void {
     const state: CartStateModel = ctx.getState();
     const products: CartProductData[] = state.map((p) => {
       if (p.id === action.payload.id) {
@@ -65,7 +87,7 @@ export class CartState {
   decreaseProduct(
     ctx: StateContext<CartStateModel>,
     action: DecreaseProductAction
-  ) {
+  ): void {
     const state: CartStateModel = ctx.getState();
     const products: CartProductData[] = state.reduce<CartProductData[]>(
       (acc, p) => {

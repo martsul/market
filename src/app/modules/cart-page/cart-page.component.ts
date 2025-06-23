@@ -5,16 +5,30 @@ import { QueryCartAction } from '../../store/cart/cart.actions';
 import { CartProductData } from './cart-card/interfaces/cart-product-data';
 import { CartState } from '../../store/cart/cart.state';
 import { CartCardComponent } from './cart-card/cart-card.component';
-import { InputComponent } from "../../components/input/input.component";
-import { ButtonComponent } from "../../components/button/button.component";
+import { InputComponent } from '../../components/input/input.component';
+import { ButtonComponent } from '../../components/button/button.component';
 
 @Component({
   selector: 'app-cart-page',
-  imports: [BreadCrumbsComponent, CartCardComponent, InputComponent, ButtonComponent],
+  imports: [
+    BreadCrumbsComponent,
+    CartCardComponent,
+    InputComponent,
+    ButtonComponent,
+  ],
   templateUrl: './cart-page.component.html',
   styleUrl: './cart-page.component.scss',
 })
 export class CartPageComponent {
+  public subtotal: Signal<number> = this.store.selectSignal(
+    CartState.getSubtotal
+  );
+  public total: Signal<number> = this.store.selectSignal(
+    CartState.getTotal
+  );
+  public discount: Signal<number> = this.store.selectSignal(
+    CartState.getDiscount
+  );
   public cartGoods: Signal<CartProductData[]> = this.store.selectSignal(
     CartState.getCart
   );
