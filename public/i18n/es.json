@@ -1,4 +1,27 @@
 {
-  "HOME_PREVIEW_TITLE": "ENCUENTRA ROPA QUE COMBINE CON TU ESTILO",
-  "HOME_PREVIEW_SUBTITLE": "Explore nuestra amplia gama de prendas meticulosamente elaboradas, diseñadas para resaltar su individualidad y adaptarse a su sentido del estilo."
+  "HOME": {
+    "PREVIEW": {
+      "TITLE": "ENCUENTRA ROPA QUE SE AJUSTE A TU ESTILO",
+      "SUBTITLE": "Explora nuestra diversa gama de prendas meticulosamente diseñadas para resaltar tu individualidad y adaptarse a tu estilo.",
+      "SHOP": "Comprar ahora",
+      "BRANDS": "Marcas Internacionales",
+      "QUALITY": "Productos de Alta Calidad",
+      "CUSTOMERS": "Clientes Satisfechos"
+    },
+    "WOMEN": {
+      "TITLE": "VESTIDOS DE MUJER"
+    },
+    "MEN": {
+      "TITLE": "CAMISAS DE HOMBRE"
+    }
+  },
+  "HEADER": {
+    "SHOP": "Tienda",
+    "SALE": "En Oferta",
+    "ARRIVALS": "Novedades",
+    "BRANDS": "Marcas",
+    "LOG_IN": "Iniciar Sesión",
+    "PROFILE": "Perfil",
+    "LOG_OUT": "Cerrar Sesión"
+  }
 }

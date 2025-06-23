@@ -5,10 +5,11 @@ import { Router, RouterLink } from '@angular/router';
 import { Store } from '@ngxs/store';
 import { AuthState, AuthStateModel } from '../../../store/auth/auth.state';
 import { LogOutAction } from '../../../store/auth/auth.actions';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-header-user',
-  imports: [MatMenuModule, RouterLink],
+  imports: [MatMenuModule, RouterLink, TranslatePipe],
   templateUrl: './header-user.component.html',
   styleUrl: './header-user.component.scss',
 })
@@ -24,7 +25,7 @@ export class HeaderUserComponent {
   ) {}
 
   public logout() {
-    this.cookieService.deleteAll()
+    this.cookieService.deleteAll();
     this.store.dispatch(new LogOutAction());
     this.router.navigate(['']);
   }

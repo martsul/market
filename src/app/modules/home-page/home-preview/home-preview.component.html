@@ -2,15 +2,13 @@
   <div class="container">
     <div class="previews__left">
       <div class="preview__info">
-        <h1 class="preview__title">{{ "HOME_PREVIEW_TITLE" | translate }}</h1>
+        <h1 class="preview__title">{{ "HOME.PREVIEW.TITLE" | translate }}</h1>
         <p class="preview__text">
-          Browse through our diverse range of meticulously crafted garments,
-          designed to bring out your individuality and cater to your sense of
-          style.
+          {{ "HOME.PREVIEW.SUBTITLE" | translate }}
         </p>
         <app-button
           class="preview__btn"
-          [buttonData]="{ text: 'Shop Now', color: 'dark' }"
+          [buttonData]="shopButtonData()"
           (handlerClick)="handlerShopNow()"
         />
       </div>
@@ -18,7 +16,10 @@
         @for (item of statisticItems; track $index) {
         <div class="preview__statistic-container">
           <h3 class="preview__statistic-result">+{{ item.result | number }}</h3>
-          <span class="preview__statistic-item">{{ item.item }}</span>
+          <span
+            class="preview__statistic-item"
+            >{{ `HOME.PREVIEW.${item.item}` | translate }}</span
+          >
         </div>
         }
       </div>

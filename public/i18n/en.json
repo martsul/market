@@ -1,4 +1,25 @@
 {
-  "HOME_PREVIEW_TITLE": "FIND CLOTHES THAT MATCHES YOUR STYLE",
-  "HOME_PREVIEW_SUBTITLE": "Browse through our diverse range of meticulously crafted garments, designed to bring out your individuality and cater to your sense of style."
+  "HOME": {
+    "PREVIEW": {
+      "TITLE": "FIND CLOTHES THAT MATCHES YOUR STYLE",
+      "SUBTITLE": "Browse through our diverse range of meticulously crafted garments, designed to bring out your individuality and cater to your sense of style.",
+      "SHOP": "Shop now",
+      "BRANDS": "International Brands",
+      "QUALITY": "High-Quality Products",
+      "CUSTOMERS": "Happy Customers"
+    },
+    "WOMEN": {
+      "TITLE": "WOMEN'S DRESSES"
+    },
+    "MEN": { "TITLE": "MEN'S SHIRTS" }
+  },
+  "HEADER": {
+    "SHOP": "Shop",
+    "SALE": "On Sale",
+    "ARRIVALS": "New Arrivals",
+    "BRANDS": "Brands",
+    "LOG_IN": "Log In",
+    "PROFILE": "Profile",
+    "LOG_OUT": "Log Out"
+  }
 }

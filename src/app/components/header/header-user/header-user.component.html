@@ -16,8 +16,8 @@
   </a>
   <mat-menu #appMenu="matMenu">
     <ng-template matMenuContent>
-      <a routerLink="profile" mat-menu-item>Profile</a>
-      <button (click)="logout()" mat-menu-item>Log Out</button>
+      <a routerLink="profile" mat-menu-item>{{ "HEADER.PROFILE" | translate }}</a>
+      <button (click)="logout()" mat-menu-item>{{ "HEADER.LOG_OUT" | translate }}</button>
     </ng-template>
   </mat-menu>
   <button matIconButton [matMenuTriggerFor]="appMenu">
@@ -36,5 +36,5 @@
   </button>
 </div>
 } @else {
-<a routerLink="auth">Log In</a>
+<a routerLink="auth">{{ "HEADER.LOG_IN" | translate }}</a>
 }

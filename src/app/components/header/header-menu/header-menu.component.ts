@@ -16,10 +16,11 @@ import { RouterLink } from '@angular/router';
 import { CategoryConvertPipe } from '../../../pipes/category-convert/category-convert.pipe';
 import { TitleCasePipe } from '@angular/common';
 import { BreakpointObserver } from '@angular/cdk/layout';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-header-menu',
-  imports: [MatMenuModule, RouterLink, CategoryConvertPipe, TitleCasePipe],
+  imports: [MatMenuModule, RouterLink, CategoryConvertPipe, TitleCasePipe, TranslatePipe],
   templateUrl: './header-menu.component.html',
   styleUrl: './header-menu.component.scss',
 })

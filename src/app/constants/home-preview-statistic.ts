@@ -3,14 +3,14 @@ import { ItemResultStatistic } from '../interfaces/item-result-statistic';
 export const HOME_PREVIEW_STATISTIC: ItemResultStatistic[] = [
   {
     result: 200,
-    item: "International Brands"
+    item: "BRANDS"
   },
   {
     result: 2000,
-    item: "High-Quality Products"
+    item: "QUALITY"
   },
   {
     result: 30000,
-    item: "Happy Customers"
+    item: "CUSTOMERS"
   },
 ];

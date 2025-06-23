@@ -41,7 +41,7 @@
     matIconButton
     [matMenuTriggerFor]="appMenu"
   >
-    Shop
+    {{'HEADER.SHOP' | translate }}
     <svg
       width="16"
       height="16"
@@ -65,7 +65,7 @@
     </ng-template>
   </mat-menu>
   }
-  <a href="#" class="header-menu__link">On Sale</a>
-  <a href="#" class="header-menu__link">New Arrivals</a>
-  <a href="#" class="header-menu__link">Brands</a>
+  <a href="#" class="header-menu__link">{{'HEADER.SALE' | translate }}</a>
+  <a href="#" class="header-menu__link">{{'HEADER.ARRIVALS' | translate }}</a>
+  <a href="#" class="header-menu__link">{{'HEADER.BRANDS' | translate }}</a>
 </menu>
