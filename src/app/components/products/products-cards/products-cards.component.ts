@@ -4,6 +4,7 @@ import { ProductData } from '../../../interfaces/product-data';
 import { ProductsState } from '../../../store/products/products.state';
 import { ProductCardComponent } from '../product-card/product-card.component';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
+import { IsLoadedService } from '../../../services/is-loaded/is-loaded.service';
 
 @Component({
   selector: 'app-products-cards',
@@ -15,9 +16,7 @@ export class ProductsCardsComponent {
   public products: Signal<ProductData[]> = this.store.selectSignal(
     ProductsState.getProducts
   );
-  public isLoaded: Signal<boolean> = computed<boolean>(() => {
-    return false
-  });
+  public isLoaded: Signal<boolean> = this.isLoadedService.getShopPageIsLoaded()
 
-  constructor(private readonly store: Store) {}
+  constructor(private readonly store: Store, private readonly isLoadedService: IsLoadedService) {}
 }

@@ -21,6 +21,7 @@ import { catchError, EMPTY, Observable } from 'rxjs';
 import { ProductReview } from '../../interfaces/product-review';
 import { ProductState } from '../../types/product-state';
 import { ProductsStatusState } from '../../types/products-status-state';
+import { RequestStatus } from '../../types/request-status';
 
 export interface ProductsStateModel {
   sort: SortData;
@@ -55,6 +56,11 @@ export class ProductsState {
   @Selector()
   static getMenPreview(state: ProductsStateModel): ProductData[] {
     return state.menPreview;
+  }
+
+  @Selector()
+  static getProductsStatus(state: ProductsStateModel): RequestStatus {
+    return state.products.requestStatus;
   }
 
   @Selector()

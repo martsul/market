@@ -1,5 +1,6 @@
 import {
   Component,
+  computed,
   input,
   InputSignal,
   output,
@@ -22,6 +23,7 @@ import {
 } from '@angular/router';
 import { filter, Subscription } from 'rxjs';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
+import { IsLoadedService } from '../../../services/is-loaded/is-loaded.service';
 
 @Component({
   selector: 'app-products-filters',
@@ -49,11 +51,12 @@ export class ProductsFiltersComponent {
 
   public activeCategory: WritableSignal<string> = signal<string>('');
 
-  public isLoaded: WritableSignal<boolean> = signal<boolean>(false);
+  public isLoaded: Signal<boolean> = this.isLoadedService.getShopPageIsLoaded();
 
   constructor(
     private readonly route: ActivatedRoute,
-    private readonly router: Router
+    private readonly router: Router,
+    private readonly isLoadedService: IsLoadedService
   ) {
     this.setActiveCategory();
     this.routerSubscription = this.router.events
@@ -61,7 +64,6 @@ export class ProductsFiltersComponent {
         filter((e: Event): e is NavigationEnd => e instanceof NavigationEnd)
       )
       .subscribe((): void => this.setActiveCategory());
-      setTimeout(() => {this.isLoaded.set(true)}, 1500)
   }
 
   private setActiveCategory(): void {

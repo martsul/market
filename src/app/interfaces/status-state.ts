@@ -1,4 +1,4 @@
-type RequestStatus = 'idle' | 'loading' | 'error' | 'fulfilled';
+import { RequestStatus } from '../types/request-status';
 
 export interface StatusState<T> {
   requestStatus: RequestStatus;
