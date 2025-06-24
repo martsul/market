@@ -11,7 +11,7 @@ import { TitleCasePipe } from '@angular/common';
 import { filter, Subscription } from 'rxjs';
 import { Store } from '@ngxs/store';
 import { ProductsState } from '../../store/products/products.state';
-import { ProductState } from '../../types/product-state';
+import { ProductState } from '../../types/product-state'; 
 
 @Component({
   selector: 'app-bread-crumbs',
@@ -48,7 +48,7 @@ export class BreadCrumbsComponent {
       if (productId && i === url.length - 1) {
         this.breadCrumbs.push({
           path: `${prevPath}/${path}`,
-          title: this.product().product?.title || "",
+          title: this.product().data?.title || "",
         });
       } else {
         this.breadCrumbs.push({ path: `${prevPath}/${path}`, title: path });

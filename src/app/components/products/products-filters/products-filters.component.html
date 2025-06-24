@@ -29,7 +29,7 @@
     </button>
   </div>
   <div class="filters__categories">
-    @for (category of categories(); track $index) {
+    @defer (when isLoaded()) { @for (category of categories(); track $index) {
     <a
       (click)="toggleFilters.emit()"
       [routerLink]="`/shop/${category}`"
@@ -53,6 +53,11 @@
         />
       </svg>
     </a>
-    }
+    } } @placeholder { @for (item of [].constructor(18); track $index) {
+    <ngx-skeleton-loader
+      appearance="line"
+      [theme]="{ height: '16px', width: '100%', margin: '0' }"
+    ></ngx-skeleton-loader>
+    } }
   </div>
 </div>

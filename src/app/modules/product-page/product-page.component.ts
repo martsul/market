@@ -4,7 +4,7 @@ import { ProductPreviewComponent } from './product-preview/product-preview.compo
 import { ProductReviewsComponent } from './product-reviews/product-reviews.component';
 import { Store } from '@ngxs/store';
 import { ProductsState } from '../../store/products/products.state';
-import { ProductState } from '../../types/product-state';
+import { ProductState } from '../../types/product-state'; 
 import { ActivatedRoute } from '@angular/router';
 import { QueryProductAction } from '../../store/products/products.actions';
 

@@ -1,22 +1,22 @@
 <section class="product-preview">
   <div class="container">
     @if (product().requestStatus === "fulfilled") {
-    <app-product-images [images]="product().product!.images" />
+    <app-product-images [images]="product().data!.images" />
     <div class="product-preview__info">
-      <h1 class="product-preview__title">{{ product().product!.title }}</h1>
+      <h1 class="product-preview__title">{{ product().data!.title }}</h1>
       <app-star-rating
-        [rating]="product().product!.rating"
+        [rating]="product().data!.rating"
         class="product-preview__rating"
       />
       <app-product-price
         [data]="{
-          price: product().product!.price,
-          discount: product().product!.discountPercentage
+          price: product().data!.price,
+          discount: product().data!.discountPercentage
         }"
         class="product-preview__price"
       />
       <p class="product-preview__description">
-        {{ product().product!.description }}
+        {{ product().data!.description }}
       </p>
       <div class="product-preview__buttons">
         <app-count-button class="product-preview__counter" />

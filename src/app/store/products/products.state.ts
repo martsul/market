@@ -17,16 +17,17 @@ import {
 import { ApiService } from '../../services/api/api.service';
 import { SortData } from '../../interfaces/sort-data';
 import { SORT_FIELDS } from '../../constants/sort-fields';
-import { ProductState } from '../../types/product-state';
 import { catchError, EMPTY, Observable } from 'rxjs';
 import { ProductReview } from '../../interfaces/product-review';
+import { ProductState } from '../../types/product-state';
+import { ProductsStatusState } from '../../types/products-status-state';
 
 export interface ProductsStateModel {
   sort: SortData;
   limit: number;
   skip: number;
   total: number;
-  products: ProductData[];
+  products: ProductsStatusState;
   addedProducts: ProductData[];
   womenPreview: ProductData[];
   menPreview: ProductData[];
@@ -39,8 +40,8 @@ export interface ProductsStateModel {
     limit: 12,
     skip: 0,
     total: 0,
-    product: { requestStatus: 'idle', product: null },
-    products: [],
+    product: { requestStatus: 'idle', data: null },
+    products: { requestStatus: 'idle', data: [] },
     addedProducts: [],
     menPreview: [],
     womenPreview: [],
@@ -78,7 +79,7 @@ export class ProductsState {
 
   @Selector()
   static getProducts(state: ProductsStateModel): ProductData[] {
-    return state.addedProducts.concat(state.products);
+    return state.addedProducts.concat(state.products.data || []);
   }
 
   @Selector()
@@ -101,7 +102,7 @@ export class ProductsState {
 
   @Selector()
   static getReviews(state: ProductsStateModel): ProductReview[] | undefined {
-    return state.product.product?.reviews;
+    return state.product.data?.reviews;
   }
 
   @Action(QueryProductAction)
@@ -114,24 +115,24 @@ export class ProductsState {
       ctx.patchState({
         product: {
           requestStatus: 'fulfilled',
-          product: state.addedProducts.find((p) => p.id === action.payload.id)!,
+          data: state.addedProducts.find((p) => p.id === action.payload.id)!,
         },
       });
       return;
     }
-    ctx.patchState({ product: { requestStatus: 'loading', product: null } });
+    ctx.patchState({ product: { requestStatus: 'loading', data: null } });
     this.apiService
       .queryProduct(action.payload.id)
       .pipe(
         catchError((): Observable<never> => {
           ctx.patchState({
-            product: { requestStatus: 'error', product: null },
+            product: { requestStatus: 'error', data: null },
           });
           return EMPTY;
         })
       )
-      .subscribe((product: ProductData): void => {
-        ctx.patchState({ product: { requestStatus: 'fulfilled', product } });
+      .subscribe((data: ProductData): void => {
+        ctx.patchState({ product: { requestStatus: 'fulfilled', data } });
       });
   }
 
@@ -150,8 +151,11 @@ export class ProductsState {
       })
       .subscribe((r: ProductResponse): void => {
         const total: number = r.total;
-        const products: ProductData[] = r.products;
-        ctx.patchState({ total, products });
+        const data: ProductData[] = r.products;
+        ctx.patchState({
+          total,
+          products: { requestStatus: 'fulfilled', data },
+        });
       });
   }
 

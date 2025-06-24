@@ -1,3 +1,41 @@
-@for (product of products(); track product.id) {
+@defer (when isLoaded()) { @for (product of products(); track product.id) {
 <app-product-card [product]="product" [priority]="false" />
-}
+} } @placeholder { @for (item of [].constructor(6); track $index) {
+<div>
+  <ngx-skeleton-loader
+    appearance="line"
+    [theme]="{
+      width: '100%',
+      'aspect-ratio': '1 / 1',
+      height: 'auto',
+      'margin-bottom': '13px'
+    }"
+  >
+  </ngx-skeleton-loader>
+  <ngx-skeleton-loader
+    appearance="line"
+    [theme]="{
+      width: '100%',
+      height: '20px',
+      'margin-bottom': '5px'
+    }"
+  ></ngx-skeleton-loader>
+  <ngx-skeleton-loader
+    appearance="line"
+    [theme]="{
+      width: '100%',
+      height: '19px',
+      'margin-bottom': '5px'
+    }"
+  ></ngx-skeleton-loader>
+  <ngx-skeleton-loader
+    appearance="line"
+    [theme]="{
+      width: '100%',
+      height: '24px',
+      'margin-bottom': '0'
+    }"
+  ></ngx-skeleton-loader>
+</div>
+
+} }
