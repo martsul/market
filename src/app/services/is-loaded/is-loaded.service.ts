@@ -4,6 +4,7 @@ import { CategoriesState } from '../../store/categories/categories.state';
 import { RequestStatus } from '../../types/request-status';
 import { ProductsState } from '../../store/products/products.state';
 import { ProductState } from '../../types/product-state';
+import { CartState } from '../../store/cart/cart.state';
 
 @Injectable({
   providedIn: 'root',
@@ -29,6 +30,12 @@ export class IsLoadedService {
     }
   );
 
+  private readonly cartRequestStatus: Signal<RequestStatus> =
+    this.store.selectSignal(CartState.getRequestStatus);
+  private readonly cartPageIsLoaded: Signal<boolean> = computed<boolean>(() => {
+    return this.cartRequestStatus() === 'fulfilled';
+  });
+
   constructor(private readonly store: Store) {}
 
   public getShopPageIsLoaded(): Signal<boolean> {
@@ -37,5 +44,9 @@ export class IsLoadedService {
 
   public getProductPageIsLoaded(): Signal<boolean> {
     return this.productPageIsLoaded;
+  }
+
+  public getCartPageIsLoaded(): Signal<boolean> {
+    return this.cartPageIsLoaded
   }
 }

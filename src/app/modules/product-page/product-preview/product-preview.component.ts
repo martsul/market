@@ -33,9 +33,5 @@ export class ProductPreviewComponent {
   constructor(
     private readonly store: Store,
     private readonly isLoadedService: IsLoadedService
-  ) {
-    effect(() => {
-      console.log(this.isLoaded())
-    })
-  }
+  ) {}
 }

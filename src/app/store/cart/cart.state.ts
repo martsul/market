@@ -10,12 +10,14 @@ import {
 import { ApiService } from '../../services/api/api.service';
 import { Observable, tap } from 'rxjs';
 import { QueryCartResponse } from '../../interfaces/query-cart-response';
+import { CartStatusState } from '../../types/cart-status-state';
+import { RequestStatus } from '../../types/request-status';
 
-export type CartStateModel = CartProductData[];
+export type CartStateModel = CartStatusState;
 
 @State<CartStateModel>({
   name: 'cart',
-  defaults: [],
+  defaults: { data: [], requestStatus: 'idle' },
 })
 @Injectable()
 export class CartState {
@@ -23,12 +25,12 @@ export class CartState {
 
   @Selector()
   static getCart(state: CartStateModel): CartProductData[] {
-    return state;
+    return state.data;
   }
 
   @Selector()
   static getSubtotal(state: CartStateModel): number {
-    return state.reduce<number>((acc, p) => {
+    return state.data.reduce<number>((acc, p) => {
       const subtotal = (p.total * 100) / (100 - p.discountPercentage);
       return acc + subtotal;
     }, 0);
@@ -36,7 +38,7 @@ export class CartState {
 
   @Selector()
   static getTotal(state: CartStateModel): number {
-    return state.reduce<number>((acc, p) => acc + p.total, 0);
+    return state.data.reduce<number>((acc, p) => acc + p.total, 0);
   }
 
   @Selector()
@@ -46,11 +48,17 @@ export class CartState {
     return subtotal - total;
   }
 
+  @Selector()
+  static getRequestStatus(state: CartStateModel): RequestStatus {
+    return state.requestStatus
+  }
+
   @Action(QueryCartAction)
   queryCart(ctx: StateContext<CartStateModel>): Observable<QueryCartResponse> {
+    ctx.patchState({ requestStatus: 'loading' });
     return this.apiService.queryCart().pipe(
       tap((v): void => {
-        ctx.setState(v.products);
+        ctx.setState({ data: v.products, requestStatus: 'fulfilled' });
       })
     );
   }
@@ -61,10 +69,10 @@ export class CartState {
     action: DeleteProductAction
   ): void {
     const state: CartStateModel = ctx.getState();
-    const products: CartProductData[] = state.filter(
+    const data: CartProductData[] = state.data.filter(
       (p) => p.id !== action.payload.id
     );
-    ctx.setState(products);
+    ctx.setState({ data, requestStatus: 'fulfilled' });
   }
 
   @Action(IncreaseProductAction)
@@ -73,13 +81,13 @@ export class CartState {
     action: IncreaseProductAction
   ): void {
     const state: CartStateModel = ctx.getState();
-    const products: CartProductData[] = state.map((p) => {
+    const data: CartProductData[] = state.data.map((p) => {
       if (p.id === action.payload.id) {
         return { ...p, quantity: p.quantity + 1, total: p.total + p.price };
       }
       return p;
     });
-    ctx.setState(products);
+    ctx.setState({ data, requestStatus: 'fulfilled' });
   }
 
   @Action(DecreaseProductAction)
@@ -88,7 +96,7 @@ export class CartState {
     action: DecreaseProductAction
   ): void {
     const state: CartStateModel = ctx.getState();
-    const products: CartProductData[] = state.reduce<CartProductData[]>(
+    const data: CartProductData[] = state.data.reduce<CartProductData[]>(
       (acc, p) => {
         if (p.id === action.payload.id && p.quantity > 1) {
           acc.push({
@@ -103,6 +111,6 @@ export class CartState {
       },
       []
     );
-    ctx.setState(products);
+    ctx.setState({ data, requestStatus: 'fulfilled' });
   }
 }

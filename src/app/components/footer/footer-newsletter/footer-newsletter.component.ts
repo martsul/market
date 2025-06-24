@@ -37,7 +37,6 @@ export class FooterNewsletterComponent {
     this.translate
       .get(['FOOTER.NEWSLETTER.INPUT', 'FOOTER.NEWSLETTER.BUTTON'])
       .subscribe((v: TranslateResponse): void => {
-        console.log(123123123);
         this.updateInputData(v['FOOTER.NEWSLETTER.INPUT']);
         this.updateButtonData(v['FOOTER.NEWSLETTER.BUTTON']);
       });
