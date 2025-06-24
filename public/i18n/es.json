@@ -2,26 +2,55 @@
   "HOME": {
     "PREVIEW": {
       "TITLE": "ENCUENTRA ROPA QUE SE AJUSTE A TU ESTILO",
-      "SUBTITLE": "Explora nuestra diversa gama de prendas meticulosamente diseñadas para resaltar tu individualidad y adaptarse a tu estilo.",
+      "SUBTITLE": "Explora nuestra diversa gama de prendas meticulosamente confeccionadas, diseñadas para resaltar tu individualidad y adaptarse a tu estilo personal.",
       "SHOP": "Comprar ahora",
-      "BRANDS": "Marcas Internacionales",
-      "QUALITY": "Productos de Alta Calidad",
-      "CUSTOMERS": "Clientes Satisfechos"
+      "BRANDS": "Marcas internacionales",
+      "QUALITY": "Productos de alta calidad",
+      "CUSTOMERS": "Clientes satisfechos"
     },
     "WOMEN": {
       "TITLE": "VESTIDOS DE MUJER"
     },
     "MEN": {
       "TITLE": "CAMISAS DE HOMBRE"
-    }
+    },
+    "VIEW_ALL": "Ver todo"
   },
   "HEADER": {
     "SHOP": "Tienda",
-    "SALE": "En Oferta",
+    "SALE": "En oferta",
     "ARRIVALS": "Novedades",
     "BRANDS": "Marcas",
-    "LOG_IN": "Iniciar Sesión",
+    "LOG_IN": "Iniciar sesión",
     "PROFILE": "Perfil",
-    "LOG_OUT": "Cerrar Sesión"
+    "LOG_OUT": "Cerrar sesión"
+  },
+  "FOOTER": {
+    "NEWSLETTER": {
+      "TITLE": "MANTENTE AL DÍA CON NUESTRAS ÚLTIMAS OFERTAS",
+      "INPUT": "Introduce tu dirección de correo",
+      "BUTTON": "Suscribirse al boletín"
+    },
+    "TEXT": "Tenemos ropa que se adapta a tu estilo y que te enorgullece usar. Para mujeres y hombres.",
+    "COMPANY": "Empresa",
+    "HELP": "Ayuda",
+    "FAQ": "Preguntas frecuentes",
+    "RESOURCES": "Recursos",
+    "ABOUT": "Acerca de",
+    "FEATURES": "Características",
+    "WORKS": "Proyectos",
+    "CAREER": "Carrera",
+    "SUPPORT": "Atención al cliente",
+    "DELIVERY": "Detalles de entrega",
+    "TERMS": "Términos y condiciones",
+    "PRIVACY": "Política de privacidad",
+    "ACCOUNT": "Cuenta",
+    "MANAGE": "Gestionar entregas",
+    "ORDERS": "Pedidos",
+    "PAYMENTS": "Pagos",
+    "EBOOKS": "Ebooks gratuitos",
+    "TUTORIAL": "Tutorial de desarrollo",
+    "BLOG": "Blog - Cómo hacerlo",
+    "YOUTUBE": "Lista de reproducción en YouTube"
   }
 }

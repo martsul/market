@@ -11,7 +11,8 @@
     "WOMEN": {
       "TITLE": "WOMEN'S DRESSES"
     },
-    "MEN": { "TITLE": "MEN'S SHIRTS" }
+    "MEN": { "TITLE": "MEN'S SHIRTS" },
+    "VIEW_ALL": "View All"
   },
   "HEADER": {
     "SHOP": "Shop",
@@ -21,5 +22,33 @@
     "LOG_IN": "Log In",
     "PROFILE": "Profile",
     "LOG_OUT": "Log Out"
+  },
+  "FOOTER": {
+    "NEWSLETTER": {
+      "TITLE": "STAY UPTO DATE ABOUT OUR LATEST OFFERS",
+      "INPUT": "Enter your email address",
+      "BUTTON": "Subscribe to Newsletter"
+    },
+    "TEXT": "We have clothes that suits your style and which you’re proud to wear. From women to men.",
+    "COMPANY": "Company",
+    "HELP": "Help",
+    "FAQ": "Faq",
+    "RESOURCES": "Resources",
+    "ABOUT": "About",
+    "FEATURES": "Features",
+    "WORKS": "Works",
+    "CAREER": "Career",
+    "SUPPORT": "Customer support",
+    "DELIVERY": "Delivery details",
+    "TERMS": "Terms & conditions",
+    "PRIVACY": "Privacy policy",
+    "ACCOUNT": "Account",
+    "MANAGE": "Manage deliveries",
+    "ORDERS": "Orders",
+    "PAYMENTS": "Payments",
+    "EBOOKS": "Free ebooks",
+    "TUTORIAL": "Development tutorial",
+    "BLOG": "How to - blog",
+    "YOUTUBE": "Youtube playlist"
   }
 }

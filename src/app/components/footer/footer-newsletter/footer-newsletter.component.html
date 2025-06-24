@@ -1,19 +1,14 @@
 <div class="newsletter">
-  <h2 class="newsletter__title">STAY UPTO DATE ABOUT OUR LATEST OFFERS</h2>
+  <h2 class="newsletter__title">{{ "FOOTER.NEWSLETTER.TITLE" | translate }}</h2>
   <div class="newsletter__inputs">
     <app-input
       class="newsletter__input"
       class="newsletter__input"
-      [dataInput]="{
-        placeholder: 'Enter your email address',
-        icon: 'email',
-        color: 'white',
-        type: 'email'
-      }"
+      [dataInput]="emailInputData()"
     />
     <app-button
       class="newsletter__button"
-      [buttonData]="{ text: 'Subscribe to Newsletter', color: 'white' }"
+      [buttonData]="emailButtonData()"
     />
     <button class="newsletter__button">Subscribe to Newsletter</button>
   </div>

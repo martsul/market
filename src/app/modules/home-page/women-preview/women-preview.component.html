@@ -1,7 +1,9 @@
 <section>
   <div class="container">
     <app-products-preview
-      [data]="{ title: `women's dresses`, hrefToAll: 'womens-dresses', products: products() }"
+      hrefToAll="womens-dresses"
+      [products]="products()"
+      [title]="title()"
     />
   </div>
 </section>

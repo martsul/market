@@ -2,39 +2,39 @@ import { FooterLinks } from '../interfaces/footer-links';
 
 export const FOOTER_LINKS: FooterLinks[] = [
   {
-    title: 'Company',
+    title: 'COMPANY',
     links: [
-      { link: '#', title: 'About' },
-      { link: '#', title: 'Features' },
-      { link: '#', title: 'Works' },
-      { link: '#', title: 'Career' },
+      { link: '#', title: 'ABOUT' },
+      { link: '#', title: 'FEATURES' },
+      { link: '#', title: 'WORKS' },
+      { link: '#', title: 'CAREER' },
     ],
   },
   {
-    title: 'Help',
+    title: 'HELP',
     links: [
-      { link: '#', title: 'Customer Support' },
-      { link: '#', title: 'Delivery Details' },
-      { link: '#', title: 'Terms & Conditions' },
-      { link: '#', title: 'Privacy Policy' },
+      { link: '#', title: 'SUPPORT' },
+      { link: '#', title: 'DELIVERY' },
+      { link: '#', title: 'TERMS' },
+      { link: '#', title: 'PRIVACY' },
     ],
   },
   {
     title: 'FAQ',
     links: [
-      { link: '#', title: 'Account' },
-      { link: '#', title: 'Manage Deliveries' },
-      { link: '#', title: 'Orders' },
-      { link: '#', title: 'Payments' },
+      { link: '#', title: 'ACCOUNT' },
+      { link: '#', title: 'MANAGE' },
+      { link: '#', title: 'ORDERS' },
+      { link: '#', title: 'PAYMENTS' },
     ],
   },
   {
-    title: 'Resources',
+    title: 'RESOURCES',
     links: [
-      { link: '#', title: 'Free eBooks' },
-      { link: '#', title: 'Development Tutorial' },
-      { link: '#', title: 'How to - Blog' },
-      { link: '#', title: 'Youtube Playlist' },
+      { link: '#', title: 'EBOOKS' },
+      { link: '#', title: 'TUTORIAL' },
+      { link: '#', title: 'BLOG' },
+      { link: '#', title: 'YOUTUBE' },
     ],
   },
 ];

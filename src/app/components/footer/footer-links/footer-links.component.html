@@ -1,6 +1,12 @@
-<h4 class="footer-links__title">{{ links().title | uppercase }}</h4>
+<h4 class="footer-links__title">
+  {{ `FOOTER.${links().title}` | translate | uppercase }}
+</h4>
 <div class="footer-links__container">
   @for (link of links().links; track $index) {
-  <a class="footer-links__link" [href]="link.link">{{ link.title }}</a>
+  <a
+    class="footer-links__link"
+    [href]="link.link"
+    >{{ `FOOTER.${link.title}` | translate }}</a
+  >
   }
 </div>
