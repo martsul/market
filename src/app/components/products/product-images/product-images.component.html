@@ -1,3 +1,4 @@
+@defer (when isLoaded()) {
 <swiper-container
   [breakpoints]="swiperBreakpoints"
   space-between="14"
@@ -31,3 +32,22 @@
     priority="true"
   />
 </div>
+} @placeholder {
+<div class="skeleton__small-images">
+  @for (item of [].constructor(3); track $index) {
+  <ngx-skeleton-loader
+    appearance="line"
+    [theme]="{
+      width: '100%',
+      'aspect-ratio': '1/1',
+      height: 'auto',
+      margin: 0
+    }"
+  ></ngx-skeleton-loader>
+  }
+</div>
+<ngx-skeleton-loader
+  appearance="line"
+  [theme]="{ width: '100%', 'aspect-ratio': '1/1', height: 'auto', margin: 0 }"
+></ngx-skeleton-loader>
+}

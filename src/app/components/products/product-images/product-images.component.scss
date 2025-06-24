@@ -24,7 +24,7 @@
     border: 1px solid transparent;
 
     &.active {
-        border: 1px solid #000000;
+      border: 1px solid #000000;
     }
   }
 
@@ -38,16 +38,31 @@
   }
 }
 
+.skeleton {
+  &__small-images {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+
 @media (max-width: 991px) {
   :host {
     display: flex;
     flex-direction: column-reverse;
   }
 
+  .skeleton {
+    &__small-images {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+  }
+
   .images {
     &__all {
       height: max-content;
       max-width: 100%;
-    } 
+    }
   }
 }
