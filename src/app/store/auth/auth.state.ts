@@ -7,14 +7,14 @@ import { catchError, EMPTY, tap, throwError } from 'rxjs';
 import { CookieService } from 'ngx-cookie-service';
 
 export interface AuthStateModel {
-  status: 'auth' | 'no auth' | 'error';
+  status: 'idle' | 'auth' | 'noAuth';
   userData: UserData | null;
 }
 
 @State<AuthStateModel>({
   name: 'auth',
   defaults: {
-    status: 'no auth',
+    status: 'idle',
     userData: null,
   },
 })
@@ -37,7 +37,7 @@ export class AuthState {
         ctx.patchState({ status: 'auth', userData });
       }),
       catchError(() => {
-        ctx.patchState({ status: 'error', userData: null });
+        ctx.patchState({ status: 'noAuth', userData: null });
         return EMPTY;
       })
     );
@@ -54,7 +54,7 @@ export class AuthState {
           ctx.patchState({ userData, status: 'auth' });
         },
         catchError((e: unknown) => {
-          ctx.patchState({ status: 'error', userData: null });
+          ctx.patchState({ status: 'noAuth', userData: null });
           return throwError(() => e);
         })
       )
@@ -63,6 +63,6 @@ export class AuthState {
 
   @Action(LogOutAction)
   logOut(ctx: StateContext<AuthStateModel>) {
-    ctx.patchState({ status: 'no auth', userData: null });
+    ctx.patchState({ status: 'noAuth', userData: null });
   }
 }
