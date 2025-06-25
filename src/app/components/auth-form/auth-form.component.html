@@ -1,21 +1,21 @@
-<form (submit)="submit($event)" class="auth-form">
-  <h1 class="auth-form__title">Log In</h1>
-  @if (error()) {
+  <form (submit)="submit($event)" class="auth-form">
+    <h1 class="auth-form__title">Log In</h1>
+    @if (error()) {
     <div class="auth-form__error">
-    <p class="auth-form__error-text">{{ error() }}</p>
-  </div>
-  }
-  <label class="auth-form__label">
-    <span class="auth-form__label-text">Username</span>
-    <app-input class="auth-form__input" [dataInput]="emailInputOptions" />
-  </label>
-  <label class="auth-form__label">
-    <span class="auth-form__label-text">Password</span>
-    <app-input class="auth-form__input" [dataInput]="passwordInputOptions" />
-  </label>
-  <app-button
-    [isSubmit]="true"
-    [buttonData]="submitButtonOptions"
-    class="auth-form__submit"
-  />
-</form>
+      <p class="auth-form__error-text">{{ error() }}</p>
+    </div>
+    }
+    <label class="auth-form__label">
+      <span class="auth-form__label-text">Username</span>
+      <app-input class="auth-form__input" [dataInput]="emailInputOptions" />
+    </label>
+    <label class="auth-form__label">
+      <span class="auth-form__label-text">Password</span>
+      <app-input class="auth-form__input" [dataInput]="passwordInputOptions" />
+    </label>
+    <app-button
+      [isSubmit]="true"
+      [buttonData]="submitButtonOptions"
+      class="auth-form__submit"
+    />
+  </form>

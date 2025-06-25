@@ -1,23 +1,20 @@
 import { Component, computed, inject, Signal } from '@angular/core';
 import { InputComponent } from '../../input/input.component';
 import {
+  FormArray,
+  FormBuilder,
   FormControl,
-  FormGroup,
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
 import { ButtonComponent } from '../../button/button.component';
 import { InputData } from '../../../interfaces/input-data';
-import { ProductFormModel } from './interfaces/product-form-model';
-import { Subscription, tap } from 'rxjs';
-import { NgOptimizedImage } from '@angular/common';
 import { ProductFormData } from './interfaces/product-form-data';
 import { Store } from '@ngxs/store';
 import { AddProductAction } from '../../../store/products/products.actions';
 import { SelectComponent } from '../../select/select.component';
 import { CategoriesState } from '../../../store/categories/categories.state';
 import { OptionData } from '../../select/interfaces/option-data';
-import { CategoryConvertPipe } from '../../../pipes/category-convert/category-convert.pipe';
 
 @Component({
   selector: 'app-add-product-form',
@@ -25,7 +22,6 @@ import { CategoryConvertPipe } from '../../../pipes/category-convert/category-co
     InputComponent,
     ButtonComponent,
     ReactiveFormsModule,
-    NgOptimizedImage,
     SelectComponent,
   ],
   templateUrl: './add-product-form.component.html',
@@ -44,27 +40,12 @@ export class AddProductFormComponent {
     }
   );
 
-  public productForm: FormGroup<ProductFormModel> = new FormGroup({
-    title: new FormControl<string>('', {
-      nonNullable: true,
-      validators: Validators.required,
-    }),
-    description: new FormControl<string>('', {
-      nonNullable: true,
-      validators: Validators.required,
-    }),
-    images: new FormControl<string>('', {
-      nonNullable: true,
-      validators: Validators.required,
-    }),
-    price: new FormControl<number>(0, {
-      nonNullable: true,
-      validators: Validators.required,
-    }),
-    category: new FormControl<string>('', {
-      nonNullable: true,
-      validators: Validators.required,
-    }),
+  public productForm = this.fb.group({
+    title: ['', Validators.required],
+    description: ['', Validators.required],
+    price: [0, Validators.required],
+    category: ['', Validators.required],
+    images: this.fb.array([] as FormControl<File>[]),
   });
 
   public titleInputData: InputData = {
@@ -79,12 +60,6 @@ export class AddProductFormComponent {
     type: 'text',
     formControl: this.productForm.get('description') as FormControl<string>,
   };
-  public imagesInputData: InputData = {
-    color: 'grey',
-    placeholder: 'Images Links',
-    type: 'text',
-    formControl: this.productForm.get('images') as FormControl<string>,
-  };
   public priceInputData: InputData = {
     color: 'grey',
     placeholder: 'Price',
@@ -93,37 +68,64 @@ export class AddProductFormComponent {
   };
 
   public images: string[] = [];
-  private imagesSubscription: Subscription | undefined;
 
-  constructor(private readonly store: Store) {
-    this.imagesSubscription = this.productForm
-      .get('images')
-      ?.valueChanges.subscribe((v: string): void => {
-        this.images = v.split(' ').filter((e) => e !== '');
+  constructor(
+    private readonly store: Store,
+    private readonly fb: FormBuilder
+  ) {}
+
+  get categoryControl() {
+    return this.productForm.get('category') as FormControl<string>;
+  }
+
+  public onFileSelect(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files.length > 0) {
+      this.updateFormImages(input);
+      this.updateImages();
+    }
+  }
+
+  private updateFormImages(input: HTMLInputElement): void {
+    if (input.files) {
+      const fileArray: FormArray = this.productForm.get('images') as FormArray;
+      Array.from(input.files).forEach((file) => {
+        fileArray.push(new FormControl(file, Validators.required));
       });
+    }
+  }
+
+  private updateImages(): void {
+    const fileArray: FormArray = this.productForm.get('images') as FormArray;
+    setTimeout(() => {
+      this.images = fileArray.controls.map((control) =>
+        URL.createObjectURL(control.value)
+      );
+    });
   }
 
   public submit(event: Event) {
     event.preventDefault();
+    const data: ProductFormData = this.getSubmitData();
+    this.store.dispatch(new AddProductAction(data));
+    this.resetForm();
+  }
+
+  private getSubmitData(): ProductFormData {
     const values = this.productForm.value;
-    const images = values.images!.split(' ').filter((i) => i !== '');
-    const data: ProductFormData = {
+    const images = values.images!.map((file) => URL.createObjectURL(file));
+    return {
       description: values.description!,
       title: values.title!,
-      images,
-      thumbnail: images[0],
+      images: images,
+      thumbnail: '',
       price: values.price!,
       category: values.category!,
     };
-    this.store.dispatch(new AddProductAction(data));
-    this.productForm.reset()
   }
 
-  ngOnDestroy(): void {
-    this.imagesSubscription?.unsubscribe();
-  }
-
-  get categoryControl() {
-    return this.productForm.get('category') as FormControl<string>;
+  private resetForm(): void {
+    this.productForm.reset();
+    this.images = [];
   }
 }
