@@ -51,8 +51,8 @@ export class ApiService {
     );
   }
 
-  public login(authData: FormGroup<AuthForm>): Observable<AuthResponse> {
-    const body = JSON.stringify(authData.value);
+  public login(authData: AuthForm): Observable<AuthResponse> {
+    const body = JSON.stringify(authData);
     return this.http.post<AuthResponse>(this.baseUrl + '/auth/login', body, {
       headers: { 'Content-Type': 'application/json' },
     });

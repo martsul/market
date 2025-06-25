@@ -5,6 +5,7 @@ import { State, Action, Selector, StateContext } from '@ngxs/store';
 import { GetAuthDataAction, LogInAction, LogOutAction } from './auth.actions';
 import { catchError, EMPTY, tap, throwError } from 'rxjs';
 import { CookieService } from 'ngx-cookie-service';
+import { HttpErrorResponse } from '@angular/common/http';
 
 export interface AuthStateModel {
   status: 'idle' | 'auth' | 'noAuth';
@@ -46,18 +47,19 @@ export class AuthState {
   @Action(LogInAction)
   logIn(ctx: StateContext<AuthStateModel>, { payload }: LogInAction) {
     return this.apiService.login(payload).pipe(
-      tap(
-        (v) => {
+      tap({
+        next: (v) => {
+          console.log('tap');
           const { accessToken, refreshToken, ...userData } = v;
           this.cookieService.set('accessToken', accessToken);
           this.cookieService.set('refreshToken', refreshToken);
           ctx.patchState({ userData, status: 'auth' });
         },
-        catchError((e: unknown) => {
+        error: (e: HttpErrorResponse) => {
           ctx.patchState({ status: 'noAuth', userData: null });
           return throwError(() => e);
-        })
-      )
+        },
+      })
     );
   }
 

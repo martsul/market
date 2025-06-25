@@ -4,8 +4,12 @@ import { HeaderMenuComponent } from './header-menu.component';
 import { signal } from '@angular/core';
 import { Store } from '@ngxs/store';
 import { RouterModule } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 
 describe('HeaderMenuComponent', () => {
+  const mockTranslateService: jasmine.SpyObj<TranslateService> =
+    jasmine.createSpyObj<TranslateService>('TranslateService', []);
+
   let component: HeaderMenuComponent;
   let fixture: ComponentFixture<HeaderMenuComponent>;
   let mockStore: jasmine.SpyObj<Store>;
@@ -16,7 +20,10 @@ describe('HeaderMenuComponent', () => {
 
     await TestBed.configureTestingModule({
       imports: [HeaderMenuComponent, RouterModule.forRoot([])],
-      providers: [{ provide: Store, useValue: mockStore }],
+      providers: [
+        { provide: Store, useValue: mockStore },
+        { provide: TranslateService, useValue: mockTranslateService },
+      ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(HeaderMenuComponent);

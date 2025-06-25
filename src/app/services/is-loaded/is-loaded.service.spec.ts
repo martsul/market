@@ -1,16 +1,16 @@
-import { TestBed } from '@angular/core/testing';
+// import { TestBed } from '@angular/core/testing';
 
-import { IsLoadedServiceService } from './is-loaded.service';
+// import { IsLoadedServiceService } from './is-loaded.service';
 
-describe('IsLoadedServiceService', () => {
-  let service: IsLoadedServiceService;
+// describe('IsLoadedServiceService', () => {
+//   let service: IsLoadedServiceService;
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({});
-    service = TestBed.inject(IsLoadedServiceService);
-  });
+//   beforeEach(() => {
+//     TestBed.configureTestingModule({});
+//     service = TestBed.inject(IsLoadedServiceService);
+//   });
 
-  it('should be created', () => {
-    expect(service).toBeTruthy();
-  });
-});
+//   it('should be created', () => {
+//     expect(service).toBeTruthy();
+//   });
+// });

@@ -1,18 +1,17 @@
-import { Component } from '@angular/core';
+import { Component, signal, WritableSignal } from '@angular/core';
 import { InputComponent } from '../input/input.component';
 import { InputData } from '../../interfaces/input-data';
 import {
   FormControl,
-  FormGroup,
+  NonNullableFormBuilder,
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { AuthForm } from './interfaces/auth-form';
 import { ButtonComponent } from '../button/button.component';
 import { ButtonData } from '../../interfaces/button-data';
 import { Store } from '@ngxs/store';
 import { LogInAction } from '../../store/auth/auth.actions';
-import { catchError, EMPTY, tap } from 'rxjs';
+import { EMPTY, tap } from 'rxjs';
 import { Router } from '@angular/router';
 
 @Component({
@@ -22,15 +21,10 @@ import { Router } from '@angular/router';
   styleUrl: './auth-form.component.scss',
 })
 export class AuthFormComponent {
-  public authForm: FormGroup<AuthForm> = new FormGroup<AuthForm>({
-    username: new FormControl<string>('', {
-      nonNullable: true,
-      validators: Validators.required,
-    }),
-    password: new FormControl<string>('', {
-      nonNullable: true,
-      validators: Validators.required,
-    }),
+  public error: WritableSignal<string | null> = signal<string | null>(null);
+  public authForm = this.fb.group({
+    username: ['', Validators.required],
+    password: ['', Validators.required],
   });
 
   public emailInputOptions: InputData = {
@@ -53,18 +47,26 @@ export class AuthFormComponent {
     text: 'Log In',
   };
 
-  constructor(private readonly store: Store, private readonly router: Router) {}
+  constructor(
+    private readonly store: Store,
+    private readonly router: Router,
+    private readonly fb: NonNullableFormBuilder
+  ) {}
 
   public submit(event: Event) {
     event.preventDefault();
     this.store
-      .dispatch(new LogInAction(this.authForm))
+      .dispatch(new LogInAction(this.authForm.getRawValue()))
       .pipe(
-        tap(() => {
-          this.router.navigate(['']);
-        }),
-        catchError(() => {
-          return EMPTY;
+        tap({
+          next: () => {
+            this.error.set(null);
+            this.router.navigate(['']);
+          },
+          error: () => {
+            this.error.set('Unknown user. Please check the entered data.');
+            return EMPTY;
+          },
         })
       )
       .subscribe();
