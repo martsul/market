@@ -3,6 +3,9 @@
   class="product-card"
 >
   <div class="product-card__img-container">
+    @if (product().thumbnail.startsWith("blob")) {
+    <img [src]="product().thumbnail" class="product-card__img" alt="cloth" />
+    } @else {
     <img
       [ngSrc]="product().thumbnail"
       class="product-card__img"
@@ -11,6 +14,7 @@
       height="260"
       [priority]="priority()"
     />
+    }
   </div>
   <h4 class="product-card__title">{{ product().title }}</h4>
   <app-star-rating class="product-card__rating" [rating]="product().rating" />

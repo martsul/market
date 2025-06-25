@@ -118,7 +118,7 @@ export class AddProductFormComponent {
       description: values.description!,
       title: values.title!,
       images: images,
-      thumbnail: '',
+      thumbnail: images[0],
       price: values.price!,
       category: values.category!,
     };
