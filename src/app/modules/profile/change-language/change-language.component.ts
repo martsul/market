@@ -1,19 +1,31 @@
-import { Component } from '@angular/core';
+import { Component, signal, Signal, WritableSignal } from '@angular/core';
+import { MatMenuModule } from '@angular/material/menu';
 import { TranslateService } from '@ngx-translate/core';
+import { AvailableLanguages } from './types/available-laguages';
+import { LANGUAGES } from '../../../constants/languages';
 
 @Component({
   selector: 'app-change-language',
-  imports: [],
+  imports: [MatMenuModule],
   templateUrl: './change-language.component.html',
   styleUrl: './change-language.component.scss',
 })
 export class ChangeLanguageComponent {
-  public currentLanguage = localStorage.getItem('language') || 'en';
+  public currentLang: WritableSignal<string> = signal<string>('English');
+  constructor(private readonly translate: TranslateService) {
+    this.setCurrentLang();
+    this.translate.onLangChange.subscribe(() => {
+      this.setCurrentLang();
+    });
+  }
 
-  constructor(private readonly translate: TranslateService) {}
+  private setCurrentLang(): void {
+    const currentLang: AvailableLanguages = this.translate
+      .currentLang as AvailableLanguages;
+    this.currentLang.set(LANGUAGES[currentLang]);
+  }
 
-  public handlerChange(event: Event): void {
-    const language = (event.target as HTMLSelectElement).value;
+  public changeLanguage(language: AvailableLanguages): void {
     localStorage.setItem('language', language);
     this.translate.use(language);
   }

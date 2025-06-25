@@ -1,6 +1,11 @@
 <div class="container">
-  <select [value]="currentLanguage" (change)="handlerChange($event)">
-    <option value="en">English</option>
-    <option value="es">Spanish</option>
-  </select>
+  <mat-menu #languagesMenu="matMenu">
+    <ng-template matMenuContent>
+      <button (click)="changeLanguage('en')" mat-menu-item>English</button>
+      <button (click)="changeLanguage('es')" mat-menu-item>Spanish</button>
+    </ng-template>
+  </mat-menu>
+  <button matIconButton [matMenuTriggerFor]="languagesMenu">
+    {{ currentLang() }}
+  </button>
 </div>

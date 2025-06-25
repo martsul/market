@@ -49,7 +49,6 @@ export class AuthState {
     return this.apiService.login(payload).pipe(
       tap({
         next: (v) => {
-          console.log('tap');
           const { accessToken, refreshToken, ...userData } = v;
           this.cookieService.set('accessToken', accessToken);
           this.cookieService.set('refreshToken', refreshToken);
